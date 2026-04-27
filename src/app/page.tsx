@@ -33,7 +33,10 @@ export default function HomePage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
       {/* Hero */}
-      <section className="mb-12 sm:mb-14 rounded-3xl border border-slate-200 bg-linear-to-b from-white to-slate-50 px-6 py-10 sm:px-10 sm:py-14 text-center shadow-sm">
+      <section
+        className="mb-12 sm:mb-14 rounded-3xl border border-slate-200 px-6 py-10 sm:px-10 sm:py-14 text-center shadow-sm"
+        style={{ background: "linear-gradient(to bottom, #ffffff, #f8fafc)" }}
+      >
         <p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 mb-4">
           <span>⚡</span> Fast · Free · No Signup
         </p>
