@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ AI Kit Tools
 
-## Getting Started
+**aikittools.com** — Free, fast, SEO-optimized online tools for developers, writers, and everyone.
 
-First, run the development server:
+## 🚀 Tech Stack
+
+- **Next.js 16** (App Router, TypeScript)
+- **Tailwind CSS v4**
+- **OpenAI SDK** (for AI Text Summarizer)
+- **qrcode** (for QR Code Generator)
+- Deployed on **Vercel**
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── (tools)/                  # Route group — SEO-friendly short URLs
+│   │   ├── word-counter/
+│   │   ├── json-formatter/
+│   │   ├── qr-code-generator/
+│   │   ├── base64-encoder/
+│   │   ├── url-encoder-decoder/
+│   │   └── ai-text-summarizer/
+│   ├── api/
+│   │   └── summarize/route.ts    # OpenAI API proxy (server-side only)
+│   ├── about/
+│   ├── privacy-policy/
+│   ├── terms/
+│   ├── sitemap.ts                # Auto-generated sitemap
+│   ├── robots.ts                 # robots.txt
+│   ├── layout.tsx                # Root layout (Header + Footer)
+│   └── page.tsx                  # Homepage with tool directory
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   ├── ToolPageLayout.tsx    # Reusable tool page wrapper
+│   │   └── RelatedTools.tsx
+│   ├── seo/
+│   │   ├── FAQSection.tsx        # With JSON-LD FAQ schema
+│   │   └── ToolSEOContent.tsx
+│   └── tool-ui/
+│       ├── WordCounterTool.tsx
+│       ├── JsonFormatterTool.tsx
+│       ├── QrCodeGeneratorTool.tsx
+│       ├── Base64Tool.tsx
+│       ├── UrlEncoderTool.tsx
+│       └── AiTextSummarizerTool.tsx
+├── lib/
+│   ├── tools/
+│   │   └── registry.ts           # Central tool registry (add new tools here)
+│   └── utils/
+│       └── metadata.ts           # buildMetadata() helper
+```
+
+---
+
+## 🔧 Getting Started
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/youruser/aikittools.git
+cd aikittools
+npm install
+```
+
+### 2. Set Up Environment Variables
+
+```bash
+cp .env.local.example .env.local
+```
+
+Edit `.env.local` and add your OpenAI API key:
+
+```
+OPENAI_API_KEY=sk-...
+```
+
+### 3. Run Dev Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ➕ Adding a New Tool
 
-## Learn More
+1. **Register it** in `src/lib/tools/registry.ts`
+2. **Create the UI component** in `src/components/tool-ui/YourTool.tsx`
+3. **Create the page** in `src/app/(tools)/your-tool/page.tsx` — use `ToolPageLayout` with SEO sections and FAQs
+4. That's it — the header, footer, related tools, and sitemap update automatically
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌐 SEO Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Per-page `<title>`, `<meta description>`, canonical URLs, OG + Twitter cards
+- FAQ structured data (JSON-LD `FAQPage` schema)
+- Auto-generated `sitemap.xml` and `robots.txt`
+- Semantic HTML: single `<h1>`, proper `<h2>`/`<h3>` hierarchy
+- 800–1200 word SEO content sections on every tool page
+- Internal linking via Related Tools section
 
-## Deploy on Vercel
+## 🔒 Security
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- OpenAI API key is **server-side only** — never exposed to the browser
+- Security headers configured in `next.config.ts`
+- All non-AI tools process data entirely in the browser
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📊 Future Ready
+
+The codebase is structured for:
+- **Google AdSense** — add publisher ID to `.env.local`, drop `<AdSense>` component in layout
+- **Supabase** — add auth + tool usage history with minimal changes
+- **Paid features** — gate tools by checking session/subscription in page components
