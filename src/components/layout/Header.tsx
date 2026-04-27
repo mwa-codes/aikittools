@@ -2,7 +2,22 @@ import Link from "next/link";
 import { tools } from "@/lib/tools/registry";
 
 export default function Header() {
-  const featuredTools = tools.slice(0, 5);
+  const categoryOrder = ["text", "developer", "encoder", "generator", "ai"] as const;
+  const categoryLabels: Record<(typeof categoryOrder)[number], string> = {
+    text: "Text Tools",
+    developer: "Developer Tools",
+    encoder: "Encoder / Decoder",
+    generator: "Generators",
+    ai: "AI Tools",
+  };
+
+  const groupedTools = categoryOrder
+    .map((category) => ({
+      category,
+      label: categoryLabels[category],
+      items: tools.filter((tool) => tool.category === category),
+    }))
+    .filter((group) => group.items.length > 0);
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
@@ -17,35 +32,137 @@ export default function Header() {
             <span>AI Kit Tools</span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-            {featuredTools.map((tool) => (
-              <Link
-                key={tool.slug}
-                href={`/${tool.slug}`}
-                className="px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-              >
-                {tool.name}
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center gap-2" aria-label="Main navigation">
             <Link
               href="/"
-              className="ml-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
+              className="px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+            >
+              Home
+            </Link>
+
+            <div className="relative group">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                aria-haspopup="true"
+              >
+                Tools
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 absolute right-0 top-full mt-2 w-[560px] rounded-xl border border-gray-200 bg-white shadow-lg p-4 transition-all">
+                <div className="grid grid-cols-2 gap-4">
+                  {groupedTools.map((group) => (
+                    <div key={group.category}>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+                        {group.label}
+                      </p>
+                      <ul className="space-y-1">
+                        {group.items.map((tool) => (
+                          <li key={tool.slug}>
+                            <Link
+                              href={`/${tool.slug}`}
+                              className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                            >
+                              <span>{tool.icon}</span>
+                              <span className="truncate">{tool.name}</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <Link
+              href="/about"
+              className="px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+            >
+              About
+            </Link>
+            <Link
+              href="/privacy-policy"
+              className="px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+            >
+              Privacy
+            </Link>
+            <Link
+              href="/terms"
+              className="px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+            >
+              Terms
+            </Link>
+            <Link
+              href="/"
+              className="ml-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
             >
               All Tools
             </Link>
           </nav>
 
-          {/* Mobile menu button placeholder */}
-          <button
-            className="md:hidden p-2 text-gray-600 hover:text-gray-900"
-            aria-label="Open navigation menu"
+          {/* Mobile quick link */}
+          <Link
+            href="/"
+            className="md:hidden px-3 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+            All Tools
+          </Link>
         </div>
+
+        {/* Mobile categorized tools dropdown */}
+        <details className="md:hidden pb-3">
+          <summary className="list-none inline-flex items-center gap-1 text-sm text-gray-600 hover:text-blue-600 cursor-pointer select-none">
+            Browse Tools
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div className="mt-3 space-y-4">
+            {groupedTools.map((group) => (
+              <div key={group.category}>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+                  {group.label}
+                </p>
+                <ul className="grid grid-cols-1 gap-1">
+                  {group.items.map((tool) => (
+                    <li key={tool.slug}>
+                      <Link
+                        href={`/${tool.slug}`}
+                        className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                      >
+                        <span>{tool.icon}</span>
+                        <span>{tool.name}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <div className="flex items-center gap-2 pt-1">
+              <Link
+                href="/about"
+                className="text-sm text-gray-600 hover:text-blue-600"
+              >
+                About
+              </Link>
+              <span className="text-gray-300">•</span>
+              <Link
+                href="/privacy-policy"
+                className="text-sm text-gray-600 hover:text-blue-600"
+              >
+                Privacy
+              </Link>
+              <span className="text-gray-300">•</span>
+              <Link href="/terms" className="text-sm text-gray-600 hover:text-blue-600">
+                Terms
+              </Link>
+            </div>
+          </div>
+        </details>
       </div>
     </header>
   );

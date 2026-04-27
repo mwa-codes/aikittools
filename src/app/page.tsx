@@ -31,16 +31,24 @@ export default function HomePage() {
   const grouped = groupToolsByCategory(tools);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
       {/* Hero */}
-      <section className="text-center mb-14">
-        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+      <section className="mb-12 sm:mb-14 rounded-3xl border border-slate-200 bg-linear-to-b from-white to-slate-50 px-6 py-10 sm:px-10 sm:py-14 text-center shadow-sm">
+        <p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 mb-4">
+          <span>⚡</span> Fast · Free · No Signup
+        </p>
+        <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight tracking-tight">
           Free Online Tools — <span className="text-blue-600">Fast &amp; Simple</span>
         </h1>
-        <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           No signup. No ads in the way. Just free tools that work instantly in your browser.
           Word counter, JSON formatter, QR generator, AI summarizer, and more.
         </p>
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500">
+          <span className="rounded-full bg-white border border-gray-200 px-3 py-1">SEO Friendly</span>
+          <span className="rounded-full bg-white border border-gray-200 px-3 py-1">Mobile First</span>
+          <span className="rounded-full bg-white border border-gray-200 px-3 py-1">Privacy Focused</span>
+        </div>
       </section>
 
       {/* Tool Categories */}
@@ -48,21 +56,26 @@ export default function HomePage() {
         const catTools = grouped[cat];
         if (!catTools || catTools.length === 0) return null;
         return (
-          <section key={cat} className="mb-10" aria-labelledby={`category-${cat}`}>
-            <h2
-              id={`category-${cat}`}
-              className="text-xl font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200"
-            >
-              {categoryLabels[cat] ?? cat}
-            </h2>
+          <section key={cat} className="mb-12" aria-labelledby={`category-${cat}`}>
+            <div className="flex items-end justify-between mb-4">
+              <h2
+                id={`category-${cat}`}
+                className="text-xl sm:text-2xl font-bold text-gray-800 tracking-tight"
+              >
+                {categoryLabels[cat] ?? cat}
+              </h2>
+              <span className="text-xs text-gray-400">{catTools.length} tool{catTools.length > 1 ? "s" : ""}</span>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {catTools.map((tool) => (
                 <Link
                   key={tool.slug}
                   href={`/${tool.slug}`}
-                  className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-md transition-all"
+                  className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
                 >
-                  <span className="text-3xl shrink-0 mt-0.5">{tool.icon}</span>
+                  <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
+                    {tool.icon}
+                  </span>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
@@ -91,9 +104,9 @@ export default function HomePage() {
       })}
 
       {/* Bottom CTA */}
-      <section className="mt-12 text-center bg-blue-50 border border-blue-100 rounded-2xl p-10">
+      <section className="mt-6 sm:mt-10 text-center bg-white border border-gray-200 rounded-3xl p-8 sm:p-10">
         <h2 className="text-2xl font-bold text-gray-900 mb-3">More tools coming soon</h2>
-        <p className="text-gray-500 mb-0">
+        <p className="text-gray-600 mb-0 max-w-2xl mx-auto">
           We&#39;re constantly adding new free tools. Bookmark this page and check back often.
         </p>
       </section>

@@ -4,6 +4,8 @@ import { tools } from "@/lib/tools/registry";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const footerTools = tools.slice(0, 8);
+  const hiddenToolsCount = Math.max(0, tools.length - footerTools.length);
 
   return (
     <footer className="bg-gray-900 text-gray-300 mt-16">
@@ -24,7 +26,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Tools</h3>
             <ul className="space-y-2">
-              {tools.map((tool) => (
+              {footerTools.map((tool) => (
                 <li key={tool.slug}>
                   <Link
                     href={`/${tool.slug}`}
@@ -34,6 +36,12 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/" className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
+                  View all tools
+                  {hiddenToolsCount > 0 ? ` (+${hiddenToolsCount})` : ""}
+                </Link>
+              </li>
             </ul>
           </div>
 

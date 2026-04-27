@@ -106,8 +106,8 @@ export default function PrivacyPolicyPage() {
         <h2 className="text-xl font-bold text-gray-900 mt-8">7. Contact</h2>
         <p className="leading-relaxed">
           If you have any questions about this privacy policy, contact us at{" "}
-          <a href="mailto:hello@aikittools.com" className="text-blue-600 hover:text-blue-800">
-            hello@aikittools.com
+          <a href="mailto:m.waqar.ahmed@gmail.com" className="text-blue-600 hover:text-blue-800">
+            m.waqar.ahmed@gmail.com
           </a>
           .
         </p>

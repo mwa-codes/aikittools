@@ -84,8 +84,8 @@ export default function TermsPage() {
         <h2 className="text-xl font-bold text-gray-900 mt-8">8. Contact</h2>
         <p className="leading-relaxed">
           Questions about these terms? Contact us at{" "}
-          <a href="mailto:hello@aikittools.com" className="text-blue-600 hover:text-blue-800">
-            hello@aikittools.com
+          <a href="mailto:m.waqar.ahmed@gmail.com" className="text-blue-600 hover:text-blue-800">
+            m.waqar.ahmed@gmail.com
           </a>
           .
         </p>

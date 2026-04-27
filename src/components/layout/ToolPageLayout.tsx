@@ -29,11 +29,13 @@ export default function ToolPageLayout({
   children,
 }: ToolPageLayoutProps) {
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
       {/* Page Header */}
-      <header className="mb-8">
+      <header className="mb-8 rounded-2xl border border-slate-200 bg-linear-to-b from-white to-slate-50 px-5 sm:px-7 py-6 shadow-sm">
         <div className="flex items-center gap-3 mb-2">
-          <span className="text-4xl">{tool.icon}</span>
+          <span className="text-3xl sm:text-4xl rounded-xl bg-white border border-slate-200 w-11 h-11 sm:w-12 sm:h-12 grid place-items-center">
+            {tool.icon}
+          </span>
           <div>
             {tool.isAI && (
               <span className="inline-block text-xs font-semibold bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full mb-1">
@@ -48,11 +50,11 @@ export default function ToolPageLayout({
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{tool.name}</h1>
           </div>
         </div>
-        <p className="text-gray-500 text-base ml-[52px]">{tool.description}</p>
+        <p className="text-gray-600 text-sm sm:text-base ml-0 sm:ml-[60px] leading-relaxed">{tool.description}</p>
       </header>
 
       {/* Tool UI */}
-      <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 sm:p-6">
+      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 sm:p-6">
         {children}
       </div>
 

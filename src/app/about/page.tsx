@@ -66,10 +66,10 @@ export default function AboutPage() {
         <p className="leading-relaxed">
           Have a suggestion for a new tool, found a bug, or want to partner with us? Reach out at{" "}
           <a
-            href="mailto:hello@aikittools.com"
+            href="mailto:m.waqar.ahmed@gmail.com"
             className="text-blue-600 hover:text-blue-800"
           >
-            hello@aikittools.com
+            m.waqar.ahmed@gmail.com
           </a>
           .
         </p>
