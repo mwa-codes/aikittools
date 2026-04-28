@@ -1,66 +1,44 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/utils/metadata";
 import { getToolBySlug, getRelatedTools } from "@/lib/tools/registry";
 import ToolPageLayout from "@/components/layout/ToolPageLayout";
 import UrlEncoderTool from "@/components/tool-ui/UrlEncoderTool";
 
 const SLUG = "url-encoder-decoder";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Free URL Encoder & Decoder Online – Percent-Encode URLs Instantly",
+export const metadata: Metadata = {
+  title: "URL Encoder & Decoder – Encode URLs Online Free",
   description:
-    "Encode or decode URLs and query strings with our free online URL encoder/decoder. Percent-encode special characters for safe web use. No signup required.",
-  keywords: [
-    "url encoder",
-    "url decoder",
-    "percent encoding",
-    "encode url online",
-    "decode url online",
-    "url encoding tool",
-    "urlencode",
-  ],
-  slug: SLUG,
-});
+    "Encode or decode URLs and query strings instantly. Perfect for developers and digital marketers. Free online URL encoder tool, no signup required.",
+  alternates: { canonical: "https://www.aikittools.com/url-encoder-decoder" },
+  openGraph: {
+    title: "URL Encoder & Decoder – Encode URLs Online Free",
+    description:
+      "Encode or decode URLs and query strings instantly. Perfect for developers and digital marketers. Free online URL encoder tool, no signup required.",
+    url: "https://www.aikittools.com/url-encoder-decoder",
+    siteName: "AI Kit Tools",
+    type: "website",
+  },
+  robots: { index: true, follow: true },
+};
 
 const seoSections = [
   {
-    heading: "What Is URL Encoding?",
-    body: "URL encoding (also called percent-encoding) is a process that converts special characters in a URL into a format that can be safely transmitted over the internet. Characters like spaces, ampersands (&), question marks (?), and non-ASCII characters are replaced with a percent sign (%) followed by two hexadecimal digits. For example, a space becomes %20 and & becomes %26. URL encoding ensures that data passed in URLs is interpreted correctly by web servers and browsers.",
+    heading: "What is the URL Encoder & Decoder?",
+    body: "The URL Encoder and Decoder converts characters that aren't safe to use directly in a URL — spaces, ampersands, equals signs, and special characters — into their percent-encoded equivalents, and decodes them back to readable text when needed. If you've ever seen a URL containing %20 or %26, that's percent encoding at work. Developers need this when building query strings, passing parameters through APIs, creating redirect URLs, or debugging traffic from server logs. Digital marketers use it to safely encode campaign tracking parameters without breaking link structure.",
   },
   {
-    heading: "How to Use the URL Encoder / Decoder",
+    heading: "How to Use This Tool",
     body: [
-      "Select 'Encode URL' to convert a plain text string or URL into a percent-encoded format.",
-      "Select 'Decode URL' to convert a percent-encoded URL back to readable text.",
-      "Paste or type your input into the left text area.",
-      "The output appears instantly in the right panel.",
-      "Click 'Copy' to copy the result, or 'Swap & Reverse' to use the output as input.",
+      "Paste your URL or query string into the input field.",
+      "Click Encode URL to convert special characters into safe percent-encoded format.",
+      "Or click Decode URL to convert a percent-encoded string back to readable text.",
+      "Review the output in the result panel.",
+      "Click Copy to use the result in your browser, code, or tracking links.",
     ],
   },
   {
-    heading: "Features",
-    body: [
-      "Instant encoding and decoding using the native encodeURIComponent / decodeURIComponent functions.",
-      "Handles all special characters including spaces, Unicode, and reserved characters.",
-      "Clear error messages for invalid encoded input.",
-      "Swap & Reverse button for quick round-trip testing.",
-      "Runs entirely in your browser — no data is sent to a server.",
-      "Free and unlimited.",
-    ],
-  },
-  {
-    heading: "When Do You Need URL Encoding?",
-    body: [
-      "When building query parameters for API requests (e.g., search terms with spaces).",
-      "When constructing redirect URLs that contain other URLs as parameters.",
-      "When working with form data that includes special characters.",
-      "When debugging encoded URLs from server logs or analytics tools.",
-      "When creating links that include non-ASCII characters (accented letters, CJK characters).",
-    ],
-  },
-  {
-    heading: "What Characters Get Encoded?",
-    body: "The encodeURIComponent function used by this tool encodes all characters except: A–Z, a–z, 0–9, -, _, ., !, ~, *, ', (, and ). This includes spaces (encoded as %20), /, ?, #, &, =, and all Unicode characters outside the ASCII range. If you need to encode a complete URL while preserving its structure, you should encode each component (path segments, query values) individually.",
+    heading: "Why Use URL Encoder Online?",
+    body: "Free with no account or signup. All encoding and decoding runs in your browser with zero server involvement, so your URLs and query parameters stay private. Works on desktop and mobile, making it handy during testing sessions and quick debugging tasks away from your main machine. No page reload between encode and decode — just switch modes and the result updates instantly.",
   },
 ];
 

@@ -1,66 +1,43 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/utils/metadata";
 import { getToolBySlug, getRelatedTools } from "@/lib/tools/registry";
 import ToolPageLayout from "@/components/layout/ToolPageLayout";
 import WordCounterTool from "@/components/tool-ui/WordCounterTool";
 
 const SLUG = "word-counter";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Free Word Counter & Character Counter Online",
+export const metadata: Metadata = {
+  title: "Word Counter – Count Words & Characters Online",
   description:
-    "Count words, characters, sentences, paragraphs, and estimate reading time instantly. Free online word counter — no signup required.",
-  keywords: [
-    "word counter",
-    "character counter",
-    "online word count",
-    "free word counter",
-    "sentence counter",
-    "reading time calculator",
-    "word count tool",
-  ],
-  slug: SLUG,
-});
+    "Instantly count words, characters, sentences, paragraphs, and reading time. Paste your text and get results in seconds. Free, no signup required.",
+  alternates: { canonical: "https://www.aikittools.com/word-counter" },
+  openGraph: {
+    title: "Word Counter – Count Words & Characters Online",
+    description:
+      "Instantly count words, characters, sentences, paragraphs, and reading time. Paste your text and get results in seconds. Free, no signup required.",
+    url: "https://www.aikittools.com/word-counter",
+    siteName: "AI Kit Tools",
+    type: "website",
+  },
+  robots: { index: true, follow: true },
+};
 
 const seoSections = [
   {
-    heading: "What Is a Word Counter?",
-    body: "A word counter is an online tool that instantly analyzes a piece of text and tells you how many words, characters, sentences, and paragraphs it contains. It also estimates the reading time based on an average reading speed of 200 words per minute. Whether you're writing an essay, blog post, social media caption, or professional document, a word counter helps you stay within specific limits and track your progress.",
+    heading: "What is the Word Counter?",
+    body: "The Word Counter is a free online tool built for writers, students, bloggers, and anyone who needs to track content length in real time. As you type or paste text, it instantly counts words, characters with and without spaces, sentences, paragraphs, and estimated reading time. Whether you're writing a 280-character tweet, a 500-word essay, or a 2,000-word blog post, knowing your exact count matters. Hitting a word limit in an application form or staying within a reading time target becomes effortless when the feedback is live and immediate. No registration, no downloads — paste your text and the numbers are already there.",
   },
   {
-    heading: "How to Use the Word Counter",
+    heading: "How to Use This Tool",
     body: [
-      "Paste or type your text into the text area above.",
-      "The word count, character count, sentence count, and more update in real time.",
-      "Use the 'Clear' button to reset the text area.",
-      "Use the 'Copy Text' button to copy your text to the clipboard.",
+      "Paste or type your text into the input box — counts update live as you write.",
+      "Check the word count, character count, sentence count, and reading time in the stats panel.",
+      "Use the Clear button to reset the input and start fresh.",
+      "Click Copy to copy your text back to the clipboard when you're done.",
     ],
   },
   {
-    heading: "Features of This Word Counter",
-    body: [
-      "Real-time word and character counting as you type.",
-      "Counts characters with and without spaces.",
-      "Counts sentences and paragraphs accurately.",
-      "Estimates reading time based on 200 WPM average.",
-      "Works entirely in your browser — nothing is sent to a server.",
-      "Completely free with no usage limits.",
-    ],
-  },
-  {
-    heading: "Why Word Count Matters",
-    body: "Word count is critical in many professional and academic settings. Blog posts optimized for SEO typically range from 1,500 to 3,000 words. Academic essays often have strict word limits. Tweets are capped at 280 characters. Email subject lines perform best under 50 characters. Knowing your word and character count ensures your content fits the required format and meets platform constraints.",
-  },
-  {
-    heading: "Who Uses a Word Counter?",
-    body: [
-      "Students writing essays or assignments with word limits.",
-      "Bloggers and content writers optimizing for SEO.",
-      "Social media managers checking caption lengths.",
-      "Developers testing text input fields.",
-      "Translators estimating translation costs by word count.",
-      "Authors tracking their writing progress.",
-    ],
+    heading: "Why Use Word Counter Online?",
+    body: "This word counter is completely free with no account or signup of any kind. All the analysis runs directly in your browser — your text is never uploaded to a server or stored anywhere, which matters when you're working on drafts you haven't published yet. It works equally well on phones, tablets, and desktops, so you can check your count wherever you happen to be writing. The reading time estimate is based on an average of 200 words per minute, giving you a realistic sense of how long your content will take to read.",
   },
 ];
 

@@ -1,66 +1,44 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/utils/metadata";
 import { getToolBySlug, getRelatedTools } from "@/lib/tools/registry";
 import ToolPageLayout from "@/components/layout/ToolPageLayout";
 import AiTextSummarizerTool from "@/components/tool-ui/AiTextSummarizerTool";
 
 const SLUG = "ai-text-summarizer";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Free AI Text Summarizer Online – Summarize Any Text Instantly",
+export const metadata: Metadata = {
+  title: "AI Text Summarizer – Summarize Any Text Online",
   description:
-    "Summarize long articles, essays, and documents in seconds with our free AI text summarizer powered by OpenAI. Get concise summaries instantly.",
-  keywords: [
-    "ai text summarizer",
-    "text summarizer",
-    "article summarizer",
-    "ai summarize text",
-    "free text summarizer",
-    "summarize article online",
-    "openai summarizer",
-  ],
-  slug: SLUG,
-});
+    "Summarize long articles, essays, or documents in seconds using AI. Get a clear, concise summary instantly. Free AI text summarizer, no signup required.",
+  alternates: { canonical: "https://www.aikittools.com/ai-text-summarizer" },
+  openGraph: {
+    title: "AI Text Summarizer – Summarize Any Text Online",
+    description:
+      "Summarize long articles, essays, or documents in seconds using AI. Get a clear, concise summary instantly. Free AI text summarizer, no signup required.",
+    url: "https://www.aikittools.com/ai-text-summarizer",
+    siteName: "AI Kit Tools",
+    type: "website",
+  },
+  robots: { index: true, follow: true },
+};
 
 const seoSections = [
   {
-    heading: "What Is an AI Text Summarizer?",
-    body: "An AI text summarizer is a tool powered by artificial intelligence that reads a piece of text and produces a shorter version that preserves the key ideas and main points. Unlike simple extractive methods that copy sentences verbatim, AI summarizers (like this one powered by OpenAI) can paraphrase and synthesize information to create a genuinely concise and coherent summary.",
+    heading: "What is the AI Text Summarizer?",
+    body: "The AI Text Summarizer uses artificial intelligence to read a piece of text and distill it into a shorter, coherent summary that captures the main points. Unlike basic approaches that just extract the first few sentences, AI summarization actually understands the content and rephrases it — so even if the most important information is buried in the middle of an article, it still makes it into the summary. Students use it to get the gist of long readings before diving in. Researchers use it to quickly assess whether a paper is relevant. Professionals use it to process reports and meeting notes faster.",
   },
   {
-    heading: "How to Use the AI Text Summarizer",
+    heading: "How to Use This Tool",
     body: [
-      "Paste your article, essay, or document text into the input box.",
-      "Keep your input under 500 words for best results.",
-      "Click 'Summarize with AI' and wait a few seconds.",
-      "Your 3–5 sentence summary will appear below the button.",
-      "Click 'Copy' to copy the summary to your clipboard.",
+      "Paste the text you want to summarize into the input box.",
+      "Stay under 500 words for best results — longer documents can be summarized in sections.",
+      "Click Summarize and wait a few seconds while the AI processes your text.",
+      "Read the concise summary in the output area.",
+      "Click Copy to use the summary in your notes, email, or report.",
     ],
   },
   {
-    heading: "Features",
-    body: [
-      "AI-powered summarization using OpenAI GPT-4o Mini.",
-      "Produces 3–5 sentence summaries preserving core meaning.",
-      "Word count tracker to stay within the 500-word limit.",
-      "Fast response — summaries typically appear in 2–5 seconds.",
-      "Simple, distraction-free interface.",
-      "Free to use.",
-    ],
-  },
-  {
-    heading: "Who Benefits from AI Text Summarization?",
-    body: [
-      "Students who need to quickly grasp the key points of long readings.",
-      "Researchers reviewing large volumes of academic papers.",
-      "Professionals condensing reports and meeting notes.",
-      "Bloggers and content writers getting up to speed on topics quickly.",
-      "Anyone who wants to save reading time on long articles.",
-    ],
-  },
-  {
-    heading: "Limitations to Be Aware Of",
-    body: "AI summarizers are powerful but not perfect. They may occasionally miss nuance, misinterpret technical jargon, or lose context from highly specialized content. Always review AI-generated summaries before citing or acting on them. This tool is designed for general-purpose text summarization and works best with news articles, blog posts, essays, and informational documents written in English.",
+    heading: "Why Use AI Text Summarizer Online?",
+    body: "Free to use with no account required. Powered by OpenAI's GPT model to produce genuine, readable summaries rather than just clipping sentences. Your text is sent to the AI for processing, so this tool is best suited for non-sensitive content like articles, essays, and public documents. If you regularly deal with long reading lists and limited time, this tool saves meaningful hours every week.",
   },
 ];
 

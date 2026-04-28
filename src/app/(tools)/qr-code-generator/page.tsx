@@ -1,66 +1,44 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/utils/metadata";
 import { getToolBySlug, getRelatedTools } from "@/lib/tools/registry";
 import ToolPageLayout from "@/components/layout/ToolPageLayout";
 import QrCodeGeneratorTool from "@/components/tool-ui/QrCodeGeneratorTool";
 
 const SLUG = "qr-code-generator";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Free QR Code Generator Online – Create QR Codes Instantly",
+export const metadata: Metadata = {
+  title: "QR Code Generator – Create QR Codes Free Online",
   description:
-    "Generate QR codes from any URL, text, email, or phone number. Free online QR code generator with download support. No signup needed.",
-  keywords: [
-    "qr code generator",
-    "free qr code",
-    "create qr code online",
-    "qr code maker",
-    "url to qr code",
-    "qr code download",
-  ],
-  slug: SLUG,
-});
+    "Generate QR codes from any URL, text, email, or phone number instantly. Download as PNG. Free online QR code generator, no signup required.",
+  alternates: { canonical: "https://www.aikittools.com/qr-code-generator" },
+  openGraph: {
+    title: "QR Code Generator – Create QR Codes Free Online",
+    description:
+      "Generate QR codes from any URL, text, email, or phone number instantly. Download as PNG. Free online QR code generator, no signup required.",
+    url: "https://www.aikittools.com/qr-code-generator",
+    siteName: "AI Kit Tools",
+    type: "website",
+  },
+  robots: { index: true, follow: true },
+};
 
 const seoSections = [
   {
-    heading: "What Is a QR Code Generator?",
-    body: "A QR code generator is an online tool that converts any text, URL, phone number, email address, or other data into a scannable QR code image. QR codes (Quick Response codes) are two-dimensional barcodes that can be scanned by any smartphone camera to instantly open a link, display a message, or trigger an action.",
+    heading: "What is the QR Code Generator?",
+    body: "The QR Code Generator turns any text, URL, email address, or phone number into a downloadable QR code image in real time. QR codes are everywhere now — restaurant menus, product packaging, business cards, event check-ins, and marketing print materials all use them to bridge physical and digital experiences. Instead of expecting someone to type a long URL, a QR code lets anyone with a smartphone camera jump directly to your link in seconds. This tool generates clean, high-contrast QR codes that scan reliably on any device, and lets you download them as PNG images ready for any project.",
   },
   {
-    heading: "How to Use the QR Code Generator",
+    heading: "How to Use This Tool",
     body: [
-      "Enter a URL, text, email, or phone number in the input field.",
-      "Optionally adjust the QR code size using the size slider.",
-      "Click 'Generate QR Code' to create the QR code.",
-      "A preview of the QR code will appear on the right.",
-      "Click 'Download PNG' to save the QR code image to your device.",
+      "Type or paste your URL, text, email, or phone number into the input field.",
+      "The QR code preview updates automatically as you type.",
+      "Adjust the size using the slider if you need a larger or smaller output.",
+      "Review the preview to confirm it looks clean and correct.",
+      "Click Download PNG to save the image to your device.",
     ],
   },
   {
-    heading: "Features",
-    body: [
-      "Supports any text input: URLs, emails, phone numbers, plain text.",
-      "Adjustable size from 128×128 to 512×512 pixels.",
-      "High error correction for reliable scanning.",
-      "Download QR code as a PNG image.",
-      "Works entirely in your browser.",
-      "Free and unlimited use.",
-    ],
-  },
-  {
-    heading: "Common Uses for QR Codes",
-    body: [
-      "Linking physical products to a website or landing page.",
-      "Sharing Wi-Fi credentials without typing.",
-      "Adding contact information to business cards.",
-      "Directing customers to a menu, app, or payment link.",
-      "Encoding event tickets or access codes.",
-      "Marketing campaigns and print materials.",
-    ],
-  },
-  {
-    heading: "How to Scan a QR Code",
-    body: "To scan a QR code, simply open your smartphone's camera app and point it at the QR code. Most modern iOS and Android devices will automatically detect the QR code and display a notification with the encoded link or data. On some devices you may need to use a dedicated QR code scanner app.",
+    heading: "Why Use QR Code Generator Online?",
+    body: "Free and instant — no account, no watermarks, no limits on how many QR codes you generate. Everything runs in your browser, so codes appear immediately without any server calls. Download and use them in print, digital, or wherever you need them, with no restrictions. The PNG files are high quality, suitable for both screen display and printing at reasonable sizes.",
   },
 ];
 

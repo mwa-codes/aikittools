@@ -1,67 +1,44 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/utils/metadata";
 import { getToolBySlug, getRelatedTools } from "@/lib/tools/registry";
 import ToolPageLayout from "@/components/layout/ToolPageLayout";
 import JsonFormatterTool from "@/components/tool-ui/JsonFormatterTool";
 
 const SLUG = "json-formatter";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Free JSON Formatter & Validator Online – Beautify JSON Instantly",
+export const metadata: Metadata = {
+  title: "JSON Formatter & Validator – Beautify JSON Online",
   description:
-    "Format, validate, and beautify JSON instantly with our free online JSON formatter. Minify JSON, detect errors, and get clean readable output.",
-  keywords: [
-    "json formatter",
-    "json validator",
-    "json beautifier",
-    "format json online",
-    "json minifier",
-    "validate json",
-    "json pretty print",
-    "online json tool",
-  ],
-  slug: SLUG,
-});
+    "Format, validate, and beautify JSON instantly. Paste messy JSON and get clean, readable output in one click. Free online tool, no signup required.",
+  alternates: { canonical: "https://www.aikittools.com/json-formatter" },
+  openGraph: {
+    title: "JSON Formatter & Validator – Beautify JSON Online",
+    description:
+      "Format, validate, and beautify JSON instantly. Paste messy JSON and get clean, readable output in one click. Free online tool, no signup required.",
+    url: "https://www.aikittools.com/json-formatter",
+    siteName: "AI Kit Tools",
+    type: "website",
+  },
+  robots: { index: true, follow: true },
+};
 
 const seoSections = [
   {
-    heading: "What Is a JSON Formatter?",
-    body: "A JSON formatter (also known as a JSON beautifier or JSON pretty printer) is an online tool that takes raw, unformatted JSON data and restructures it with proper indentation, line breaks, and spacing to make it human-readable. It also validates the JSON syntax and reports errors if the input is not valid JSON.",
+    heading: "What is the JSON Formatter & Validator?",
+    body: "The JSON Formatter and Validator is a developer tool that takes raw, compressed, or poorly formatted JSON and turns it into clean, properly indented output that's easy to read and debug. It also validates your JSON as you paste it — if there's a missing bracket, a trailing comma, or any other syntax error, you'll see a clear message explaining what went wrong. Developers use this constantly when debugging API responses, reading config files, inspecting webhook payloads, or working with database query results. Instead of staring at a wall of minified text, one click gives you a structured, readable view.",
   },
   {
-    heading: "How to Use the JSON Formatter",
+    heading: "How to Use This Tool",
     body: [
-      "Paste your raw or minified JSON into the 'Input JSON' field.",
-      "The tool automatically formats it and displays the output on the right.",
-      "Switch to 'Minify' mode to compress JSON by removing whitespace.",
-      "If the JSON is invalid, a clear error message will appear below the input.",
-      "Click 'Copy' to copy the formatted output to your clipboard.",
+      "Paste your raw or minified JSON into the input panel.",
+      "Click Format / Beautify to expand it into readable indented output.",
+      "Or click Minify to compress it back into a single line for production use.",
+      "If your JSON has errors, an error message will appear explaining the issue.",
+      "Click Copy to grab the formatted output for use in your project.",
     ],
   },
   {
-    heading: "Features",
-    body: [
-      "Instant formatting and validation as you type.",
-      "Beautify mode with 2-space indentation for readability.",
-      "Minify mode to compact JSON for production use.",
-      "Clear and descriptive error messages for invalid JSON.",
-      "Works entirely in the browser — your data never leaves your device.",
-      "Free and unlimited use.",
-    ],
-  },
-  {
-    heading: "What Is JSON?",
-    body: "JSON (JavaScript Object Notation) is a lightweight, text-based data interchange format. It is widely used in web APIs, configuration files, and data storage. JSON is easy for humans to read and write, and easy for machines to parse and generate. A valid JSON document can be an object ({}), an array ([]), a string, a number, a boolean, or null.",
-  },
-  {
-    heading: "Common JSON Use Cases",
-    body: [
-      "Debugging API responses from REST or GraphQL services.",
-      "Formatting configuration files for readability.",
-      "Validating JSON before sending to a server.",
-      "Minifying JSON to reduce file size in production.",
-      "Learning JSON structure and syntax.",
-    ],
+    heading: "Why Use JSON Formatter Online?",
+    body: "Free with no signup required. All formatting and validation runs locally in your browser — your JSON data is never sent to any external server, which matters when you're working with API responses containing sensitive fields, private keys, or internal data structures. There's no paste limit, no account wall, and no slowdown from server round-trips. Paste your JSON and the output is ready in milliseconds.",
   },
 ];
 

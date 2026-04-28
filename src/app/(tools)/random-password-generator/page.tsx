@@ -1,60 +1,44 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/utils/metadata";
 import { getToolBySlug, getToolsBySlugs } from "@/lib/tools/registry";
 import ToolPageLayout from "@/components/layout/ToolPageLayout";
 import RandomPasswordGeneratorTool from "@/components/tool-ui/RandomPasswordGeneratorTool";
 
 const SLUG = "random-password-generator";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Random Password Generator – Create Strong & Secure Passwords Online",
+export const metadata: Metadata = {
+  title: "Random Password Generator – Strong Passwords Free",
   description:
-    "Generate strong and secure passwords instantly with our free random password generator. Customize length, symbols, and numbers easily.",
-  keywords: [
-    "random password generator",
-    "secure password generator",
-    "strong password tool",
-    "create password online",
-    "password maker",
-    "generate random password",
-  ],
-  slug: SLUG,
-});
+    "Generate strong, secure random passwords with custom length, symbols, and numbers. Free online password generator. No signup, works in your browser.",
+  alternates: { canonical: "https://www.aikittools.com/random-password-generator" },
+  openGraph: {
+    title: "Random Password Generator – Strong Passwords Free",
+    description:
+      "Generate strong, secure random passwords with custom length, symbols, and numbers. Free online password generator. No signup, works in your browser.",
+    url: "https://www.aikittools.com/random-password-generator",
+    siteName: "AI Kit Tools",
+    type: "website",
+  },
+  robots: { index: true, follow: true },
+};
 
 const seoSections = [
   {
-    heading: "What Is a Random Password Generator?",
-    body: "A random password generator is a security-focused tool that creates hard-to-guess passwords using unpredictable character combinations. Instead of choosing common words, names, or dates, this tool builds passwords using uppercase letters, lowercase letters, numbers, and symbols based on your settings. The goal is to create credentials that are far more resistant to brute-force attacks, credential stuffing, and guessing attempts. For modern online accounts, strong unique passwords are essential. Reusing weak passwords across multiple websites can expose your email, banking, social, and work accounts all at once if one platform is breached. With this generator, you can quickly create a fresh password in seconds and use a password manager to save it securely.",
+    heading: "What is the Random Password Generator?",
+    body: "The Random Password Generator creates strong, unpredictable passwords built from a mix of uppercase letters, lowercase letters, numbers, and special characters. Reusing simple passwords across multiple sites puts all your accounts at risk if any one of them is breached. This tool lets you build a fresh, high-entropy password in seconds — with full control over length and character types so you can match whatever requirements a platform has. The longer and more varied the password, the harder it becomes for automated attacks to crack. Think of it as the first step in taking your account security seriously.",
   },
   {
-    heading: "How to Use This Password Generator",
+    heading: "How to Use This Tool",
     body: [
-      "Choose your desired password length with the slider.",
-      "Select the character types you want: uppercase, lowercase, numbers, and symbols.",
-      "Click Generate Password to create a new secure password instantly.",
-      "Review the generated value and click Copy to Clipboard.",
-      "Paste it into your signup or account settings form and save it in a password manager.",
+      "Drag the length slider to set your desired password length (12–24 characters is a solid starting point).",
+      "Toggle checkboxes to include or exclude uppercase letters, numbers, and symbols.",
+      "Click Generate to create a new random password instantly.",
+      "If you don't like the result, click Generate again for a different one.",
+      "Click Copy and paste it into your signup form or save it in a password manager.",
     ],
   },
   {
-    heading: "Key Features",
-    body: "This generator is designed for speed, flexibility, and practical security. You can create short passwords for low-risk logins or long complex strings for critical accounts. Each generated password includes configurable character sets so you can match platform rules quickly. The tool can include at least one character from each selected group, helping avoid rejections on sites that enforce complexity requirements. Copy-to-clipboard support saves time when creating multiple account passwords in a row. Most importantly, generation happens directly in your browser session for a fast, simple workflow. You can regenerate as many times as needed until you find a password format that meets your account policy and personal preferences.",
-  },
-  {
-    heading: "Why Strong Passwords Matter for SEO and Business",
-    body: "Website security affects trust, brand reputation, and long-term growth. If your admin accounts or team tools use weak passwords, a compromise can lead to malware injections, spam pages, redirects, or content tampering. Those incidents often hurt search visibility, trigger browser warnings, and reduce user confidence. For business owners, preventing account compromise is not only an IT concern, it is also an operational and marketing concern. Strong password practices reduce downtime risk, protect private customer data, and help maintain a stable website experience. By generating unique passwords for hosting dashboards, CMS accounts, analytics tools, and team logins, you lower the chance that a single leaked password can impact your entire online presence.",
-  },
-  {
-    heading: "Best Practices for Password Security",
-    body: "Use a different password for every account, especially for email, domain registrar, payment providers, and admin dashboards. Prefer lengths of 14 to 24 characters when possible. Enable two-factor authentication (2FA) on all important services for an extra layer of protection. Avoid storing passwords in plain text files or chat messages. Instead, use a reputable password manager that can generate, sync, and autofill securely. Rotate passwords after suspected breaches, shared access handoffs, or team departures. Never rely on memorable patterns like CompanyName123! because they are easier to guess than they appear. A random generator plus a password manager is one of the simplest and most effective security workflows for individuals and teams.",
-  },
-  {
-    heading: "Common Use Cases",
-    body: "Freelancers use password generators when creating accounts for new clients and project tools. Developers use them for staging dashboards, API platforms, and cloud infrastructure logins. Agencies generate secure credentials before handing over websites to clients. Ecommerce operators use unique passwords for payment gateways, analytics suites, and inventory systems. Students and remote workers use random passwords to protect university portals and productivity apps. Families also use these tools to secure shared streaming or utility accounts. In each case, the benefit is the same: less reliance on weak repeated passwords and a significantly lower chance of unauthorized account access caused by credential reuse or predictable patterns.",
-  },
-  {
-    heading: "Tips for Managing Generated Passwords",
-    body: "After generating a password, save it immediately in your password manager and add clear labels so you can locate it later. Group accounts by category, such as finance, business, social, and infrastructure, to simplify audits. Use password health reports to identify reused or weak entries and replace them with newly generated alternatives. If a website limits symbols, regenerate with a custom setting that still keeps high entropy through length and mixed characters. For team environments, avoid sharing raw passwords over email and use secure vault sharing with role-based access. Regular housekeeping keeps your credential inventory clean, secure, and easy to maintain as your number of accounts grows.",
+    heading: "Why Use Random Password Generator Online?",
+    body: "Completely free with no login required. The most important detail: passwords are generated entirely inside your browser using cryptographic random functions — they are never sent to any server, never logged, and never stored anywhere. What you generate exists only on your screen until you copy it. That's the right way to handle sensitive credentials, and it's exactly how this tool works.",
   },
 ];
 
