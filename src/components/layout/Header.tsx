@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 
 export default function Header() {
@@ -17,10 +18,20 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 font-bold text-xl text-gray-900 hover:text-blue-600 transition-colors"
+            className="hover:opacity-80 transition-opacity"
           >
-            <span className="text-blue-600">⚡</span>
-            <span>AI Kit Tools</span>
+            <div className="flex items-center gap-2">
+              <Image
+                src="/logo-AK.png"
+                alt="AI Kit Tools logo"
+                width={32}
+                height={32}
+                className="rounded-md"
+              />
+              <span className="font-semibold text-gray-900 text-sm">
+                AI Kit Tools
+              </span>
+            </div>
           </Link>
 
           <nav className="hidden md:flex items-center gap-2" aria-label="Main navigation">

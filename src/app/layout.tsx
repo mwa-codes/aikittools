@@ -32,6 +32,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: "/aikittools_favicon.ico",
+    shortcut: "/aikittools_favicon.ico",
+    apple: "/logo-AK.png",
+  },
   robots: {
     index: true,
     follow: true,
