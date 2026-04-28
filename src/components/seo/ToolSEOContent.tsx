@@ -1,6 +1,10 @@
 interface ContentSection {
   heading: string;
   body: string | string[];
+  subSections?: Array<{
+    heading: string;
+    body: string | string[];
+  }>;
 }
 
 interface ToolSEOContentProps {
@@ -22,6 +26,20 @@ export default function ToolSEOContent({ sections }: ToolSEOContentProps) {
           ) : (
             <p className="text-gray-700 text-sm leading-relaxed">{section.body}</p>
           )}
+          {section.subSections?.map((subSection, subIndex) => (
+            <div key={`${index}-${subIndex}`} className="mt-4">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">{subSection.heading}</h3>
+              {Array.isArray(subSection.body) ? (
+                <ul className="space-y-2 text-gray-700 text-sm leading-relaxed list-disc list-inside">
+                  {subSection.body.map((item, itemIndex) => (
+                    <li key={itemIndex}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-gray-700 text-sm leading-relaxed">{subSection.body}</p>
+              )}
+            </div>
+          ))}
         </div>
       ))}
     </section>

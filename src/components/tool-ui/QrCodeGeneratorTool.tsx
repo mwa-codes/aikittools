@@ -27,7 +27,7 @@ export default function QrCodeGeneratorTool() {
         });
         setQrDataUrl(dataUrl);
         setError("");
-      } catch (e) {
+      } catch {
         setError("Failed to generate QR code. Please check your input.");
         setQrDataUrl("");
       } finally {

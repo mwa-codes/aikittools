@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
 
       <div className="prose prose-gray max-w-none space-y-6 text-gray-600">
         <p className="leading-relaxed">
-          At <strong className="text-gray-900">AI Kit Tools</strong> ("we", "our", "us"), your
+          At <strong className="text-gray-900">AI Kit Tools</strong> (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;), your
           privacy is important to us. This policy explains what data we collect, how we use it, and
           your rights.
         </p>
@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800"
             >
-              OpenAI's Privacy Policy
+              OpenAI&apos;s Privacy Policy
             </a>
             .
           </li>
@@ -75,7 +75,7 @@ export default function PrivacyPolicyPage() {
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800"
             >
-              Vercel's Privacy Policy
+              Vercel&apos;s Privacy Policy
             </a>
             .
           </li>
@@ -91,7 +91,7 @@ export default function PrivacyPolicyPage() {
           logs) may be retained for up to 30 days for security and debugging purposes.
         </p>
 
-        <h2 className="text-xl font-bold text-gray-900 mt-8">5. Children's Privacy</h2>
+        <h2 className="text-xl font-bold text-gray-900 mt-8">5. Children&apos;s Privacy</h2>
         <p className="leading-relaxed">
           Our services are not directed to children under 13. We do not knowingly collect personal
           information from children.

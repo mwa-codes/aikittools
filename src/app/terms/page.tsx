@@ -43,7 +43,7 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-bold text-gray-900 mt-8">3. Disclaimer of Warranties</h2>
         <p className="leading-relaxed">
-          The service is provided "as is" without warranties of any kind. We do not guarantee that
+          The service is provided &quot;as is&quot; without warranties of any kind. We do not guarantee that
           the tools will always be available, accurate, or error-free. AI-generated summaries may
           contain inaccuracies. Always verify critical outputs.
         </p>
@@ -64,7 +64,7 @@ export default function TermsPage() {
             rel="noopener noreferrer"
             className="text-blue-600 hover:text-blue-800"
           >
-            OpenAI's usage policies
+            OpenAI&apos;s usage policies
           </a>
           .
         </p>

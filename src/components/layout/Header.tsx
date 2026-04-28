@@ -1,20 +1,11 @@
 import Link from "next/link";
-import { tools } from "@/lib/tools/registry";
+import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 
 export default function Header() {
-  const categoryOrder = ["text", "developer", "encoder", "generator", "ai"] as const;
-  const categoryLabels: Record<(typeof categoryOrder)[number], string> = {
-    text: "Text Tools",
-    developer: "Developer Tools",
-    encoder: "Encoder / Decoder",
-    generator: "Generators",
-    ai: "AI Tools",
-  };
-
-  const groupedTools = categoryOrder
+  const groupedTools = TOOL_CATEGORY_ORDER
     .map((category) => ({
       category,
-      label: categoryLabels[category],
+      label: TOOL_CATEGORY_LABELS[category],
       items: tools.filter((tool) => tool.category === category),
     }))
     .filter((group) => group.items.length > 0);

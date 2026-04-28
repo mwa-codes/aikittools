@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { tools } from "@/lib/tools/registry";
+import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,16 +7,6 @@ export const metadata: Metadata = {
   description:
     "Free online tools for developers and everyone: word counter, JSON formatter, QR code generator, Base64 encoder, URL encoder, and AI text summarizer. No signup needed.",
 };
-
-const categoryLabels: Record<string, string> = {
-  text: "Text Tools",
-  developer: "Developer Tools",
-  encoder: "Encoder / Decoder Tools",
-  generator: "Generator Tools",
-  ai: "AI Tools",
-};
-
-const categoryOrder = ["text", "developer", "encoder", "generator", "ai"];
 
 function groupToolsByCategory(toolList: typeof tools) {
   const grouped: Record<string, typeof tools> = {};
@@ -55,7 +45,7 @@ export default function HomePage() {
       </section>
 
       {/* Tool Categories */}
-      {categoryOrder.map((cat) => {
+      {TOOL_CATEGORY_ORDER.map((cat) => {
         const catTools = grouped[cat];
         if (!catTools || catTools.length === 0) return null;
         return (
@@ -65,7 +55,7 @@ export default function HomePage() {
                 id={`category-${cat}`}
                 className="text-xl sm:text-2xl font-bold text-gray-800 tracking-tight"
               >
-                {categoryLabels[cat] ?? cat}
+                {TOOL_CATEGORY_LABELS[cat] ?? cat}
               </h2>
               <span className="text-xs text-gray-400">{catTools.length} tool{catTools.length > 1 ? "s" : ""}</span>
             </div>

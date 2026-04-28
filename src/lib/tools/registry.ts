@@ -1,15 +1,77 @@
+export type ToolCategory = "text" | "developer" | "encoder" | "calculator" | "ai";
+
 export interface Tool {
   slug: string;
   name: string;
   shortDescription: string;
   description: string;
-  category: "text" | "developer" | "ai" | "encoder" | "generator";
+  category: ToolCategory;
   icon: string;
   isAI?: boolean;
   isNew?: boolean;
 }
 
 export const tools: Tool[] = [
+  {
+    slug: "age-calculator",
+    name: "Age Calculator",
+    shortDescription: "Calculate exact age in years, months, and days.",
+    description:
+      "Free age calculator to find exact age from date of birth in years, months, and days, plus time left until next birthday.",
+    category: "calculator",
+    icon: "🎂",
+    isNew: true,
+  },
+  {
+    slug: "bmi-calculator",
+    name: "BMI Calculator",
+    shortDescription: "Calculate BMI and weight category instantly.",
+    description:
+      "Free BMI calculator for metric and imperial units. Check body mass index and category: underweight, normal, overweight, or obese.",
+    category: "calculator",
+    icon: "⚖️",
+    isNew: true,
+  },
+  {
+    slug: "loan-emi-calculator",
+    name: "Loan EMI Calculator",
+    shortDescription: "Estimate monthly EMI, total payment, and interest.",
+    description:
+      "Free loan EMI calculator to estimate monthly installment, total repayment, and total interest for home, car, and personal loans.",
+    category: "calculator",
+    icon: "💰",
+    isNew: true,
+  },
+  {
+    slug: "random-password-generator",
+    name: "Random Password Generator",
+    shortDescription: "Generate secure passwords with custom options.",
+    description:
+      "Free random password generator. Create strong, secure passwords with custom length, symbols, numbers, and case settings.",
+    category: "developer",
+    icon: "🔐",
+    isNew: true,
+  },
+  {
+    slug: "invoice-generator",
+    name: "Free Invoice Generator",
+    shortDescription: "Create and download professional invoices as PDF.",
+    description:
+      "Free invoice generator to add client details, line items, and instantly download a clean invoice PDF.",
+    category: "text",
+    icon: "🧾",
+    isNew: true,
+  },
+  {
+    slug: "color-picker-hex-converter",
+    name: "Color Picker & HEX Converter",
+    shortDescription: "Convert HEX, RGB, and HSL color values instantly.",
+    description:
+      "Free color picker and converter for HEX, RGB, and HSL. Pick a color and copy values in one click.",
+    category: "developer",
+    icon: "🎨",
+    isNew: true,
+  },
   {
     slug: "word-counter",
     name: "Word Counter",
@@ -34,7 +96,7 @@ export const tools: Tool[] = [
     shortDescription: "Generate QR codes from any text or URL.",
     description:
       "Free online QR code generator. Turn any text or URL into a downloadable QR code instantly.",
-    category: "generator",
+    category: "encoder",
     icon: "📱",
   },
   {
@@ -56,6 +118,46 @@ export const tools: Tool[] = [
     icon: "🔗",
   },
   {
+    slug: "case-converter",
+    name: "Case Converter",
+    shortDescription: "Convert text case instantly with live preview.",
+    description:
+      "Free online case converter. Convert text to uppercase, lowercase, title case, sentence case, or camelCase instantly.",
+    category: "text",
+    icon: "🔤",
+    isNew: true,
+  },
+  {
+    slug: "lorem-ipsum-generator",
+    name: "Lorem Ipsum Generator",
+    shortDescription: "Generate placeholder paragraphs, words, or sentences.",
+    description:
+      "Free Lorem Ipsum generator to create placeholder text for design mockups, websites, and content drafts.",
+    category: "text",
+    icon: "📝",
+    isNew: true,
+  },
+  {
+    slug: "css-minifier",
+    name: "CSS Minifier",
+    shortDescription: "Minify and compress CSS code in one click.",
+    description:
+      "Free CSS minifier to remove comments and whitespace from CSS, reducing file size for faster page loads.",
+    category: "developer",
+    icon: "💻",
+    isNew: true,
+  },
+  {
+    slug: "html-entity-encoder-decoder",
+    name: "HTML Entity Encoder & Decoder",
+    shortDescription: "Encode or decode HTML entities instantly.",
+    description:
+      "Free HTML entity encoder and decoder to convert special characters to entities and decode entities back to text.",
+    category: "encoder",
+    icon: "🔐",
+    isNew: true,
+  },
+  {
     slug: "ai-text-summarizer",
     name: "AI Text Summarizer",
     shortDescription: "Summarize long text in seconds using AI.",
@@ -75,3 +177,19 @@ export function getToolBySlug(slug: string): Tool | undefined {
 export function getRelatedTools(currentSlug: string, count = 4): Tool[] {
   return tools.filter((t) => t.slug !== currentSlug).slice(0, count);
 }
+
+export function getToolsBySlugs(slugs: string[]): Tool[] {
+  return slugs
+    .map((slug) => getToolBySlug(slug))
+    .filter((tool): tool is Tool => Boolean(tool));
+}
+
+export const TOOL_CATEGORY_ORDER: ToolCategory[] = ["text", "developer", "encoder", "calculator", "ai"];
+
+export const TOOL_CATEGORY_LABELS: Record<ToolCategory, string> = {
+  text: "Text Tools",
+  developer: "Developer Tools",
+  encoder: "Encoder/Decoder",
+  calculator: "Calculators",
+  ai: "AI Tools",
+};

@@ -11,6 +11,10 @@ interface FAQ {
 interface ContentSection {
   heading: string;
   body: string | string[];
+  subSections?: Array<{
+    heading: string;
+    body: string | string[];
+  }>;
 }
 
 interface ToolPageLayoutProps {
