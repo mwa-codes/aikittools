@@ -4,16 +4,20 @@ import type { Metadata } from "next";
 import { SITE_NAME, SITE_URL, buildMetadata } from "@/lib/utils/metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Free Online Tools for Text, JSON, QR Codes & AI",
+  title: "Free Online Tools — Word Counter, JSON Formatter, QR Code & More",
   description:
-    "Free online tools for developers and everyone: word counter, JSON formatter, QR code generator, Base64 encoder, URL encoder, and AI text summarizer. No signup needed.",
+    "Free online tools for everyday tasks: word counter, JSON formatter, QR code generator, BMI calculator, age calculator, Base64 encoder, and AI text summarizer. No signup required.",
   keywords: [
     "free online tools",
-    "ai tools",
-    "developer tools",
-    "calculators",
-    "json formatter",
     "word counter",
+    "json formatter",
+    "qr code generator",
+    "age calculator",
+    "bmi calculator",
+    "base64 encoder",
+    "ai text summarizer",
+    "developer tools",
+    "free calculators",
   ],
 });
 
