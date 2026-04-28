@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/utils/metadata";
 
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} – Free Online Tools`,
-    template: `%s | ${SITE_NAME}`,
+    default: SITE_NAME,
+    template: "%s | AI Kit Tools",
   },
   description: SITE_DESCRIPTION,
   keywords:
@@ -16,15 +19,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: SITE_URL,
+    url: "/",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} – Free Online Tools`,
+    title: SITE_NAME,
     description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} – Free Online Tools`,
+    title: SITE_NAME,
     description: SITE_DESCRIPTION,
+  },
+  alternates: {
+    canonical: "/",
   },
   robots: {
     index: true,
@@ -44,6 +50,22 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        {GA_MEASUREMENT_ID ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-placeholder" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        ) : null}
       </body>
     </html>
   );

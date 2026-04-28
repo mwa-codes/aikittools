@@ -1,7 +1,8 @@
-import RelatedTools from "@/components/layout/RelatedTools";
+import RelatedTools from "../RelatedTools";
 import FAQSection from "@/components/seo/FAQSection";
 import ToolSEOContent from "@/components/seo/ToolSEOContent";
 import type { Tool } from "@/lib/tools/registry";
+import { SITE_NAME, SITE_URL } from "@/lib/utils/metadata";
 
 interface FAQ {
   question: string;
@@ -32,8 +33,32 @@ export default function ToolPageLayout({
   seoSections,
   children,
 }: ToolPageLayoutProps) {
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: tool.name,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    description: tool.description,
+    url: `${SITE_URL}/${tool.slug}`,
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
       {/* Page Header */}
       <header className="mb-8 rounded-2xl border border-slate-200 bg-linear-to-b from-white to-slate-50 px-5 sm:px-7 py-6 shadow-sm">
         <div className="flex items-center gap-3 mb-2">

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 const SITE_NAME = "AI Kit Tools";
 const SITE_URL = "https://aikittools.com";
 const SITE_DESCRIPTION =
-  "Free online tools for text, JSON, QR codes, encoding, and AI – all in one place. Fast, simple, no signup required.";
+  "Free AI tools and online utilities including calculators, developer tools, and AI-powered tools.";
 
 export function buildMetadata({
   title,
@@ -18,19 +18,18 @@ export function buildMetadata({
   slug?: string;
   ogImage?: string;
 }): Metadata {
-  const url = slug ? `${SITE_URL}/${slug}` : SITE_URL;
+  const path = slug ? `/${slug}` : "/";
   const image = ogImage ?? `${SITE_URL}/og-default.png`;
 
   return {
-    title: `${title} | ${SITE_NAME}`,
+    title,
     description,
     keywords: keywords.join(", "),
-    metadataBase: new URL(SITE_URL),
-    alternates: { canonical: url },
+    alternates: { canonical: path },
     openGraph: {
       title: `${title} | ${SITE_NAME}`,
       description,
-      url,
+      url: path,
       siteName: SITE_NAME,
       images: [{ url: image, width: 1200, height: 630, alt: title }],
       type: "website",

@@ -1,12 +1,21 @@
 import Link from "next/link";
 import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 import type { Metadata } from "next";
+import { SITE_NAME, SITE_URL, buildMetadata } from "@/lib/utils/metadata";
 
-export const metadata: Metadata = {
-  title: "AI Kit Tools – Free Online Tools for Text, JSON, QR Codes & AI",
+export const metadata: Metadata = buildMetadata({
+  title: "Free Online Tools for Text, JSON, QR Codes & AI",
   description:
     "Free online tools for developers and everyone: word counter, JSON formatter, QR code generator, Base64 encoder, URL encoder, and AI text summarizer. No signup needed.",
-};
+  keywords: [
+    "free online tools",
+    "ai tools",
+    "developer tools",
+    "calculators",
+    "json formatter",
+    "word counter",
+  ],
+});
 
 function groupToolsByCategory(toolList: typeof tools) {
   const grouped: Record<string, typeof tools> = {};
@@ -19,9 +28,24 @@ function groupToolsByCategory(toolList: typeof tools) {
 
 export default function HomePage() {
   const grouped = groupToolsByCategory(tools);
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${SITE_URL}/?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
       {/* Hero */}
       <section
         className="mb-12 sm:mb-14 rounded-3xl border border-slate-200 px-6 py-10 sm:px-10 sm:py-14 text-center shadow-sm"
