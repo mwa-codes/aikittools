@@ -19,7 +19,7 @@ export function buildMetadata({
   ogImage?: string;
 }): Metadata {
   const path = slug ? `/${slug}` : "/";
-  const image = ogImage ?? `${SITE_URL}/og-default.png`;
+  const image = ogImage ?? "https://www.aikittools.com/og-image.png";
 
   return {
     title,
@@ -31,7 +31,14 @@ export function buildMetadata({
       description,
       url: path,
       siteName: SITE_NAME,
-      images: [{ url: image, width: 1200, height: 630, alt: title }],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: "AI Kit Tools — Free Online Tools",
+        },
+      ],
       type: "website",
       locale: "en_US",
     },
