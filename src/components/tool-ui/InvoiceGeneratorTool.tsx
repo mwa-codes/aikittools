@@ -10,6 +10,18 @@ interface InvoiceItem {
   price: number;
 }
 
+function normalizeNumberInput(value: string, allowDecimal: boolean) {
+  const cleaned = allowDecimal ? value.replace(/[^\d.]/g, "") : value.replace(/[^\d]/g, "");
+  if (!allowDecimal) {
+    return cleaned.replace(/^0+(?=\d)/, "");
+  }
+
+  const [rawIntPart = "", ...rest] = cleaned.split(".");
+  const decimalPart = rest.join("").replace(/\./g, "");
+  const intPart = rawIntPart.replace(/^0+(?=\d)/, "");
+  return decimalPart ? `${intPart || "0"}.${decimalPart}` : intPart;
+}
+
 function formatCurrency(value: number) {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -31,8 +43,25 @@ export default function InvoiceGeneratorTool() {
       prev.map((item) => {
         if (item.id !== id) return item;
         if (field === "quantity" || field === "price") {
-          const numericValue = Number(value);
-          return { ...item, [field]: Number.isNaN(numericValue) ? 0 : numericValue };
+          const allowDecimal = field === "price";
+          const normalized = normalizeNumberInput(value, allowDecimal);
+          const fallbackValue = field === "quantity" ? 1 : 0;
+
+          if (!normalized) {
+            return { ...item, [field]: fallbackValue };
+          }
+
+          const numericValue = Number(normalized);
+          if (Number.isNaN(numericValue)) {
+            return { ...item, [field]: fallbackValue };
+          }
+
+          const safeValue =
+            field === "quantity"
+              ? Math.max(1, Math.trunc(numericValue))
+              : Math.max(0, numericValue);
+
+          return { ...item, [field]: safeValue };
         }
         return { ...item, [field]: value };
       })
