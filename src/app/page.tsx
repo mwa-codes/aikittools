@@ -58,8 +58,8 @@ export default function HomePage() {
           Free Online Tools — <span className="text-blue-600">Fast &amp; Simple</span>
         </h1>
         <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          No signup. No ads in the way. Just free tools that work instantly in your browser.
-          Word counter, JSON formatter, QR generator, AI summarizer, and more.
+          No signup required. No distractions. Just free tools that work instantly in your browser.
+          Built for everyday tasks, with fast and simple experiences you can use anytime.
         </p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500">
           <span className="rounded-full bg-white border border-gray-200 px-3 py-1">SEO Friendly</span>
