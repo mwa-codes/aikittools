@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useReducer } from "react";
+import { useMemo, useReducer, useRef } from "react";
 import { DEFAULT_INVOICE_FORM_DATA, PAYMENT_TERMS_OPTIONS } from "@/lib/invoice/constants";
 import { toIsoDateString } from "@/lib/invoice/formatters";
 import type { DiscountType, InvoiceFormData, PaymentTermsOption } from "@/types/invoice";
@@ -29,6 +29,11 @@ function addDays(dateString: string, days: number) {
   return toIsoDateString(date);
 }
 
+function getPaymentTermsDays(paymentTerms: PaymentTermsOption) {
+  const selected = PAYMENT_TERMS_OPTIONS.find((option) => option.value === paymentTerms);
+  return selected?.days ?? null;
+}
+
 function reducer(state: InvoiceFormData, action: Action): InvoiceFormData {
   switch (action.type) {
     case "SET_PARTY_FIELD":
@@ -39,24 +44,14 @@ function reducer(state: InvoiceFormData, action: Action): InvoiceFormData {
           [action.field]: action.value,
         },
       };
-    case "SET_FIELD": {
-      if (action.field === "issueDate") {
-        const selected = PAYMENT_TERMS_OPTIONS.find((option) => option.value === state.paymentTerms);
-        const nextDueDate = selected?.days ? addDays(action.value, selected.days) : state.dueDate;
-        return {
-          ...state,
-          issueDate: action.value,
-          dueDate: nextDueDate,
-        };
-      }
+    case "SET_FIELD":
       return {
         ...state,
         [action.field]: action.value,
       };
-    }
     case "SET_PAYMENT_TERMS": {
-      const selected = PAYMENT_TERMS_OPTIONS.find((option) => option.value === action.value);
-      const dueDate = selected?.days ? addDays(state.issueDate, selected.days) : state.dueDate;
+      const days = getPaymentTermsDays(action.value);
+      const dueDate = days === null ? state.dueDate : addDays(state.issueDate, days);
       return {
         ...state,
         paymentTerms: action.value,
@@ -157,14 +152,36 @@ function reducer(state: InvoiceFormData, action: Action): InvoiceFormData {
 export function useInvoiceForm(initialInvoiceNumber: string) {
   const today = toIsoDateString(new Date());
   const [data, dispatch] = useReducer(reducer, DEFAULT_INVOICE_FORM_DATA(initialInvoiceNumber, today));
+  const dueDateManuallyEditedRef = useRef(false);
 
   const actions = useMemo(
     () => ({
       setPartyField: (section: PartySection, field: "name" | "email" | "address" | "phone", value: string) =>
         dispatch({ type: "SET_PARTY_FIELD", section, field, value }),
-      setField: (field: "invoiceNumber" | "issueDate" | "dueDate" | "customPaymentTerms" | "notes", value: string) =>
-        dispatch({ type: "SET_FIELD", field, value }),
-      setPaymentTerms: (value: PaymentTermsOption) => dispatch({ type: "SET_PAYMENT_TERMS", value }),
+      setField: (field: "invoiceNumber" | "issueDate" | "dueDate" | "customPaymentTerms" | "notes", value: string) => {
+        if (field === "dueDate") {
+          dueDateManuallyEditedRef.current = true;
+          dispatch({ type: "SET_FIELD", field, value });
+          return;
+        }
+
+        if (field === "issueDate") {
+          dispatch({ type: "SET_FIELD", field, value });
+          if (!dueDateManuallyEditedRef.current) {
+            const days = getPaymentTermsDays(data.paymentTerms);
+            if (days !== null) {
+              dispatch({ type: "SET_FIELD", field: "dueDate", value: addDays(value, days) });
+            }
+          }
+          return;
+        }
+
+        dispatch({ type: "SET_FIELD", field, value });
+      },
+      setPaymentTerms: (value: PaymentTermsOption) => {
+        dueDateManuallyEditedRef.current = false;
+        dispatch({ type: "SET_PAYMENT_TERMS", value });
+      },
       setCurrency: (value: InvoiceFormData["currency"]) => dispatch({ type: "SET_CURRENCY", value }),
       addLineItem: () => dispatch({ type: "ADD_LINE_ITEM" }),
       removeLineItem: (id: string) => dispatch({ type: "REMOVE_LINE_ITEM", id }),
@@ -177,7 +194,7 @@ export function useInvoiceForm(initialInvoiceNumber: string) {
       setPreviousBalance: (value: string) => dispatch({ type: "SET_PREVIOUS_BALANCE", value }),
       setLogo: (value: string | null) => dispatch({ type: "SET_LOGO", value }),
     }),
-    []
+    [data.paymentTerms]
   );
 
   return { data, actions };

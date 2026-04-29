@@ -62,17 +62,49 @@ export default function InvoiceBuilder() {
                 <Input value={data.from.phone ?? ""} onChange={(v) => actions.setPartyField("from", "phone", v)} placeholder="+1 555 0100" />
               </Field>
               <Field label="Logo (optional)">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => handleLogoUpload(e.target.files?.[0] ?? null)}
-                  className={INPUT_CLS}
-                />
-                {data.logoDataUrl && (
-                  <button type="button" onClick={() => actions.setLogo(null)} className="mt-1 text-xs text-red-500 hover:underline">
-                    Remove logo
-                  </button>
-                )}
+                <label className="block cursor-pointer rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-3 transition-colors hover:border-blue-400 hover:bg-blue-50/40">
+                  <input
+                    type="file"
+                    accept="image/png,image/jpeg,image/jpg"
+                    onChange={(e) => handleLogoUpload(e.target.files?.[0] ?? null)}
+                    className="sr-only"
+                  />
+                  {!data.logoDataUrl ? (
+                    <div className="flex flex-col items-center justify-center gap-1 text-center">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        className="h-6 w-6 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                      >
+                        <path d="M12 16V6" />
+                        <path d="m8.5 9.5 3.5-3.5 3.5 3.5" />
+                        <path d="M4 15.5A4.5 4.5 0 0 0 8.5 20h7A4.5 4.5 0 1 0 15 11a5 5 0 0 0-9.7 1.5" />
+                      </svg>
+                      <p className="text-sm font-medium text-gray-700">Click to upload logo</p>
+                      <p className="text-xs text-gray-500">PNG, JPG up to 2MB</p>
+                    </div>
+                  ) : (
+                    <div className="relative mx-auto h-20 w-full max-w-[140px] overflow-hidden rounded-md border border-gray-200 bg-white">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={data.logoDataUrl} alt="Selected logo preview" className="h-full w-full object-contain p-1" />
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          actions.setLogo(null);
+                        }}
+                        className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-gray-900/70 text-xs text-white hover:bg-red-500"
+                        aria-label="Remove logo"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  )}
+                </label>
               </Field>
               <Field label="Business Address" wide>
                 <textarea rows={2} value={data.from.address} onChange={(e) => actions.setPartyField("from", "address", e.target.value)} placeholder="Street, City, Country" className={TEXTAREA_CLS} />
@@ -192,7 +224,7 @@ export default function InvoiceBuilder() {
                             const n = Math.max(1, Math.trunc(Number(e.target.value) || 1));
                             actions.setLineItemField(item.id, "quantity", String(n));
                           }}
-                          className={INPUT_CLS}
+                          className={`${INPUT_CLS} py-3 text-center`}
                         />
                       </td>
                       <td className="px-3 py-2">
@@ -207,7 +239,7 @@ export default function InvoiceBuilder() {
                             const n = Math.max(0, Number(e.target.value) || 0);
                             actions.setLineItemField(item.id, "unitPrice", String(n));
                           }}
-                          className={INPUT_CLS}
+                          className={`${INPUT_CLS} ${NO_SPINNER_CLS}`}
                         />
                       </td>
                       <td className="px-3 py-2 text-right font-semibold text-gray-800 tabular-nums whitespace-nowrap">
@@ -248,7 +280,7 @@ export default function InvoiceBuilder() {
                         type="number" min={1} value={item.quantity} onFocus={selectAll}
                         onMouseUp={keepSelection}
                         onChange={(e) => actions.setLineItemField(item.id, "quantity", String(Math.max(1, Math.trunc(Number(e.target.value) || 1))))}
-                        className={INPUT_CLS}
+                        className={`${INPUT_CLS} py-3 text-center`}
                       />
                     </Field>
                     <Field label="Unit Price">
@@ -256,7 +288,7 @@ export default function InvoiceBuilder() {
                         type="number" min={0} step="0.01" value={item.unitPrice} onFocus={selectAll}
                         onMouseUp={keepSelection}
                         onChange={(e) => actions.setLineItemField(item.id, "unitPrice", String(Math.max(0, Number(e.target.value) || 0)))}
-                        className={INPUT_CLS}
+                        className={`${INPUT_CLS} ${NO_SPINNER_CLS}`}
                       />
                     </Field>
                   </div>
@@ -419,6 +451,8 @@ function TotalsRow({ label, value, dim }: { label: string; value: string; dim?: 
 
 const INPUT_CLS =
   "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-100 placeholder:text-gray-400";
+
+const NO_SPINNER_CLS = "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]";
 
 const TEXTAREA_CLS =
   "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors resize-y focus:border-blue-500 focus:ring-2 focus:ring-blue-100 placeholder:text-gray-400";

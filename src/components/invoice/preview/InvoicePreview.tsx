@@ -10,6 +10,7 @@ interface InvoicePreviewProps {
 
 function getPaymentTermsLabel(data: InvoiceFormData) {
   if (data.paymentTerms === "CUSTOM") return data.customPaymentTerms || "Custom";
+  if (data.paymentTerms === "DUE_ON_RECEIPT") return "Due on Receipt";
   const days = data.paymentTerms.split("_")[1];
   return days ? `Net ${days}` : data.paymentTerms;
 }
@@ -17,6 +18,9 @@ function getPaymentTermsLabel(data: InvoiceFormData) {
 export default function InvoicePreview({ data }: InvoicePreviewProps) {
   const totals = getInvoiceTotals(data);
   const termsLabel = getPaymentTermsLabel(data);
+  const visibleLineItems = data.lineItems.filter(
+    (item) => item.description.trim() || item.quantity > 1 || item.unitPrice > 0
+  );
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-4 sm:p-6 shadow-sm text-gray-800">
@@ -38,11 +42,11 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
           )}
           <p className="text-2xl font-bold tracking-tight text-gray-900">INVOICE</p>
         </div>
-        <div className="text-left sm:text-right text-sm leading-relaxed">
-          <p className="font-semibold text-gray-900">{data.from.name || "Business Name"}</p>
-          <p className="whitespace-pre-line text-gray-600">{data.from.address || "Business address"}</p>
-          <p className="text-gray-600">{data.from.email || "email@example.com"}</p>
-          <p className="text-gray-600">{data.from.phone || "+00 000 0000000"}</p>
+        <div className="min-w-0 text-left sm:text-right text-sm leading-relaxed">
+          <p className="font-semibold text-gray-900 truncate">{data.from.name || "Business Name"}</p>
+          <p className="whitespace-pre-line wrap-break-word text-gray-600">{data.from.address || "Business address"}</p>
+          <p className="text-gray-600 truncate">{data.from.email || "email@example.com"}</p>
+          <p className="text-gray-600 truncate">{data.from.phone || "+00 000 0000000"}</p>
         </div>
       </div>
 
@@ -50,16 +54,21 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
       <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="rounded-lg bg-gray-50 border border-gray-100 p-3 text-sm leading-relaxed">
           <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1.5">Bill To</p>
-          <p className="font-semibold text-gray-900">{data.to.name || "Client name"}</p>
-          <p className="text-gray-600">{data.to.email || "client@email.com"}</p>
+          <p className="font-semibold text-gray-900 truncate">{data.to.name || "Client name"}</p>
+          <p className="text-gray-600 truncate">{data.to.email || "client@email.com"}</p>
           <p className="whitespace-pre-line text-gray-600">{data.to.address || "Client address"}</p>
         </div>
         <div className="rounded-lg bg-gray-50 border border-gray-100 p-3 text-sm text-left sm:text-right leading-relaxed">
           <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1.5">Invoice Details</p>
-          <p><span className="text-gray-500">Invoice #:</span> {data.invoiceNumber || "-"}</p>
+          <p className="flex items-center gap-1 sm:justify-end">
+            <span className="text-gray-500 shrink-0">Invoice #:</span>
+            <span className="block min-w-0 overflow-hidden text-ellipsis whitespace-nowrap">
+              {data.invoiceNumber || "-"}
+            </span>
+          </p>
           <p><span className="text-gray-500">Issue Date:</span> {data.issueDate || "-"}</p>
           <p><span className="text-gray-500">Due Date:</span> {data.dueDate || "-"}</p>
-          <p><span className="text-gray-500">Terms:</span> {termsLabel}</p>
+          <p className="truncate"><span className="text-gray-500">Terms:</span> {termsLabel}</p>
           <p><span className="text-gray-500">Currency:</span> {data.currency}</p>
         </div>
       </div>
@@ -76,12 +85,18 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
             </tr>
           </thead>
           <tbody>
-            {data.lineItems.map((item, idx) => (
+            {visibleLineItems.map((item, idx) => (
               <tr
                 key={item.id}
                 className={`border-b border-gray-100 ${idx % 2 !== 0 ? "bg-gray-50/50" : "bg-white"}`}
               >
-                <td className="px-3 py-2">{item.description || "Untitled item"}</td>
+                <td className="px-3 py-2">
+                  {item.description.trim() ? (
+                    item.description
+                  ) : (
+                    <span className="text-gray-400 italic">Untitled item</span>
+                  )}
+                </td>
                 <td className="px-3 py-2 tabular-nums">{item.quantity}</td>
                 <td className="px-3 py-2 tabular-nums">{formatCurrency(item.unitPrice, data.currency)}</td>
                 <td className="px-3 py-2 text-right tabular-nums font-medium">
@@ -89,6 +104,13 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
                 </td>
               </tr>
             ))}
+            {visibleLineItems.length === 0 && (
+              <tr className="bg-white">
+                <td colSpan={4} className="px-3 py-3 text-center text-gray-400 italic">
+                  Line items will appear here once you start adding details.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

@@ -10,6 +10,7 @@ export const CURRENCY_OPTIONS: Array<{ code: CurrencyCode; label: string }> = [
 ];
 
 export const PAYMENT_TERMS_OPTIONS: Array<{ value: PaymentTermsOption; label: string; days: number | null }> = [
+  { value: "DUE_ON_RECEIPT", label: "Due on Receipt", days: 0 },
   { value: "NET_7", label: "Net 7", days: 7 },
   { value: "NET_15", label: "Net 15", days: 15 },
   { value: "NET_30", label: "Net 30", days: 30 },

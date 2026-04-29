@@ -13,6 +13,7 @@ const SECTION_GAP = 22;
 
 function getPaymentTermsLabel(data: InvoiceFormData) {
   if (data.paymentTerms === "CUSTOM") return data.customPaymentTerms || "Custom";
+  if (data.paymentTerms === "DUE_ON_RECEIPT") return "Due on Receipt";
   const days = data.paymentTerms.split("_")[1];
   return days ? `Net ${days}` : data.paymentTerms;
 }

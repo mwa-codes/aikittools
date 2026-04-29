@@ -1,6 +1,6 @@
 export type CurrencyCode = "USD" | "EUR" | "GBP" | "PKR" | "AED" | "CAD";
 
-export type PaymentTermsOption = "NET_7" | "NET_15" | "NET_30" | "CUSTOM";
+export type PaymentTermsOption = "DUE_ON_RECEIPT" | "NET_7" | "NET_15" | "NET_30" | "CUSTOM";
 
 export type DiscountType = "PERCENT" | "FIXED";
 
