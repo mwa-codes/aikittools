@@ -10,7 +10,6 @@ export default function Header() {
       items: tools.filter((tool) => tool.category === category),
     }))
     .filter((group) => group.items.length > 0);
-
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

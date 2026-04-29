@@ -4,7 +4,19 @@ import { tools } from "@/lib/tools/registry";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const footerTools = tools.slice(0, 8);
+  const prioritizedSlugs = [
+    "cover-letter-generator",
+    "resume-bullet-point-generator",
+    "ai-text-summarizer",
+    "word-counter",
+    "case-converter",
+    "invoice-generator",
+    "json-formatter",
+    "qr-code-generator",
+  ];
+  const footerTools = tools
+    .filter((tool) => prioritizedSlugs.includes(tool.slug))
+    .sort((a, b) => prioritizedSlugs.indexOf(a.slug) - prioritizedSlugs.indexOf(b.slug));
   const hiddenToolsCount = Math.max(0, tools.length - footerTools.length);
 
   return (
@@ -18,7 +30,8 @@ export default function Footer() {
               <span>{SITE_NAME}</span>
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Free online tools for developers, writers, and everyone. Fast, simple, no signup needed.
+              Free AI career tools for job seekers. Cover letters, resume bullets, ATS checkers and
+              more — free, instant, no signup.
             </p>
           </div>
 
