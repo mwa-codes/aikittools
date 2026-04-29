@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const SITE_NAME = "AI Kit Tools";
-const SITE_URL = "https://aikittools.com";
+const SITE_URL = "https://www.aikittools.com";
 const SITE_DESCRIPTION =
   "Free AI tools and online utilities including calculators, developer tools, and AI-powered tools.";
 
