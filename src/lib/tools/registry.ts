@@ -1,4 +1,4 @@
-export type ToolCategory = "text" | "developer" | "encoder" | "calculator" | "ai";
+export type ToolCategory = "text" | "developer" | "encoder" | "calculator" | "ai" | "career";
 
 export interface Tool {
   slug: string;
@@ -168,6 +168,28 @@ export const tools: Tool[] = [
     isAI: true,
     isNew: true,
   },
+  {
+    slug: "cover-letter-generator",
+    name: "✉️ Cover Letter Generator",
+    shortDescription: "Generate tailored cover letters in seconds with AI.",
+    description:
+      "Free AI cover letter generator. Enter your job title, company, and experience to create a professional cover letter instantly.",
+    category: "career",
+    icon: "✉️",
+    isAI: true,
+    isNew: true,
+  },
+  {
+    slug: "resume-bullet-point-generator",
+    name: "🧩 Resume Bullet Point Generator",
+    shortDescription: "Rewrite resume bullets into strong, achievement-focused lines.",
+    description:
+      "AI resume bullet point generator to turn basic job duties into concise, impact-driven bullet points.",
+    category: "career",
+    icon: "🧩",
+    isAI: true,
+    isNew: true,
+  },
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {
@@ -184,7 +206,7 @@ export function getToolsBySlugs(slugs: string[]): Tool[] {
     .filter((tool): tool is Tool => Boolean(tool));
 }
 
-export const TOOL_CATEGORY_ORDER: ToolCategory[] = ["text", "developer", "encoder", "calculator", "ai"];
+export const TOOL_CATEGORY_ORDER: ToolCategory[] = ["text", "developer", "encoder", "calculator", "ai", "career"];
 
 export const TOOL_CATEGORY_LABELS: Record<ToolCategory, string> = {
   text: "Text Tools",
@@ -192,4 +214,5 @@ export const TOOL_CATEGORY_LABELS: Record<ToolCategory, string> = {
   encoder: "Encoder/Decoder",
   calculator: "Calculators",
   ai: "AI Tools",
+  career: "Career Tools",
 };
