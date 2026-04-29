@@ -90,7 +90,13 @@ export default function InvoiceGeneratorPage() {
   ]);
 
   return (
-    <ToolPageLayout tool={tool} relatedTools={relatedTools} faqs={faqs} seoSections={seoSections}>
+    <ToolPageLayout
+      tool={tool}
+      relatedTools={relatedTools}
+      faqs={faqs}
+      seoSections={seoSections}
+      maxWidthClassName="max-w-7xl"
+    >
       <InvoiceGeneratorTool />
     </ToolPageLayout>
   );

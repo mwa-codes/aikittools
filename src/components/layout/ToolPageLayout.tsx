@@ -24,6 +24,7 @@ interface ToolPageLayoutProps {
   faqs: FAQ[];
   seoSections: ContentSection[];
   children: React.ReactNode;
+  maxWidthClassName?: string;
 }
 
 export default function ToolPageLayout({
@@ -32,6 +33,7 @@ export default function ToolPageLayout({
   faqs,
   seoSections,
   children,
+  maxWidthClassName = "max-w-4xl",
 }: ToolPageLayoutProps) {
   const softwareSchema = {
     "@context": "https://schema.org",
@@ -54,7 +56,7 @@ export default function ToolPageLayout({
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <div className={`${maxWidthClassName} mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
