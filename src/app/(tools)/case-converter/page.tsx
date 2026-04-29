@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the Case Converter?",
-    body: "The Case Converter is a free text formatting tool that instantly switches any text between multiple capitalization styles. Whether you need UPPERCASE for a header, lowercase for normalization, Title Case for a blog post title, Sentence case for clean body copy, camelCase for a JavaScript variable, PascalCase for a class name, snake_case for Python, or kebab-case for CSS — this tool handles it in one click. It's especially useful for developers and writers who constantly move between naming conventions and don't want to retype or manually fix capitalization across long blocks of text.",
+    body: "The Case Converter is a free text case changer without signup that instantly switches any text between multiple capitalization styles. Whether you need to convert text to uppercase online for a header, use a title case converter for headings, generate a camelCase generator for JavaScript variables, apply a snake_case converter for developers, or switch to PascalCase for a class name, this tool handles it in one click. It's especially useful for developers and writers who constantly move between naming conventions and don't want to retype or manually fix capitalization across long blocks of text.",
   },
   {
     heading: "How to Use This Tool",
@@ -67,6 +67,16 @@ const faqs = [
     question: "Will punctuation and spacing be preserved?",
     answer:
       "In most cases yes. The converter focuses on letter casing while keeping your existing punctuation and spacing structure.",
+  },
+  {
+    question: "Can I use this to convert text to snake_case for programming?",
+    answer:
+      "Yes. The snake_case option converts any text into lowercase words joined by underscores — the standard naming format used in Python, Ruby, and database column names. Paste your variable names or phrases and convert them in one click without writing any code.",
+  },
+  {
+    question: "What is the difference between camelCase and PascalCase?",
+    answer:
+      "camelCase starts with a lowercase letter and capitalizes each subsequent word — for example, myVariableName. PascalCase capitalizes every word including the first — for example, MyVariableName. camelCase is common in JavaScript and Java, while PascalCase is standard for class names and React components.",
   },
 ];
 

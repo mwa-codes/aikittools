@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the URL Encoder & Decoder?",
-    body: "The URL Encoder and Decoder converts characters that aren't safe to use directly in a URL — spaces, ampersands, equals signs, and special characters — into their percent-encoded equivalents, and decodes them back to readable text when needed. If you've ever seen a URL containing %20 or %26, that's percent encoding at work. Developers need this when building query strings, passing parameters through APIs, creating redirect URLs, or debugging traffic from server logs. Digital marketers use it to safely encode campaign tracking parameters without breaking link structure.",
+    body: "The URL Encoder and Decoder helps you URL encode special characters online by converting characters that aren't safe to use directly in a URL — spaces, ampersands, equals signs, and special characters — into their percent-encoded equivalents, and decode URL percent encoding free when needed. If you've ever seen a URL containing %20 or %26, that's percent encoding at work. Developers need this to encode query string parameters for API calls, build redirects, and debug server logs, and it's also useful as a URL encoder for API requests.",
   },
   {
     heading: "How to Use This Tool",
@@ -38,7 +38,7 @@ const seoSections = [
   },
   {
     heading: "Why Use URL Encoder Online?",
-    body: "Free with no account or signup. All encoding and decoding runs in your browser with zero server involvement, so your URLs and query parameters stay private. Works on desktop and mobile, making it handy during testing sessions and quick debugging tasks away from your main machine. No page reload between encode and decode — just switch modes and the result updates instantly.",
+    body: "Free with no account or signup. All encoding and decoding runs in your browser with zero server involvement, so your URLs and query parameters stay private. Works on desktop and mobile, and helps you fix broken URL encoding online during testing sessions and quick debugging tasks away from your main machine. No page reload between encode and decode — just switch modes and the result updates instantly.",
   },
 ];
 
@@ -62,6 +62,16 @@ const faqs = [
     question: "Is URL decoding safe? Can decoding a URL expose security risks?",
     answer:
       "Decoding a URL is safe for display purposes. However, in web applications, you should always validate and sanitize decoded URL parameters before using them in queries, file paths, or HTML output to prevent injection attacks.",
+  },
+  {
+    question: "Why do URLs need encoding and what characters require it?",
+    answer:
+      "URLs can only contain a limited set of ASCII characters. Special characters like spaces, &, =, ?, #, and non-ASCII characters must be percent-encoded — for example, a space becomes %20. Without encoding, these characters can break URL parsing in browsers, APIs, and web servers, causing incorrect routing or failed requests.",
+  },
+  {
+    question: "Can I use this to fix a broken URL with weird characters?",
+    answer:
+      "Yes. Paste the broken URL into the encoder, and it will convert all unsafe characters into their percent-encoded equivalents, producing a valid URL that browsers and APIs can parse correctly. This is especially useful when building redirect rules, API query strings, or sharing URLs that contain non-English characters.",
   },
 ];
 

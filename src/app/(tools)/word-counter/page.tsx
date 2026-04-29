@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the Word Counter?",
-    body: "The Word Counter is a free online tool built for writers, students, bloggers, and anyone who needs to track content length in real time. As you type or paste text, it instantly counts words, characters with and without spaces, sentences, paragraphs, and estimated reading time. Whether you're writing a 280-character tweet, a 500-word essay, or a 2,000-word blog post, knowing your exact count matters. Hitting a word limit in an application form or staying within a reading time target becomes effortless when the feedback is live and immediate. No registration, no downloads — paste your text and the numbers are already there.",
+    body: "The Word Counter is a free online tool built for writers, students, bloggers, and anyone who needs to track content length in real time. As you type or paste text, this online word counter without login instantly counts words, characters with and without spaces, sentences, paragraphs, and estimated reading time. Whether you're writing a 280-character tweet and need a character counter for Twitter, drafting a 500-word essay with a word counter for essays, or polishing a 2,000-word post with a word count checker for SEO content, knowing your exact count matters. Hitting a word limit in an application form or staying within a reading time target becomes effortless when the feedback is live and immediate. No registration, no downloads — paste your text and the numbers are already there.",
   },
   {
     heading: "How to Use This Tool",
@@ -37,7 +37,7 @@ const seoSections = [
   },
   {
     heading: "Why Use Word Counter Online?",
-    body: "This word counter is completely free with no account or signup of any kind. All the analysis runs directly in your browser — your text is never uploaded to a server or stored anywhere, which matters when you're working on drafts you haven't published yet. It works equally well on phones, tablets, and desktops, so you can check your count wherever you happen to be writing. The reading time estimate is based on an average of 200 words per minute, giving you a realistic sense of how long your content will take to read.",
+    body: "This word counter is completely free with no account or signup of any kind. All the analysis runs directly in your browser — your text is never uploaded to a server or stored anywhere, which matters when you're working on drafts you haven't published yet. It works equally well on phones, tablets, and desktops, so you can check your count wherever you happen to be writing and quickly check reading time of article drafts before publishing. The reading time estimate is based on an average of 200 words per minute, giving you a realistic sense of how long your content will take to read.",
   },
 ];
 
@@ -66,6 +66,16 @@ const faqs = [
     question: "What is the maximum text length?",
     answer:
       "There is no maximum text length. The tool runs locally in your browser, so the only limit is your device's available memory.",
+  },
+  {
+    question: "Can I use this as a word counter for essays and assignments?",
+    answer:
+      "Yes. The tool is ideal for academic writing — paste your essay draft and instantly see whether you're within your assignment word limit. It counts words, sentences, and paragraphs separately, giving you a full picture of your content length without any login.",
+  },
+  {
+    question: "Does this work as a character counter for Twitter and social media?",
+    answer:
+      "Absolutely. Twitter allows 280 characters per tweet and LinkedIn has its own limits for posts and headlines. Paste your text and watch the character count update in real time so you never exceed the platform limit before posting.",
   },
 ];
 

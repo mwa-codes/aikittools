@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the CSS Minifier?",
-    body: "The CSS Minifier compresses your stylesheet by stripping out comments, whitespace, and redundant characters — leaving behind compact code that browsers parse just as well but download significantly faster. Every kilobyte removed from your CSS contributes to faster page load times, which improves user experience and Core Web Vitals scores. It's a standard step in front-end deployment, and this tool makes it accessible without setting up a build pipeline. Paste your readable, well-commented development CSS and get production-ready minified output in one click — no build tools, no command line required.",
+    body: "The CSS Minifier helps you minify CSS online before deployment by stripping out comments, whitespace, and redundant characters — leaving behind compact code that browsers parse just as well but download significantly faster. Every kilobyte removed helps compress CSS file to reduce size and contributes to faster page load times, which improves user experience and Core Web Vitals scores. It's a standard step in front-end deployment, and this tool makes it accessible without setting up a build pipeline. Paste your readable, well-commented development CSS and get production-ready minified output in one click — no build tools, no command line required.",
   },
   {
     heading: "How to Use This Tool",
@@ -37,7 +37,7 @@ const seoSections = [
   },
   {
     heading: "Why Use CSS Minifier Online?",
-    body: "Completely free with no account needed. Minification runs locally in your browser — your CSS code is never uploaded anywhere, which is important for proprietary or client-specific styles. The process takes seconds and can meaningfully reduce file size, improving load speed for your users without any infrastructure changes. Keep your well-commented source styles for development, and use this tool to generate the compact version for production.",
+    body: "Completely free with no account needed. Minification runs locally in your browser — your CSS code is never uploaded anywhere, which is important for proprietary or client-specific styles. The process takes seconds and acts as a CSS compressor for faster page load, helping remove whitespace from CSS online and optimize CSS for website performance without infrastructure changes. Keep your well-commented source styles for development, and use this tool to generate the compact version for production.",
   },
 ];
 
@@ -61,6 +61,16 @@ const faqs = [
     question: "Is my CSS uploaded anywhere?",
     answer:
       "No. Processing happens in your browser, so your code stays local.",
+  },
+  {
+    question: "How much does minifying CSS actually reduce file size?",
+    answer:
+      "Minification typically reduces CSS file size by 20–40% depending on how much whitespace, comments, and formatting your original file contains. For large stylesheets with extensive comments, the reduction can be even greater. Smaller files load faster, which directly improves your Google PageSpeed score and user experience.",
+  },
+  {
+    question: "Should I minify CSS in development or only in production?",
+    answer:
+      "Always keep the original unminified CSS for development — it is much easier to read and debug. Only use the minified version in production. Most modern build tools like Vite, Webpack, and Next.js minify CSS automatically during the build process, but this tool is useful when working with plain HTML projects or legacy codebases without a build step.",
   },
 ];
 

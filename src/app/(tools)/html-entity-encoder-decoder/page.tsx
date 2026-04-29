@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the HTML Entity Encoder & Decoder?",
-    body: "The HTML Entity Encoder and Decoder converts characters that have special meaning in HTML — like &lt;, &gt;, &amp;, and quotation marks — into their entity equivalents, and decodes them back to their original form. When you display raw HTML inside a page without encoding these characters, browsers interpret them as markup rather than text, breaking your layout or introducing potential security issues. Web developers, technical writers, and documentation teams use this tool to safely display code snippets, handle user-generated content, and prepare text for CMS systems that auto-escape certain characters.",
+    body: "The HTML Entity Encoder and Decoder helps you HTML encode special characters online by converting characters that have special meaning in HTML — like &lt;, &gt;, &amp;, and quotation marks — into their entity equivalents, and decodes them back to their original form. When you display raw HTML inside a page without encoding these characters, browsers interpret them as markup rather than text, so this tool can encode angle brackets for HTML display and convert ampersand to HTML entity output when needed. Web developers, technical writers, and documentation teams use this HTML entity decoder for web developers workflows to safely display code snippets, handle user-generated content, and prepare text for CMS systems that auto-escape certain characters.",
   },
   {
     heading: "How to Use This Tool",
@@ -38,7 +38,7 @@ const seoSections = [
   },
   {
     heading: "Why Use HTML Entity Encoder Online?",
-    body: "Completely free with no account needed. Processing happens locally in your browser — no text is transmitted to any external server, which matters when working with internal code snippets or content you haven't published yet. Results are instant, the interface works on any device, and it handles the kind of conversion that developers reach for multiple times a week without thinking about it.",
+    body: "Completely free with no account needed, making it an easy way to escape HTML characters online free in seconds. Processing happens locally in your browser — no text is transmitted to any external server, which matters when working with internal code snippets or content you haven't published yet. Results are instant, the interface works on any device, and it handles the kind of conversion that developers reach for multiple times a week without thinking about it.",
   },
 ];
 
@@ -62,6 +62,16 @@ const faqs = [
     question: "Can I use this with CMS content?",
     answer:
       "Yes. It is useful for preparing and debugging text copied between CMS editors, templates, and rendered pages.",
+  },
+  {
+    question: "Why do I need to encode HTML entities in my content?",
+    answer:
+      "If you display raw HTML characters like < or > inside a webpage without encoding them, the browser interprets them as HTML tags rather than displayable text. This can break your layout or create security vulnerabilities. Encoding converts them to &lt; and &gt; so the browser renders the characters visually without treating them as markup.",
+  },
+  {
+    question: "What is the difference between HTML encoding and URL encoding?",
+    answer:
+      "HTML encoding converts characters to HTML entity format (like &amp; for &) so they display correctly inside HTML documents. URL encoding converts characters to percent format (like %26 for &) so they transmit correctly in URLs. They serve different contexts and the encoded output is not interchangeable.",
   },
 ];
 

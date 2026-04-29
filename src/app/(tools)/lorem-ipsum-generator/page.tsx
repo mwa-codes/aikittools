@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the Lorem Ipsum Generator?",
-    body: "The Lorem Ipsum Generator produces classic placeholder text that designers and developers have relied on for decades. When you're building a website layout, designing a UI component, or creating a presentation template, you need text that looks realistic without distracting from the structural decisions you're making. This tool lets you generate any amount of placeholder text by paragraphs, sentences, or word count — so whether you need a short label or several full pages of mock content, you get exactly what you ask for. It supports the traditional \"Lorem ipsum dolor sit amet...\" opening that most designers recognize.",
+    body: "The Lorem Ipsum Generator is a dummy text generator for web design that produces classic placeholder text designers and developers have relied on for decades. When you're building a website layout, designing a UI component, or creating a presentation template, you need placeholder text for mockups that looks realistic without distracting from the structural decisions you're making. This lorem ipsum paragraph generator lets you generate any amount of text by paragraphs, sentences, or word count — so whether you need a short label or several full pages of mock content, you get exactly what you ask for. It supports the traditional \"Lorem ipsum dolor sit amet...\" opening that most designers recognize.",
   },
   {
     heading: "How to Use This Tool",
@@ -37,7 +37,7 @@ const seoSections = [
   },
   {
     heading: "Why Use Lorem Ipsum Generator Online?",
-    body: "Free, instant, and zero friction — no account needed, no ads interrupting your workflow. You can generate as much or as little placeholder text as your project requires, and regenerate as many times as you like with different settings. Works in any modern browser on any device, so you can grab dummy text quickly even when you're working away from your usual setup. The whole process takes under ten seconds from opening the page to copying the output.",
+    body: "Free, instant, and zero friction — no account needed, no ads interrupting your workflow, so you can generate filler text online free whenever you need it. You can generate as much or as little placeholder text as your project requires, and regenerate as many times as you like with different settings. Works in any modern browser on any device, so this fake text generator for UI prototypes is handy even when you're working away from your usual setup. The whole process takes under ten seconds from opening the page to copying the output.",
   },
 ];
 
@@ -61,6 +61,16 @@ const faqs = [
     question: "Can I use this on mobile?",
     answer:
       "Yes. The tool is responsive and works across modern mobile and desktop browsers.",
+  },
+  {
+    question: "Can I generate lorem ipsum paragraphs for a website mockup?",
+    answer:
+      "Yes. Select paragraphs as your output type, choose how many you need, and click Generate. The result is ready to paste directly into Figma, Adobe XD, HTML, or any design tool as placeholder text for your layout mockup.",
+  },
+  {
+    question: "Is lorem ipsum real Latin?",
+    answer:
+      "Lorem ipsum is derived from Cicero's 'de Finibus Bonorum et Malorum' written in 45 BC, but the standard lorem ipsum passage has been scrambled and altered over centuries. It resembles Latin but is not meaningful text — which is exactly why designers use it, so readers focus on layout rather than content.",
   },
 ];
 

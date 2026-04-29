@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the Free Invoice Generator?",
-    body: "The Free Invoice Generator lets you build a professional invoice directly in your browser and download it as a PDF — no Word templates, no Excel formulas, no subscription required. Fill in your business name, add your client's details, set the invoice number and date, then add as many line items as you need with descriptions, quantities, and rates. Totals calculate automatically so there's no manual math involved. When you're ready, one click produces a clean, printable PDF you can email to your client or save for your records. Built for freelancers, consultants, and small business owners who bill clients without a full accounting system.",
+    body: "The Free Invoice Generator is a free invoice generator for freelancers and teams that need to create invoice online and download PDF files in minutes — no Word templates, no Excel formulas, no subscription required. Fill in your business name, add your client's details, set the invoice number and date, then add as many line items as you need with descriptions, quantities, and rates. Totals calculate automatically so there's no manual math involved, making it a simple invoice maker for small business use and an invoice template generator no account users can start immediately. When you're ready, one click produces a clean, printable PDF for client billing with a professional invoice creator free workflow.",
   },
   {
     heading: "How to Use This Tool",
@@ -67,6 +67,16 @@ const faqs = [
     question: "Can I use this tool on mobile devices?",
     answer:
       "Yes. The invoice generator is responsive and works on mobile, tablet, and desktop browsers.",
+  },
+  {
+    question: "Can freelancers use this invoice generator for client billing?",
+    answer:
+      "Yes. This tool is built with freelancers in mind — add your name or business name, your client's details, a list of services with rates, and download a clean PDF invoice in seconds. There is no account required and no limit on how many invoices you can generate.",
+  },
+  {
+    question: "Can I save or reuse invoice templates?",
+    answer:
+      "Currently the tool does not save templates between sessions since everything runs in your browser without a backend. You can save the filled PDF and use it as a visual reference to refill the form next time, or keep a copy of your standard line items in a text file to paste in quickly.",
   },
 ];
 

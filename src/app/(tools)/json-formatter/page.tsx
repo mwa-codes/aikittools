@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the JSON Formatter & Validator?",
-    body: "The JSON Formatter and Validator is a developer tool that takes raw, compressed, or poorly formatted JSON and turns it into clean, properly indented output that's easy to read and debug. It also validates your JSON as you paste it — if there's a missing bracket, a trailing comma, or any other syntax error, you'll see a clear message explaining what went wrong. Developers use this constantly when debugging API responses, reading config files, inspecting webhook payloads, or working with database query results. Instead of staring at a wall of minified text, one click gives you a structured, readable view.",
+    body: "The JSON Formatter and Validator is a JSON pretty printer for developers that takes raw, compressed, or poorly formatted input and turns it into clean, properly indented output that's easy to read and debug. It can format JSON online free while it validates your JSON as you paste — if there's a missing bracket, a trailing comma, or any other syntax error, you'll see a clear message explaining what went wrong. Developers use this as a JSON beautifier for API responses, reading config files, inspecting webhook payloads, or working with database query results. Instead of staring at a wall of minified text, one click gives you a structured, readable view.",
   },
   {
     heading: "How to Use This Tool",
@@ -38,7 +38,7 @@ const seoSections = [
   },
   {
     heading: "Why Use JSON Formatter Online?",
-    body: "Free with no signup required. All formatting and validation runs locally in your browser — your JSON data is never sent to any external server, which matters when you're working with API responses containing sensitive fields, private keys, or internal data structures. There's no paste limit, no account wall, and no slowdown from server round-trips. Paste your JSON and the output is ready in milliseconds.",
+    body: "Free with no signup required. All formatting and validation runs locally in your browser, so you can validate JSON syntax online without sending your data to any external server, which matters when you're working with sensitive fields, private keys, or internal data structures. There's no paste limit, no account wall, and no slowdown from server round-trips, and you can also minify JSON for production when you need smaller payloads. Paste your JSON and the output is ready in milliseconds.",
   },
 ];
 
@@ -67,6 +67,16 @@ const faqs = [
     question: "Can I format very large JSON files?",
     answer:
       "Yes, though very large files (several megabytes) may cause slower performance due to browser memory limitations. For production use cases with extremely large datasets, a server-side tool may be more appropriate.",
+  },
+  {
+    question: "Can I use this to validate JSON from an API response?",
+    answer:
+      "Yes. Paste the raw API response and the formatter will immediately tell you if the JSON is valid. If there is a syntax error, it will highlight the issue so you can locate and fix it quickly — useful when debugging REST APIs or working with third-party data feeds.",
+  },
+  {
+    question: "What is the difference between formatting and minifying JSON?",
+    answer:
+      "Formatting (or beautifying) adds indentation and line breaks to make JSON human-readable — useful for reading and debugging. Minifying removes all whitespace to reduce file size — useful before sending JSON in production API calls or storing it in a database where every byte matters.",
   },
 ];
 

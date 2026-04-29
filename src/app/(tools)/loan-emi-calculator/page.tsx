@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the Loan EMI Calculator?",
-    body: "The Loan EMI Calculator works out your monthly repayment amount, the total interest you'll pay over the life of the loan, and the total amount payable — all at once. These three numbers together give you a clear picture of what you're actually committing to before you sign anything. Borrowers who only focus on the headline interest rate often underestimate how much the loan tenure affects the total interest paid. This calculator makes it easy to compare scenarios — what if you borrow slightly less, pay it off in fewer months, or negotiate a lower rate? Run the numbers in seconds.",
+    body: "The Loan EMI Calculator is a loan EMI calculator online that works out your monthly repayment amount, the total interest you'll pay over the life of the loan, and the total amount payable — all at once. These three numbers together give you a clear picture of what you're actually committing to before you sign anything, whether you need a monthly installment calculator for home loan planning or a car loan EMI calculator free estimate. Borrowers who only focus on the headline interest rate often underestimate how much tenure affects cost, so this tool also helps calculate EMI for personal loan scenarios and acts as a total interest payable calculator when comparing options. Run the numbers in seconds.",
   },
   {
     heading: "How to Use This Tool",
@@ -67,6 +67,16 @@ const faqs = [
     question: "Does this EMI result include processing fees?",
     answer:
       "No. The result includes principal and interest only. Add lender fees and insurance separately for complete repayment planning.",
+  },
+  {
+    question: "Can I use this for a home loan or car loan EMI calculation?",
+    answer:
+      "Yes. Enter your loan amount, the annual interest rate offered by your bank, and the tenure in months. The calculator works identically for home loans, car loans, personal loans, and education loans — any fixed-rate installment loan uses the same EMI formula.",
+  },
+  {
+    question: "How is EMI calculated mathematically?",
+    answer:
+      "EMI is calculated using the formula: EMI = P × r × (1+r)^n / ((1+r)^n - 1), where P is the principal loan amount, r is the monthly interest rate (annual rate divided by 12), and n is the number of monthly installments. This tool applies the formula instantly so you get an accurate result without doing the math manually.",
   },
 ];
 

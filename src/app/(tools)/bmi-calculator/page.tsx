@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the BMI Calculator?",
-    body: "The BMI Calculator takes your height and weight and computes your Body Mass Index — a number that places you into one of four general health categories: underweight, normal weight, overweight, or obese. BMI is a widely used screening metric because it's quick, requires no equipment, and gives people a simple starting reference point for weight and health conversations. It doesn't account for factors like muscle mass or body composition, so treat it as a first approximation rather than a clinical result. This tool supports both metric and imperial units so you don't have to convert anything before entering your numbers.",
+    body: "The BMI Calculator is a body mass index calculator online free that takes your height and weight and computes your BMI — a number that places you into one of four general health categories: underweight, normal weight, overweight, or obese. BMI is a widely used screening metric because it's quick, requires no equipment, and gives people a simple starting reference point to check if I am overweight using BMI ranges. This BMI calculator for adults lets you calculate BMI with height and weight in either system, and a BMI calculator in kg and cm mode is available for metric users. It doesn't account for factors like muscle mass or body composition, so treat it as a first approximation rather than a clinical result.",
   },
   {
     heading: "How to Use This Tool",
@@ -66,6 +66,16 @@ const faqs = [
     question: "Does this BMI calculator save my data?",
     answer:
       "No. Calculations run in your browser and no API request is required for BMI output.",
+  },
+  {
+    question: "Can I use this BMI calculator with kilograms and centimeters?",
+    answer:
+      "Yes. The calculator supports metric units — enter your height in centimeters and your weight in kilograms to get your BMI instantly. You can also switch to imperial units (feet, inches, and pounds) depending on what you are comfortable with.",
+  },
+  {
+    question: "Is BMI an accurate measure of health?",
+    answer:
+      "BMI is a useful screening tool but not a complete measure of health. It does not account for muscle mass, bone density, age, or fat distribution. Athletes may have a high BMI due to muscle rather than fat, and older adults may carry more fat at a normal BMI. Use it as a general reference and consult a healthcare professional for a complete assessment.",
   },
 ];
 

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the Random Password Generator?",
-    body: "The Random Password Generator creates strong, unpredictable passwords built from a mix of uppercase letters, lowercase letters, numbers, and special characters. Reusing simple passwords across multiple sites puts all your accounts at risk if any one of them is breached. This tool lets you build a fresh, high-entropy password in seconds — with full control over length and character types so you can match whatever requirements a platform has. The longer and more varied the password, the harder it becomes for automated attacks to crack. Think of it as the first step in taking your account security seriously.",
+    body: "The Random Password Generator is a strong password generator online that creates unpredictable credentials from a mix of uppercase letters, lowercase letters, numbers, and symbols. Reusing simple passwords across multiple sites puts all your accounts at risk if any one of them is breached, so it's better to create unique password for every account. This tool lets you build a secure random password with symbols in seconds — with full control over length and character types so you can match whatever requirements a platform has. The longer and more varied the password, the harder it becomes for automated attacks to crack. Think of it as the first step in taking your account security seriously.",
   },
   {
     heading: "How to Use This Tool",
@@ -38,7 +38,7 @@ const seoSections = [
   },
   {
     heading: "Why Use Random Password Generator Online?",
-    body: "Completely free with no login required. The most important detail: passwords are generated entirely inside your browser using cryptographic random functions — they are never sent to any server, never logged, and never stored anywhere. What you generate exists only on your screen until you copy it. That's the right way to handle sensitive credentials, and it's exactly how this tool works.",
+    body: "Completely free with no login required, so it's a free password maker no download for quick security upgrades. The most important detail: passwords are generated entirely inside your browser using cryptographic random functions as a password generator without saving history — they are never sent to any server, never logged, and never stored anywhere. What you generate exists only on your screen until you copy it. That's the right way to handle sensitive credentials, and it's exactly how this tool works.",
   },
 ];
 
@@ -67,6 +67,16 @@ const faqs = [
     question: "How often should I change my passwords?",
     answer:
       "Change passwords immediately after a suspected breach, shared-account turnover, or security incident. Otherwise, focus on strong unique passwords with 2FA.",
+  },
+  {
+    question: "Does this password generator save or log the passwords it creates?",
+    answer:
+      "No. Passwords are generated entirely in your browser using JavaScript's built-in cryptographic random functions. Nothing is sent to a server, logged, or stored anywhere. Each password exists only on your screen until you copy it.",
+  },
+  {
+    question: "How long should a strong password be?",
+    answer:
+      "Security experts recommend a minimum of 16 characters for important accounts, combining uppercase letters, lowercase letters, numbers, and symbols. The longer and more random the password, the harder it is to crack — this generator lets you set any length up to the maximum so you can create passwords that meet any security policy.",
   },
 ];
 

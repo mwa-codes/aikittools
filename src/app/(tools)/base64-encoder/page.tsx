@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const seoSections = [
   {
     heading: "What is the Base64 Encoder & Decoder?",
-    body: "The Base64 Encoder and Decoder converts plain text into Base64-encoded strings and back again instantly. Base64 is a widely used encoding scheme that converts data into a set of 64 safe printable characters, making it safe to transmit through systems that only handle plain text — like email, JSON APIs, or HTML attributes. You'll encounter Base64 constantly as a developer: embedding small images as data URIs in CSS, passing credentials in HTTP headers, reading JWT token payloads, or handling file data in API requests. This tool handles both encode and decode in the same interface.",
+    body: "The Base64 Encoder and Decoder lets you Base64 encode text online and decode Base64 string online free in the same interface. Base64 is a widely used encoding scheme that converts data into a set of 64 safe printable characters, making it safe to transmit through systems that only handle plain text — like email, JSON APIs, or HTML attributes. You'll encounter Base64 constantly as a developer: using a Base64 encoder for images in HTML, passing credentials in HTTP headers, using a Base64 decoder for JWT tokens, or handling file data in API requests. This tool handles both encode and decode instantly.",
   },
   {
     heading: "How to Use This Tool",
@@ -38,7 +38,7 @@ const seoSections = [
   },
   {
     heading: "Why Use Base64 Encoder Online?",
-    body: "Free, no signup required, and no data sent anywhere. The encoding and decoding happens entirely in your browser using native JavaScript functions. That means even if you're working with tokens, API secrets, or credentials in Base64 format, nothing leaves your machine. It's the safest possible way to handle this kind of conversion, and it's fast enough that there's no reason to use anything else for everyday developer tasks.",
+    body: "Free, no signup required, and no data sent anywhere. The encoding and decoding happens entirely in your browser using native JavaScript functions, so you can quickly convert string to Base64 online while keeping sensitive values on your device. That means even if you're working with tokens, API secrets, or credentials in Base64 format, nothing leaves your machine. It's the safest possible way to handle this kind of conversion, and it's fast enough that there's no reason to use anything else for everyday developer tasks.",
   },
 ];
 
@@ -62,6 +62,16 @@ const faqs = [
     question: "What is the difference between Base64 and Base64 URL?",
     answer:
       "Standard Base64 uses + and / characters which are unsafe in URLs. Base64 URL encoding replaces + with - and / with _, making it safe to use in URL parameters. This tool implements standard Base64.",
+  },
+  {
+    question: "How do I use Base64 encoding for embedding images in HTML or CSS?",
+    answer:
+      "Convert your image to Base64 using this tool, then paste the output as the src value in an img tag: <img src='data:image/png;base64,YOUR_BASE64_HERE'>. This eliminates the need for a separate image file and is useful for small icons in email templates or self-contained HTML pages.",
+  },
+  {
+    question: "Can I use this to decode a JWT token?",
+    answer:
+      "Partially. A JWT has three parts separated by dots. The middle part (the payload) is Base64 encoded. Paste it into the decoder to read the raw JSON payload. Note that this only decodes — it does not verify the JWT signature, so use a dedicated JWT tool if you need full validation.",
   },
 ];
 
