@@ -80,6 +80,27 @@ const faqs = [
 ];
 
 export default function CoverLetterGeneratorPage() {
+  const webApplicationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "AI Cover Letter Generator",
+    url: "https://www.aikittools.com/cover-letter-generator",
+    description:
+      "Free AI-powered cover letter generator. Create tailored cover letters in seconds with no signup required.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "All",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    provider: {
+      "@type": "Organization",
+      name: "AI Kit Tools",
+      url: "https://www.aikittools.com",
+    },
+  };
+
   const tool = getToolBySlug(SLUG)!;
   const relatedTools = getToolsBySlugs([
     "ai-text-summarizer",
@@ -89,8 +110,14 @@ export default function CoverLetterGeneratorPage() {
   ]);
 
   return (
-    <ToolPageLayout tool={tool} relatedTools={relatedTools} faqs={faqs} seoSections={seoSections}>
-      <CoverLetterGeneratorTool />
-    </ToolPageLayout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd) }}
+      />
+      <ToolPageLayout tool={tool} relatedTools={relatedTools} faqs={faqs} seoSections={seoSections}>
+        <CoverLetterGeneratorTool />
+      </ToolPageLayout>
+    </>
   );
 }

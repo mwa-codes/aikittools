@@ -132,17 +132,19 @@ export default function HomePage() {
             </div>
           </Link>
           <Link
-            href="#"
-            className="group flex items-start gap-4 p-5 bg-white border border-dashed border-gray-300 rounded-2xl opacity-80"
+            href="/resume-bullet-generator"
+            className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
             <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
               📝
             </span>
             <div className="min-w-0">
               <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <h3 className="font-semibold text-gray-900">Resume Bullet Generator</h3>
-                <span className="text-xs bg-amber-100 text-amber-700 font-medium px-2 py-0.5 rounded-full">
-                  Coming Soon
+                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                  Resume Bullet Generator
+                </h3>
+                <span className="text-xs bg-purple-100 text-purple-700 font-medium px-2 py-0.5 rounded-full">
+                  AI
                 </span>
               </div>
               <p className="text-sm text-gray-500 leading-relaxed">

@@ -4,6 +4,7 @@ import { SITE_URL } from "@/lib/utils/metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const highPriorityCareerSlugs = new Set(["cover-letter-generator", "resume-bullet-generator"]);
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: now, changeFrequency: "daily", priority: 1.0 },
@@ -15,12 +16,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const toolPages: MetadataRoute.Sitemap = tools.map((tool) => {
     const isCareerTool = tool.category === "career";
     const isAiTool = tool.category === "ai";
+    const isHighPriorityCareerPage = highPriorityCareerSlugs.has(tool.slug);
 
     return {
       url: `${SITE_URL}/${tool.slug}`,
       lastModified: now,
-      changeFrequency: isCareerTool || isAiTool ? "weekly" : "monthly",
-      priority: isCareerTool ? 0.95 : isAiTool ? 0.9 : 0.8,
+      changeFrequency: isHighPriorityCareerPage ? "monthly" : isCareerTool || isAiTool ? "weekly" : "monthly",
+      priority: isHighPriorityCareerPage ? 0.9 : isCareerTool ? 0.8 : isAiTool ? 0.8 : 0.7,
     };
   });
 

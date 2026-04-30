@@ -180,6 +180,17 @@ export const tools: Tool[] = [
     isNew: true,
   },
   {
+    slug: "resume-bullet-generator",
+    name: "Resume Bullet Generator",
+    shortDescription: "Turn your job duties into achievement-focused resume bullets using AI.",
+    description:
+      "Turn your job duties into achievement-focused resume bullets using AI.",
+    category: "career",
+    icon: "📝",
+    isAI: true,
+    isNew: true,
+  },
+  {
     slug: "resume-bullet-point-generator",
     name: "🧩 Resume Bullet Point Generator",
     shortDescription: "Rewrite resume bullets into strong, achievement-focused lines.",

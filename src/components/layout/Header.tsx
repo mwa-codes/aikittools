@@ -16,7 +16,7 @@ export default function Header() {
       label: "Career Tools",
       items: [
         { slug: "cover-letter-generator", icon: "✉️", name: "AI Cover Letter Generator" },
-        { slug: "#", icon: "📝", name: "Resume Bullet Generator", comingSoon: true },
+        { slug: "resume-bullet-generator", icon: "📝", name: "Resume Bullet Generator" },
         { slug: "#", icon: "🔍", name: "ATS Resume Checker", comingSoon: true },
         { slug: "#", icon: "🎤", name: "Interview Question Generator", comingSoon: true },
         { slug: "#", icon: "💼", name: "LinkedIn Summary Generator", comingSoon: true },
