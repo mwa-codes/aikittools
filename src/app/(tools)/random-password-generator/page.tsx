@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "Random Password Generator – Strong Passwords Free",
   description:
     "Generate strong, secure random passwords with custom length, symbols, and numbers. Free online password generator. No signup, works in your browser.",
-  alternates: { canonical: "https://www.aikittools.com/random-password-generator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/random-password-generator",
+    languages: {
+      "en-US": "https://www.aikittools.com/random-password-generator",
+    },
+  },
   openGraph: {
     title: "Random Password Generator – Strong Passwords Free",
     description:

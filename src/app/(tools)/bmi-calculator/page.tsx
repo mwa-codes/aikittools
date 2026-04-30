@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "BMI Calculator – Calculate Body Mass Index Free",
   description:
     "Calculate your BMI instantly using height and weight. See your BMI category and what it means for your health. Free online BMI calculator, no signup.",
-  alternates: { canonical: "https://www.aikittools.com/bmi-calculator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/bmi-calculator",
+    languages: {
+      "en-US": "https://www.aikittools.com/bmi-calculator",
+    },
+  },
   openGraph: {
     title: "BMI Calculator – Calculate Body Mass Index Free",
     description:

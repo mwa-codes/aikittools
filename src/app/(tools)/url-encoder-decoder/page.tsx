@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "URL Encoder & Decoder – Encode URLs Online Free",
   description:
     "Encode or decode URLs and query strings instantly. Perfect for developers and digital marketers. Free online URL encoder tool, no signup required.",
-  alternates: { canonical: "https://www.aikittools.com/url-encoder-decoder" },
+  alternates: {
+    canonical: "https://www.aikittools.com/url-encoder-decoder",
+    languages: {
+      "en-US": "https://www.aikittools.com/url-encoder-decoder",
+    },
+  },
   openGraph: {
     title: "URL Encoder & Decoder – Encode URLs Online Free",
     description:

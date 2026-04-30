@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "AI Text Summarizer – Summarize Any Text Online",
   description:
     "Summarize long articles, essays, or documents in seconds using AI. Get a clear, concise summary instantly. Free AI text summarizer, no signup required.",
-  alternates: { canonical: "https://www.aikittools.com/ai-text-summarizer" },
+  alternates: {
+    canonical: "https://www.aikittools.com/ai-text-summarizer",
+    languages: {
+      "en-US": "https://www.aikittools.com/ai-text-summarizer",
+    },
+  },
   openGraph: {
     title: "AI Text Summarizer – Summarize Any Text Online",
     description:

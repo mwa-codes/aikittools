@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "QR Code Generator – Create QR Codes Free Online",
   description:
     "Generate QR codes from any URL, text, email, or phone number instantly. Download as PNG. Free online QR code generator, no signup required.",
-  alternates: { canonical: "https://www.aikittools.com/qr-code-generator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/qr-code-generator",
+    languages: {
+      "en-US": "https://www.aikittools.com/qr-code-generator",
+    },
+  },
   openGraph: {
     title: "QR Code Generator – Create QR Codes Free Online",
     description:

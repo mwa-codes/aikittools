@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "Loan EMI Calculator – Calculate Monthly EMI Free",
   description:
     "Calculate your monthly EMI, total interest, and total payment for any loan. Enter amount, rate, and tenure. Free online EMI calculator, no signup needed.",
-  alternates: { canonical: "https://www.aikittools.com/loan-emi-calculator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/loan-emi-calculator",
+    languages: {
+      "en-US": "https://www.aikittools.com/loan-emi-calculator",
+    },
+  },
   openGraph: {
     title: "Loan EMI Calculator – Calculate Monthly EMI Free",
     description:

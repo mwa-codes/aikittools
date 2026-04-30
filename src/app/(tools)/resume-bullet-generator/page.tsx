@@ -25,7 +25,12 @@ export const metadata: Metadata = {
       },
     ],
   },
-  alternates: { canonical: "https://www.aikittools.com/resume-bullet-generator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/resume-bullet-generator",
+    languages: {
+      "en-US": "https://www.aikittools.com/resume-bullet-generator",
+    },
+  },
   robots: { index: true, follow: true },
 };
 

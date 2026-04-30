@@ -32,6 +32,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+    languages: {
+      "en-US": "https://www.aikittools.com",
+    },
   },
   icons: {
     icon: "/aikittools_favicon.ico",

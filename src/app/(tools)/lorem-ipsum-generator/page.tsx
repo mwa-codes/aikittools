@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "Lorem Ipsum Generator – Free Placeholder Text Tool",
   description:
     "Generate lorem ipsum placeholder text by paragraphs, sentences, or words. Copy instantly for design mockups and prototypes. Free, no signup required.",
-  alternates: { canonical: "https://www.aikittools.com/lorem-ipsum-generator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/lorem-ipsum-generator",
+    languages: {
+      "en-US": "https://www.aikittools.com/lorem-ipsum-generator",
+    },
+  },
   openGraph: {
     title: "Lorem Ipsum Generator – Free Placeholder Text Tool",
     description:

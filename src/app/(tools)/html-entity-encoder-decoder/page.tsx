@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "HTML Entity Encoder & Decoder – Free Online Tool",
   description:
     "Encode or decode HTML entities instantly. Convert special characters to HTML-safe format and back. Free online tool, works in browser, no signup needed.",
-  alternates: { canonical: "https://www.aikittools.com/html-entity-encoder-decoder" },
+  alternates: {
+    canonical: "https://www.aikittools.com/html-entity-encoder-decoder",
+    languages: {
+      "en-US": "https://www.aikittools.com/html-entity-encoder-decoder",
+    },
+  },
   openGraph: {
     title: "HTML Entity Encoder & Decoder – Free Online Tool",
     description:

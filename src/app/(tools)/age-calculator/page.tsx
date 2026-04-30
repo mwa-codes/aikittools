@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "Age Calculator – Calculate Your Exact Age Online",
   description:
     "Calculate your exact age in years, months, and days from your date of birth. See your next birthday countdown too. Free online age calculator, no signup.",
-  alternates: { canonical: "https://www.aikittools.com/age-calculator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/age-calculator",
+    languages: {
+      "en-US": "https://www.aikittools.com/age-calculator",
+    },
+  },
   openGraph: {
     title: "Age Calculator – Calculate Your Exact Age Online",
     description:

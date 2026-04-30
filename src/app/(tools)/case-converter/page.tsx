@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "Case Converter – Convert Text Case Online Free",
   description:
     "Convert any text to UPPERCASE, lowercase, Title Case, camelCase, snake_case and more. Instant results, no signup needed. Free online tool.",
-  alternates: { canonical: "https://www.aikittools.com/case-converter" },
+  alternates: {
+    canonical: "https://www.aikittools.com/case-converter",
+    languages: {
+      "en-US": "https://www.aikittools.com/case-converter",
+    },
+  },
   openGraph: {
     title: "Case Converter – Convert Text Case Online Free",
     description:

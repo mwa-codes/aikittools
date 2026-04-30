@@ -16,7 +16,12 @@ export const metadata: Metadata = {
     description: "Write a tailored cover letter in seconds with AI. Free, no signup required.",
     url: "https://www.aikittools.com/cover-letter-generator",
   },
-  alternates: { canonical: "https://www.aikittools.com/cover-letter-generator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/cover-letter-generator",
+    languages: {
+      "en-US": "https://www.aikittools.com/cover-letter-generator",
+    },
+  },
   robots: { index: true, follow: true },
 };
 

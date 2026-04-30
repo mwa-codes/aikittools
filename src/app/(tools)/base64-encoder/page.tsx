@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "Base64 Encoder & Decoder – Convert Online Free",
   description:
     "Encode or decode Base64 strings instantly in your browser. Supports text and data conversion. Free online Base64 tool, no account or signup needed.",
-  alternates: { canonical: "https://www.aikittools.com/base64-encoder" },
+  alternates: {
+    canonical: "https://www.aikittools.com/base64-encoder",
+    languages: {
+      "en-US": "https://www.aikittools.com/base64-encoder",
+    },
+  },
   openGraph: {
     title: "Base64 Encoder & Decoder – Convert Online Free",
     description:

@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "JSON Formatter & Validator – Beautify JSON Online",
   description:
     "Format, validate, and beautify JSON instantly. Paste messy JSON and get clean, readable output in one click. Free online tool, no signup required.",
-  alternates: { canonical: "https://www.aikittools.com/json-formatter" },
+  alternates: {
+    canonical: "https://www.aikittools.com/json-formatter",
+    languages: {
+      "en-US": "https://www.aikittools.com/json-formatter",
+    },
+  },
   openGraph: {
     title: "JSON Formatter & Validator – Beautify JSON Online",
     description:

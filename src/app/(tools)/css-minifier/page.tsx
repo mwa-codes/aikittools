@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "CSS Minifier – Compress & Minify CSS Online Free",
   description:
     "Minify and compress CSS code instantly to reduce file size. Paste your CSS and get clean minified output. Free online CSS minifier, no signup needed.",
-  alternates: { canonical: "https://www.aikittools.com/css-minifier" },
+  alternates: {
+    canonical: "https://www.aikittools.com/css-minifier",
+    languages: {
+      "en-US": "https://www.aikittools.com/css-minifier",
+    },
+  },
   openGraph: {
     title: "CSS Minifier – Compress & Minify CSS Online Free",
     description:

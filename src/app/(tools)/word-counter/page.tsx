@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "Word Counter – Count Words & Characters Online",
   description:
     "Instantly count words, characters, sentences, paragraphs, and reading time. Paste your text and get results in seconds. Free, no signup required.",
-  alternates: { canonical: "https://www.aikittools.com/word-counter" },
+  alternates: {
+    canonical: "https://www.aikittools.com/word-counter",
+    languages: {
+      "en-US": "https://www.aikittools.com/word-counter",
+    },
+  },
   openGraph: {
     title: "Word Counter – Count Words & Characters Online",
     description:

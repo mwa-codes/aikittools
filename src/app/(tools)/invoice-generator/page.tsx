@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: "Free Invoice Generator – Create & Download PDF",
   description:
     "Create professional invoices and download as PDF instantly. Add client details, line items, and totals. Free online invoice generator, no signup required.",
-  alternates: { canonical: "https://www.aikittools.com/invoice-generator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/invoice-generator",
+    languages: {
+      "en-US": "https://www.aikittools.com/invoice-generator",
+    },
+  },
   openGraph: {
     title: "Free Invoice Generator – Create & Download PDF",
     description:

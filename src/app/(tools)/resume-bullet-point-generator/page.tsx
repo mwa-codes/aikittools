@@ -8,7 +8,12 @@ export const metadata: Metadata = {
   title: "AI Resume Bullet Point Generator (Coming Soon) | AI Kit Tools",
   description:
     "Generate stronger, achievement-focused resume bullet points with AI. This tool is coming soon to AI Kit Tools.",
-  alternates: { canonical: "https://www.aikittools.com/resume-bullet-point-generator" },
+  alternates: {
+    canonical: "https://www.aikittools.com/resume-bullet-point-generator",
+    languages: {
+      "en-US": "https://www.aikittools.com/resume-bullet-point-generator",
+    },
+  },
   openGraph: {
     title: "AI Resume Bullet Point Generator (Coming Soon) | AI Kit Tools",
     description: "Generate stronger, achievement-focused resume bullet points with AI. Coming soon.",
