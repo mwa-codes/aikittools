@@ -3,13 +3,27 @@ import Image from "next/image";
 import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 
 export default function Header() {
-  const groupedTools = TOOL_CATEGORY_ORDER
+  const defaultGroupedTools = TOOL_CATEGORY_ORDER
     .map((category) => ({
       category,
       label: TOOL_CATEGORY_LABELS[category],
       items: tools.filter((tool) => tool.category === category),
     }))
     .filter((group) => group.items.length > 0);
+  const groupedTools = [
+    {
+      category: "career",
+      label: "Career Tools",
+      items: [
+        { slug: "cover-letter-generator", icon: "✉️", name: "AI Cover Letter Generator" },
+        { slug: "#", icon: "📝", name: "Resume Bullet Generator", comingSoon: true },
+        { slug: "#", icon: "🔍", name: "ATS Resume Checker", comingSoon: true },
+        { slug: "#", icon: "🎤", name: "Interview Question Generator", comingSoon: true },
+        { slug: "#", icon: "💼", name: "LinkedIn Summary Generator", comingSoon: true },
+      ],
+    },
+    ...defaultGroupedTools.filter((group) => group.category !== "career"),
+  ];
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,10 +76,14 @@ export default function Header() {
                       </p>
                       <ul className="space-y-1">
                         {group.items.map((tool) => (
-                          <li key={tool.slug}>
+                          <li key={`${group.category}-${tool.slug}-${tool.name}`}>
                             <Link
-                              href={`/${tool.slug}`}
-                              className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                              href={tool.slug === "#" ? "#" : `/${tool.slug}`}
+                              className={
+                                "comingSoon" in tool && tool.comingSoon
+                                  ? "flex items-center gap-2 px-2 py-1.5 text-sm text-gray-400 rounded-md transition-colors"
+                                  : "flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                              }
                             >
                               <span>{tool.icon}</span>
                               <span className="truncate">{tool.name}</span>
@@ -130,10 +148,14 @@ export default function Header() {
                 </p>
                 <ul className="grid grid-cols-1 gap-1">
                   {group.items.map((tool) => (
-                    <li key={tool.slug}>
+                    <li key={`${group.category}-${tool.slug}-${tool.name}`}>
                       <Link
-                        href={`/${tool.slug}`}
-                        className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                        href={tool.slug === "#" ? "#" : `/${tool.slug}`}
+                        className={
+                          "comingSoon" in tool && tool.comingSoon
+                            ? "flex items-center gap-2 px-2 py-1.5 text-sm text-gray-400 rounded-md transition-colors"
+                            : "flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                        }
                       >
                         <span>{tool.icon}</span>
                         <span>{tool.name}</span>

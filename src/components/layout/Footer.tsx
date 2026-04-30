@@ -6,8 +6,8 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const prioritizedSlugs = [
     "cover-letter-generator",
-    "resume-bullet-point-generator",
     "ai-text-summarizer",
+    "resume-bullet-point-generator",
     "word-counter",
     "case-converter",
     "invoice-generator",
@@ -30,8 +30,8 @@ export default function Footer() {
               <span>{SITE_NAME}</span>
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Free AI career tools for job seekers. Cover letters, resume bullets, ATS checkers and
-              more — free, instant, no signup.
+              Free AI career tools and online utilities. Cover letters, resume bullets, ATS
+              checkers and more — free, instant, no signup.
             </p>
           </div>
 
