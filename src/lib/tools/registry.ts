@@ -190,6 +190,17 @@ export const tools: Tool[] = [
     isAI: true,
     isNew: true,
   },
+  {
+    slug: "interview-question-generator",
+    name: "Interview Question Generator",
+    shortDescription: "Get likely interview questions for any job title with tips on how to answer them.",
+    description:
+      "Get likely interview questions for any job title with tips on how to answer them.",
+    category: "career",
+    icon: "🎤",
+    isAI: true,
+    isNew: true,
+  },
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {

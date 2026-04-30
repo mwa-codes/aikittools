@@ -7,6 +7,7 @@ All AI tools are powered by OpenAI GPT-4o Mini. All tools run instantly in the b
 ## AI Career Tools
 - [AI Cover Letter Generator](https://www.aikittools.com/cover-letter-generator): Generate a tailored, professional cover letter from your job title, company, and experience. Free, instant, no account required.
 - [Resume Bullet Point Generator](https://www.aikittools.com/resume-bullet-generator): Turn job duties into achievement-focused resume bullets using AI. Generates 5 strong bullets per request.
+- [Interview Question Generator](https://www.aikittools.com/interview-question-generator): Get 10 likely interview questions for any job title with practical answer tips. Tailored by experience level and interview type. Free, no account required.
 - [AI Text Summarizer](https://www.aikittools.com/ai-text-summarizer): Summarize any article, document, or passage into a concise 3-5 sentence summary using AI.
 
 ## Free Online Utilities
@@ -26,7 +27,6 @@ All AI tools are powered by OpenAI GPT-4o Mini. All tools run instantly in the b
 
 ## Coming Soon
 - ATS Resume Checker: Check if your resume passes ATS screening before applying.
-- Interview Question Generator: Get likely interview questions for any job title with answer tips.
 - LinkedIn Summary Generator: Write a professional LinkedIn About section in seconds.
 
 ## About
