@@ -1,122 +1,71 @@
-# ⚡ AI Kit Tools
+# AI Kit Tools
 
-**aikittools.com** — Free, fast, SEO-optimized online tools for developers, writers, and everyone.
+Free AI career tools and online utilities built with Next.js and TypeScript.
 
-## 🚀 Tech Stack
+Live site: [https://www.aikittools.com](https://www.aikittools.com)
 
-- **Next.js 16** (App Router, TypeScript)
-- **Tailwind CSS v4**
-- **OpenAI SDK** (for AI Text Summarizer)
-- **qrcode** (for QR Code Generator)
-- Deployed on **Vercel**
+## What This Project Includes
 
----
+- 20+ free tools across Career, AI, Text, Developer, Encoder/Decoder, and Calculator categories
+- SEO-focused tool pages with metadata helpers, structured content, and sitemap support
+- AI-powered tools via server-side API routes using the OpenAI SDK
+- Fast, mobile-friendly UI built with Tailwind CSS v4
 
-## 📁 Project Structure
+## Tech Stack
 
-```
-src/
-├── app/
-│   ├── (tools)/                  # Route group — SEO-friendly short URLs
-│   │   ├── word-counter/
-│   │   ├── json-formatter/
-│   │   ├── qr-code-generator/
-│   │   ├── base64-encoder/
-│   │   ├── url-encoder-decoder/
-│   │   └── ai-text-summarizer/
-│   ├── api/
-│   │   └── summarize/route.ts    # OpenAI API proxy (server-side only)
-│   ├── about/
-│   ├── privacy-policy/
-│   ├── terms/
-│   ├── sitemap.ts                # Auto-generated sitemap
-│   ├── robots.ts                 # robots.txt
-│   ├── layout.tsx                # Root layout (Header + Footer)
-│   └── page.tsx                  # Homepage with tool directory
-├── components/
-│   ├── layout/
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   ├── ToolPageLayout.tsx    # Reusable tool page wrapper
-│   │   └── RelatedTools.tsx
-│   ├── seo/
-│   │   ├── FAQSection.tsx        # With JSON-LD FAQ schema
-│   │   └── ToolSEOContent.tsx
-│   └── tool-ui/
-│       ├── WordCounterTool.tsx
-│       ├── JsonFormatterTool.tsx
-│       ├── QrCodeGeneratorTool.tsx
-│       ├── Base64Tool.tsx
-│       ├── UrlEncoderTool.tsx
-│       └── AiTextSummarizerTool.tsx
-├── lib/
-│   ├── tools/
-│   │   └── registry.ts           # Central tool registry (add new tools here)
-│   └── utils/
-│       └── metadata.ts           # buildMetadata() helper
-```
+- Next.js 16 (App Router)
+- React 19 + TypeScript
+- Tailwind CSS v4
+- OpenAI SDK
+- jsPDF + qrcode
 
----
+## Local Development
 
-## 🔧 Getting Started
-
-### 1. Clone & Install
+1) Install dependencies
 
 ```bash
-git clone https://github.com/youruser/aikittools.git
-cd aikittools
 npm install
 ```
 
-### 2. Set Up Environment Variables
+2) Create `.env.local` (if you want AI features)
 
 ```bash
-cp .env.local.example .env.local
+OPENAI_API_KEY=your_api_key_here
 ```
 
-Edit `.env.local` and add your OpenAI API key:
-
-```
-OPENAI_API_KEY=sk-...
-```
-
-### 3. Run Dev Server
+3) Start development server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+4) Open [http://localhost:3000](http://localhost:3000)
 
----
+## Available Scripts
 
-## ➕ Adding a New Tool
+- `npm run dev` - start local dev server
+- `npm run build` - production build
+- `npm run start` - run production server
+- `npm run lint` - run ESLint
 
-1. **Register it** in `src/lib/tools/registry.ts`
-2. **Create the UI component** in `src/components/tool-ui/YourTool.tsx`
-3. **Create the page** in `src/app/(tools)/your-tool/page.tsx` — use `ToolPageLayout` with SEO sections and FAQs
-4. That's it — the header, footer, related tools, and sitemap update automatically
+## Core Paths
 
----
+- `src/app` - routes, pages, API routes, and layout
+- `src/app/(tools)` - individual tool pages
+- `src/components/tool-ui` - tool UI components
+- `src/components/layout` - header, footer, and shared layout components
+- `src/lib/tools/registry.ts` - central tool registry and categories
+- `src/lib/utils/metadata.ts` - metadata helpers/constants
 
-## 🌐 SEO Features
+## Adding a New Tool
 
-- Per-page `<title>`, `<meta description>`, canonical URLs, OG + Twitter cards
-- FAQ structured data (JSON-LD `FAQPage` schema)
-- Auto-generated `sitemap.xml` and `robots.txt`
-- Semantic HTML: single `<h1>`, proper `<h2>`/`<h3>` hierarchy
-- 800–1200 word SEO content sections on every tool page
-- Internal linking via Related Tools section
+1. Add tool metadata in `src/lib/tools/registry.ts`
+2. Create its UI component in `src/components/tool-ui`
+3. Create its route in `src/app/(tools)/<tool-slug>/page.tsx`
+4. Add any API route in `src/app/api` if server-side logic is needed
 
-## 🔒 Security
+The homepage/category sections and internal linking use the registry, so new tools integrate cleanly.
 
-- OpenAI API key is **server-side only** — never exposed to the browser
-- Security headers configured in `next.config.ts`
-- All non-AI tools process data entirely in the browser
+## Deployment
 
-## 📊 Future Ready
-
-The codebase is structured for:
-- **Google AdSense** — add publisher ID to `.env.local`, drop `<AdSense>` component in layout
-- **Supabase** — add auth + tool usage history with minimal changes
-- **Paid features** — gate tools by checking session/subscription in page components
+Optimized for deployment on Vercel.
