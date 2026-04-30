@@ -201,6 +201,17 @@ export const tools: Tool[] = [
     isAI: true,
     isNew: true,
   },
+  {
+    slug: "ats-resume-checker",
+    name: "ATS Resume Checker",
+    shortDescription: "Check if your resume passes ATS screening and get keyword suggestions before you apply.",
+    description:
+      "Check if your resume passes ATS screening and get keyword suggestions before you apply.",
+    category: "career",
+    icon: "🔍",
+    isAI: true,
+    isNew: true,
+  },
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {

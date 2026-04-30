@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "cover-letter-generator": 0.9,
     "resume-bullet-generator": 0.9,
     "interview-question-generator": 0.9,
+    "ats-resume-checker": 0.9,
     "ai-text-summarizer": 0.7,
     "invoice-generator": 0.7,
     "word-counter": 0.7,
