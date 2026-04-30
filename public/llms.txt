@@ -9,6 +9,7 @@ All AI tools are powered by OpenAI GPT-4o Mini. All tools run instantly in the b
 - [Resume Bullet Point Generator](https://www.aikittools.com/resume-bullet-generator): Turn job duties into achievement-focused resume bullets using AI. Generates 5 strong bullets per request.
 - [Interview Question Generator](https://www.aikittools.com/interview-question-generator): Get 10 likely interview questions for any job title with practical answer tips. Tailored by experience level and interview type. Free, no account required.
 - [ATS Resume Checker](https://www.aikittools.com/ats-resume-checker): Compare your resume against a job description to get an ATS match score and missing keywords. Free, no account required. Used by US job seekers to pass applicant tracking system filters.
+- [LinkedIn Summary Generator](https://www.aikittools.com/linkedin-summary-generator): Write a professional LinkedIn About section from your job title, experience, skills, and goals. Three tone options — professional, conversational, or bold. Free, no account required.
 - [AI Text Summarizer](https://www.aikittools.com/ai-text-summarizer): Summarize any article, document, or passage into a concise 3-5 sentence summary using AI.
 
 ## Free Online Utilities
@@ -25,9 +26,6 @@ All AI tools are powered by OpenAI GPT-4o Mini. All tools run instantly in the b
 - [BMI Calculator](https://www.aikittools.com/bmi-calculator): Calculate BMI using US Imperial units (pounds, feet, inches).
 - [Age Calculator](https://www.aikittools.com/age-calculator): Calculate exact age in years, months, and days from any birth date.
 - [Loan EMI Calculator](https://www.aikittools.com/loan-emi-calculator): Estimate monthly payments, total interest, and total payment for any loan.
-
-## Coming Soon
-- LinkedIn Summary Generator: Write a professional LinkedIn About section in seconds.
 
 ## About
 - Target market: United States job seekers and professionals

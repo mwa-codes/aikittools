@@ -212,6 +212,16 @@ export const tools: Tool[] = [
     isAI: true,
     isNew: true,
   },
+  {
+    slug: "linkedin-summary-generator",
+    name: "LinkedIn Summary Generator",
+    shortDescription: "Write a professional LinkedIn About section in seconds using AI.",
+    description: "Write a professional LinkedIn About section in seconds using AI.",
+    category: "career",
+    icon: "💼",
+    isAI: true,
+    isNew: true,
+  },
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {

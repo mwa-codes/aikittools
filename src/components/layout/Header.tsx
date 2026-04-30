@@ -19,7 +19,7 @@ export default function Header() {
         { slug: "resume-bullet-generator", icon: "📝", name: "Resume Bullet Generator" },
         { slug: "ats-resume-checker", icon: "🔍", name: "ATS Resume Checker" },
         { slug: "interview-question-generator", icon: "🎤", name: "Interview Question Generator" },
-        { slug: "#", icon: "💼", name: "LinkedIn Summary Generator", comingSoon: true },
+        { slug: "linkedin-summary-generator", icon: "💼", name: "LinkedIn Summary Generator" },
       ],
     },
     ...defaultGroupedTools.filter((group) => group.category !== "career"),

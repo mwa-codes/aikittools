@@ -6,8 +6,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const prioritizedSlugs = [
     "cover-letter-generator",
+    "resume-bullet-generator",
+    "ats-resume-checker",
+    "interview-question-generator",
     "ai-text-summarizer",
-    "resume-bullet-point-generator",
     "word-counter",
     "case-converter",
     "invoice-generator",
