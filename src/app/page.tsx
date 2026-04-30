@@ -105,7 +105,7 @@ export default function HomePage() {
       <section className="mb-12" id="career-tools" aria-labelledby="category-career">
         <div className="flex items-end justify-between mb-4">
           <h2 id="category-career" className="text-lg sm:text-xl font-semibold text-gray-800 tracking-tight">
-            Career Tools
+            🎯 Career Tools
           </h2>
           <span className="text-xs text-gray-400">5 tools</span>
         </div>

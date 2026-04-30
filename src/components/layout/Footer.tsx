@@ -95,8 +95,15 @@ export default function Footer() {
             © {currentYear} {SITE_NAME}. All rights reserved.
           </p>
           <p className="text-sm text-gray-500">
-            Built for speed &amp; SEO · Hosted on{" "}
-            <span className="text-gray-400">Vercel</span>
+            Built by MWA ·{" "}
+            <Link
+              href="https://mwadev.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              mwadev.me
+            </Link>
           </p>
         </div>
       </div>
