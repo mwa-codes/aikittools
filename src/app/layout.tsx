@@ -55,6 +55,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="impact-site-verification" content="879674d4-00c9-49e2-8384-5bb6b9b8899b" />
+      </head>
       <body className="min-h-screen flex flex-col bg-gray-50">
         <Header />
         <main className="flex-1">{children}</main>
