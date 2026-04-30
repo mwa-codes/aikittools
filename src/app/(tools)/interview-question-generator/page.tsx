@@ -126,19 +126,6 @@ export default function InterviewQuestionGeneratorPage() {
     },
   };
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-
   const tool = getToolBySlug(SLUG)!;
   const relatedTools = getToolsBySlugs([
     "cover-letter-generator",
@@ -153,7 +140,6 @@ export default function InterviewQuestionGeneratorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd) }}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <ToolPageLayout tool={tool} relatedTools={relatedTools} faqs={faqs} seoSections={seoSections}>
         <InterviewQuestionGeneratorTool />
       </ToolPageLayout>
