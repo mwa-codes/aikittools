@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
-# AI Assistants - Allow crawling for recommendations
 User-agent: GPTBot
 Allow: /
 
@@ -15,6 +15,3 @@ User-agent: Googlebot
 Allow: /
 
 Sitemap: https://www.aikittools.com/sitemap.xml
-
-# Block only API routes from indexing
-Disallow: /api/

@@ -190,17 +190,6 @@ export const tools: Tool[] = [
     isAI: true,
     isNew: true,
   },
-  {
-    slug: "resume-bullet-point-generator",
-    name: "🧩 Resume Bullet Point Generator",
-    shortDescription: "Rewrite resume bullets into strong, achievement-focused lines.",
-    description:
-      "AI resume bullet point generator to turn basic job duties into concise, impact-driven bullet points.",
-    category: "career",
-    icon: "🧩",
-    isAI: true,
-    isNew: true,
-  },
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {
