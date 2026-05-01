@@ -6,7 +6,7 @@ import CoverLetterGeneratorTool from "@/components/tool-ui/CoverLetterGeneratorT
 const SLUG = "cover-letter-generator";
 
 export const metadata: Metadata = {
-  title: "Free AI Cover Letter Generator — Write a Cover Letter in Seconds | AI Kit Tools",
+  title: "Free AI Cover Letter Generator — Write a Cover Letter in Seconds",
   description:
     "Generate a professional, tailored cover letter instantly using AI. Free cover letter generator — no signup required. Enter your job title, company, and experience and get a ready-to-send cover letter.",
   keywords:

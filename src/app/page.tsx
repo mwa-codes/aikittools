@@ -3,7 +3,7 @@ import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/re
 import { SITE_NAME, SITE_URL } from "@/lib/utils/metadata";
 
 export const metadata = {
-  title: "Free AI Career Tools & Online Utilities | AI Kit Tools",
+  title: "Free AI Career Tools & Online Utilities",
   description:
     "Free AI-powered career tools for job seekers — cover letter generator, resume bullets, ATS checker, interview prep and more. Plus free developer and text tools. No signup required.",
   keywords:

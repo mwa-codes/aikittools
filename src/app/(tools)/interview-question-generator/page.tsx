@@ -6,7 +6,7 @@ import InterviewQuestionGeneratorTool from "../../../components/tool-ui/Intervie
 const SLUG = "interview-question-generator";
 
 export const metadata: Metadata = {
-  title: "Free AI Interview Question Generator — Prep for Any Job Interview | AI Kit Tools",
+  title: "Free AI Interview Question Generator — Prep for Any Job Interview",
   description:
     "Generate likely interview questions for any job title instantly using AI. Free interview prep tool — no signup required. Get 10 questions with answer tips tailored to your role.",
   keywords:
