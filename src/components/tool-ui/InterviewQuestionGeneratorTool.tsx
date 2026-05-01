@@ -266,10 +266,6 @@ export default function InterviewQuestionGeneratorTool() {
               <Link href="/resume-bullet-generator" className="text-purple-700 hover:text-purple-800 underline">
                 [open tool]
               </Link>
-              <br />→ Check grammar with Grammarly (free){" "}
-              <a href="#" className="text-purple-700 hover:text-purple-800 underline">
-                [link placeholder]
-              </a>
             </p>
           </div>
         </>

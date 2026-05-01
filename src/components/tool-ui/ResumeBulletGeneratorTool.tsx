@@ -248,10 +248,6 @@ export default function ResumeBulletGeneratorTool() {
           <div className="p-4 rounded-lg border border-purple-100 bg-purple-50/60">
             <p className="text-sm text-gray-700">
               ✓ Bullets ready. Next steps:
-              <br />→ Check your full resume with Grammarly (free){" "}
-              <a href="#" className="text-purple-700 hover:text-purple-800 underline">
-                [link placeholder]
-              </a>
               <br />→ Build an ATS-optimized resume with Resume.io (free to start){" "}
               <a href="#" className="text-purple-700 hover:text-purple-800 underline">
                 [link placeholder]

@@ -198,10 +198,6 @@ export default function CoverLetterGeneratorTool() {
           <div className="p-4 rounded-lg border border-purple-100 bg-purple-50/60">
             <p className="text-sm text-gray-700">
               ✓ Cover letter ready. Next steps:
-              <br />→ Check grammar with Grammarly (free){" "}
-              <a href="#" className="text-purple-700 hover:text-purple-800 underline">
-                [link placeholder]
-              </a>
               <br />→ Build a matching resume with Resume.io (free to start){" "}
               <a href="#" className="text-purple-700 hover:text-purple-800 underline">
                 [link placeholder]
