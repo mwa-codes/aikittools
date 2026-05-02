@@ -108,10 +108,11 @@ export default function CoverLetterGeneratorPage() {
 
   const tool = getToolBySlug(SLUG)!;
   const relatedTools = getToolsBySlugs([
+    "tracker",
     "ai-text-summarizer",
     "word-counter",
     "invoice-generator",
-    "resume-bullet-point-generator",
+    "resume-bullet-generator",
   ]);
 
   return (

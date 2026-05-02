@@ -122,6 +122,7 @@ export default function ResumeBulletGeneratorPage() {
 
   const tool = getToolBySlug(SLUG)!;
   const relatedTools = getToolsBySlugs([
+    "tracker",
     "cover-letter-generator",
     "ai-text-summarizer",
     "word-counter",

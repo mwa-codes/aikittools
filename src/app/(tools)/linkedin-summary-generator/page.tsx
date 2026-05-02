@@ -120,6 +120,7 @@ export default function LinkedInSummaryGeneratorPage() {
 
   const tool = getToolBySlug(SLUG)!;
   const relatedTools = getToolsBySlugs([
+    "tracker",
     "cover-letter-generator",
     "resume-bullet-generator",
     "ats-resume-checker",

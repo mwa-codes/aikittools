@@ -2,6 +2,15 @@ import type { Metadata } from "next";
 import TrackerApp from "@/components/tracker/TrackerApp";
 import FAQSection from "@/components/seo/FAQSection";
 import ToolSEOContent from "@/components/seo/ToolSEOContent";
+import RelatedTools from "@/components/RelatedTools";
+import { getToolsBySlugs } from "@/lib/tools/registry";
+
+const relatedTools = getToolsBySlugs([
+  "cover-letter-generator",
+  "resume-bullet-generator",
+  "ats-resume-checker",
+  "interview-question-generator",
+]);
 
 export const metadata: Metadata = {
   title: "Free Job Application Tracker — Track Every Application | AI Kit Tools",
@@ -138,6 +147,9 @@ export default function TrackerPage() {
 
       {/* FAQ */}
       <FAQSection faqs={faqs} />
+
+      {/* Related Tools — internal links for crawlers and users */}
+      <RelatedTools tools={relatedTools} />
     </div>
   );
 }

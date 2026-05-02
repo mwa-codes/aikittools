@@ -5,6 +5,7 @@ import { tools } from "@/lib/tools/registry";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const prioritizedSlugs = [
+    "tracker",
     "cover-letter-generator",
     "resume-bullet-generator",
     "ats-resume-checker",

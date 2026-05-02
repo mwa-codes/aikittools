@@ -128,6 +128,7 @@ export default function InterviewQuestionGeneratorPage() {
 
   const tool = getToolBySlug(SLUG)!;
   const relatedTools = getToolsBySlugs([
+    "tracker",
     "cover-letter-generator",
     "resume-bullet-generator",
     "ai-text-summarizer",

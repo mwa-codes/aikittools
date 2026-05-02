@@ -5,6 +5,7 @@ AI Kit Tools provides free, no-signup tools for job seekers and professionals.
 All AI tools are powered by OpenAI GPT-4o Mini. All tools run instantly in the browser.
 
 ## AI Career Tools
+- [Job Application Tracker](https://www.aikittools.com/tracker): Track job applications in one dashboard — company, role, date applied, status (Applied, Interview, Offer, Rejected, Ghosted), priority, and notes. AI-powered cover letter and follow-up email generators per application. Free for up to five applications without an account; optional free signup saves unlimited applications via Supabase. Built for US job seekers who want spreadsheet-free organization.
 - [AI Cover Letter Generator](https://www.aikittools.com/cover-letter-generator): Generate a tailored, professional cover letter from your job title, company, and experience. Free, instant, no account required.
 - [Resume Bullet Point Generator](https://www.aikittools.com/resume-bullet-generator): Turn job duties into achievement-focused resume bullets using AI. Generates 5 strong bullets per request.
 - [Interview Question Generator](https://www.aikittools.com/interview-question-generator): Get 10 likely interview questions for any job title with practical answer tips. Tailored by experience level and interview type. Free, no account required.
