@@ -71,18 +71,18 @@ export default function HomePage() {
         style={{ background: "linear-gradient(to bottom, #ffffff, #f8fafc)" }}
       >
         <p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 mb-4">
-          ⚡ Free · No Signup · Powered by OpenAI
+          ⚡ Free to Start · No Credit Card · Powered by OpenAI
         </p>
         <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight tracking-tight">
           Free Job Application Tracker &amp; AI Career Tools
         </h1>
         <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           Track every job you apply to, generate AI cover letters, follow-up emails, and interview
-          prep questions — all free, no account required.
+          prep questions. Free to start — no credit card required.
         </p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500">
           <span className="rounded-full bg-white border border-gray-200 px-3 py-1">
-            ✓ No Signup
+            ✓ No Credit Card
           </span>
           <span className="rounded-full bg-white border border-gray-200 px-3 py-1">
             ✓ Works Instantly
