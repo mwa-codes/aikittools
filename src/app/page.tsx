@@ -107,9 +107,30 @@ export default function HomePage() {
           <h2 id="category-career" className="text-lg sm:text-xl font-semibold text-gray-800 tracking-tight">
             🎯 Career Tools
           </h2>
-          <span className="text-xs text-gray-400">5 tools</span>
+          <span className="text-xs text-gray-400">6 tools</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Link
+            href="/tracker"
+            className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
+          >
+            <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
+              📋
+            </span>
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 mb-1 flex-wrap">
+                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                  Job Application Tracker
+                </h3>
+                <span className="text-xs bg-green-100 text-green-700 font-medium px-2 py-0.5 rounded-full">
+                  New
+                </span>
+              </div>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Track every job you apply to with AI cover letters and follow-up emails. Free, no spreadsheet needed.
+              </p>
+            </div>
+          </Link>
           <Link
             href="/cover-letter-generator"
             className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"

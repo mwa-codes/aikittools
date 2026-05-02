@@ -5,6 +5,7 @@ import { SITE_URL } from "@/lib/utils/metadata";
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const priorityBySlug: Record<string, number> = {
+    "tracker": 0.9,
     "cover-letter-generator": 0.9,
     "resume-bullet-generator": 0.9,
     "interview-question-generator": 0.9,

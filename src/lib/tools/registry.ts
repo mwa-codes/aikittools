@@ -13,6 +13,16 @@ export interface Tool {
 
 export const tools: Tool[] = [
   {
+    slug: "tracker",
+    name: "Job Application Tracker",
+    shortDescription: "Track every job you apply to with AI cover letters and follow-up emails.",
+    description:
+      "Free job application tracker. Track every role you apply to, update statuses, add notes, and generate AI cover letters and follow-up emails — no spreadsheet needed.",
+    category: "career",
+    icon: "📋",
+    isNew: true,
+  },
+  {
     slug: "age-calculator",
     name: "Age Calculator",
     shortDescription: "Calculate exact age in years, months, and days.",

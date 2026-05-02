@@ -15,6 +15,7 @@ export default function Header() {
       category: "career",
       label: "Career Tools",
       items: [
+        { slug: "tracker", icon: "📋", name: "Job Application Tracker" },
         { slug: "cover-letter-generator", icon: "✉️", name: "AI Cover Letter Generator" },
         { slug: "resume-bullet-generator", icon: "📝", name: "Resume Bullet Generator" },
         { slug: "ats-resume-checker", icon: "🔍", name: "ATS Resume Checker" },
