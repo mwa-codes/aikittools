@@ -65,6 +65,38 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "aikittools.com",
+          },
+          {
+            type: "header",
+            key: "x-forwarded-proto",
+            value: "http",
+          },
+        ],
+        destination: "https://www.aikittools.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "aikittools.com",
+          },
+          {
+            type: "header",
+            key: "x-forwarded-proto",
+            value: "https",
+          },
+        ],
+        destination: "https://www.aikittools.com/:path*",
+        permanent: true,
+      },
+      {
         source: "/tools/:slug*",
         destination: "/:slug*",
         permanent: true,

@@ -6,9 +6,9 @@ import HtmlEntityEncoderDecoderTool from "@/components/tool-ui/HtmlEntityEncoder
 const SLUG = "html-entity-encoder-decoder";
 
 export const metadata: Metadata = {
-  title: "HTML Entity Encoder & Decoder – Free Online Tool",
+  title: "HTML Entity Encoder & Decoder – Convert Entities Free",
   description:
-    "Encode or decode HTML entities instantly. Convert special characters to HTML-safe format and back. Free online tool, works in browser, no signup needed.",
+    "Encode text to HTML entities or decode HTML entities back to readable text instantly. Free online tool for developers and content editors — no signup needed.",
   alternates: {
     canonical: "https://www.aikittools.com/html-entity-encoder-decoder",
     languages: {

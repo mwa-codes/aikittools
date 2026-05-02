@@ -6,9 +6,9 @@ import CaseConverterTool from "@/components/tool-ui/CaseConverterTool";
 const SLUG = "case-converter";
 
 export const metadata: Metadata = {
-  title: "Case Converter – Convert Text Case Online Free",
+  title: "Case Converter – UPPERCASE, lowercase, Title & camelCase",
   description:
-    "Convert any text to UPPERCASE, lowercase, Title Case, camelCase, snake_case and more. Instant results, no signup needed. Free online tool.",
+    "Convert text between uppercase, lowercase, title case, sentence case, camelCase, and snake_case instantly. Free online tool, no signup, live preview included.",
   alternates: {
     canonical: "https://www.aikittools.com/case-converter",
     languages: {

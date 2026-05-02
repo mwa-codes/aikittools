@@ -6,9 +6,9 @@ import AgeCalculatorTool from "@/components/tool-ui/AgeCalculatorTool";
 const SLUG = "age-calculator";
 
 export const metadata: Metadata = {
-  title: "Age Calculator – Calculate Your Exact Age Online",
+  title: "Age Calculator – Find Your Exact Age in Years & Months",
   description:
-    "Calculate your exact age in years, months, and days from your date of birth. See your next birthday countdown too. Free online age calculator, no signup.",
+    "Enter your date of birth and instantly calculate your exact age in years, months, and days. Free online age calculator — no signup, accurate to the day.",
   alternates: {
     canonical: "https://www.aikittools.com/age-calculator",
     languages: {

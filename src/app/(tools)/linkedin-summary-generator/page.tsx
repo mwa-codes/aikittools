@@ -6,9 +6,9 @@ import LinkedInSummaryGeneratorTool from "@/components/tool-ui/LinkedInSummaryGe
 const SLUG = "linkedin-summary-generator";
 
 export const metadata: Metadata = {
-  title: "Free AI LinkedIn Summary Generator — Write Your LinkedIn About Section",
+  title: "AI LinkedIn Summary Generator – Write Your About Section",
   description:
-    "Generate a professional LinkedIn About section instantly using AI. Free LinkedIn summary generator — no signup required. Enter your role, experience, and goals and get a compelling LinkedIn summary.",
+    "Generate a professional LinkedIn About section using AI. Enter your role and experience, get a polished summary instantly. Free, no account required.",
   keywords:
     "LinkedIn summary generator, AI LinkedIn summary, LinkedIn about section generator, LinkedIn bio generator free, professional LinkedIn summary, LinkedIn profile summary generator",
   openGraph: {

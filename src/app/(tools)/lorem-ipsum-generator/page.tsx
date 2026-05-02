@@ -6,9 +6,9 @@ import LoremIpsumGeneratorTool from "@/components/tool-ui/LoremIpsumGeneratorToo
 const SLUG = "lorem-ipsum-generator";
 
 export const metadata: Metadata = {
-  title: "Lorem Ipsum Generator – Free Placeholder Text Tool",
+  title: "Lorem Ipsum Generator – Placeholder Text, Instant Free",
   description:
-    "Generate lorem ipsum placeholder text by paragraphs, sentences, or words. Copy instantly for design mockups and prototypes. Free, no signup required.",
+    "Generate lorem ipsum paragraphs, sentences, or words instantly. Choose the exact amount of placeholder text you need. Free, no signup, copy with one click.",
   alternates: {
     canonical: "https://www.aikittools.com/lorem-ipsum-generator",
     languages: {

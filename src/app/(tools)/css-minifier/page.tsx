@@ -6,9 +6,9 @@ import CssMinifierTool from "@/components/tool-ui/CssMinifierTool";
 const SLUG = "css-minifier";
 
 export const metadata: Metadata = {
-  title: "CSS Minifier – Compress & Minify CSS Online Free",
+  title: "CSS Minifier – Compress & Minify CSS Code Online Free",
   description:
-    "Minify and compress CSS code instantly to reduce file size. Paste your CSS and get clean minified output. Free online CSS minifier, no signup needed.",
+    "Paste your CSS and minify it instantly to reduce file size. Free online CSS compressor — no signup, no install, works with any stylesheet in seconds.",
   alternates: {
     canonical: "https://www.aikittools.com/css-minifier",
     languages: {

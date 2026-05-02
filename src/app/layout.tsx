@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://www.aikittools.com",
     languages: {
       "en-US": "https://www.aikittools.com",
     },

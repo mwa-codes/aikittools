@@ -6,9 +6,9 @@ import AiTextSummarizerTool from "@/components/tool-ui/AiTextSummarizerTool";
 const SLUG = "ai-text-summarizer";
 
 export const metadata: Metadata = {
-  title: "AI Text Summarizer – Summarize Any Text Online",
+  title: "AI Text Summarizer – Summarize Any Text Free, No Limit",
   description:
-    "Summarize long articles, essays, or documents in seconds using AI. Get a clear, concise summary instantly. Free AI text summarizer, no signup required.",
+    "Paste any article, essay, or document and get a clear, accurate summary in seconds. Free AI summarizer powered by OpenAI. No signup, no word limit.",
   alternates: {
     canonical: "https://www.aikittools.com/ai-text-summarizer",
     languages: {

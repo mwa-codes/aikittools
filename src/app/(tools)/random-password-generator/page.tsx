@@ -6,9 +6,9 @@ import RandomPasswordGeneratorTool from "@/components/tool-ui/RandomPasswordGene
 const SLUG = "random-password-generator";
 
 export const metadata: Metadata = {
-  title: "Random Password Generator – Strong Passwords Free",
+  title: "Random Password Generator – Strong, Secure Passwords Free",
   description:
-    "Generate strong, secure random passwords with custom length, symbols, and numbers. Free online password generator. No signup, works in your browser.",
+    "Generate strong random passwords with custom length, symbols, numbers, and letters. Free online password generator — no signup, nothing saved or logged.",
   alternates: {
     canonical: "https://www.aikittools.com/random-password-generator",
     languages: {

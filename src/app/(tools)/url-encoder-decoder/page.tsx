@@ -6,9 +6,9 @@ import UrlEncoderTool from "@/components/tool-ui/UrlEncoderTool";
 const SLUG = "url-encoder-decoder";
 
 export const metadata: Metadata = {
-  title: "URL Encoder & Decoder – Encode URLs Online Free",
+  title: "URL Encoder & Decoder – Encode or Decode URLs Online",
   description:
-    "Encode or decode URLs and query strings instantly. Perfect for developers and digital marketers. Free online URL encoder tool, no signup required.",
+    "Encode special characters in URLs or decode percent-encoded strings instantly. Free online URL encoder and decoder for developers — no signup required.",
   alternates: {
     canonical: "https://www.aikittools.com/url-encoder-decoder",
     languages: {

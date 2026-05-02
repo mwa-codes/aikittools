@@ -6,9 +6,9 @@ import Base64Tool from "@/components/tool-ui/Base64Tool";
 const SLUG = "base64-encoder";
 
 export const metadata: Metadata = {
-  title: "Base64 Encoder & Decoder – Convert Online Free",
+  title: "Base64 Encoder & Decoder – Encode or Decode Free Online",
   description:
-    "Encode or decode Base64 strings instantly in your browser. Supports text and data conversion. Free online Base64 tool, no account or signup needed.",
+    "Encode text or data to Base64 and decode Base64 strings back to plain text instantly. Free online tool for developers — no signup, fast, works in browser.",
   alternates: {
     canonical: "https://www.aikittools.com/base64-encoder",
     languages: {

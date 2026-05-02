@@ -6,9 +6,9 @@ import BmiCalculatorTool from "@/components/tool-ui/BmiCalculatorTool";
 const SLUG = "bmi-calculator";
 
 export const metadata: Metadata = {
-  title: "BMI Calculator – Calculate Body Mass Index Free",
+  title: "BMI Calculator – Calculate Body Mass Index Instantly",
   description:
-    "Calculate your BMI instantly using height and weight. See your BMI category and what it means for your health. Free online BMI calculator, no signup.",
+    "Enter your height and weight to calculate your BMI and see your weight category. Free online BMI calculator — supports both metric and imperial units.",
   alternates: {
     canonical: "https://www.aikittools.com/bmi-calculator",
     languages: {

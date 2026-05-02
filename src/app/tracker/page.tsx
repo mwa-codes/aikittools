@@ -13,9 +13,9 @@ const relatedTools = getToolsBySlugs([
 ]);
 
 export const metadata: Metadata = {
-  title: "Free Job Application Tracker — Track Every Application",
+  title: "Job Application Tracker – Track Every Application Free",
   description:
-    "Track all your job applications in one place. Free job application tracker with AI cover letter and follow-up email generator. No spreadsheet needed.",
+    "Track every job application in one place. Log status, deadlines, and notes. Free, no signup, no account needed. Stay organized during your job search.",
   keywords:
     "job application tracker, free job tracker, track job applications, job search tracker, application status tracker",
   openGraph: {

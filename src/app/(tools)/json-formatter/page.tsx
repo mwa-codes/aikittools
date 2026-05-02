@@ -6,9 +6,9 @@ import JsonFormatterTool from "@/components/tool-ui/JsonFormatterTool";
 const SLUG = "json-formatter";
 
 export const metadata: Metadata = {
-  title: "JSON Formatter & Validator – Beautify JSON Online",
+  title: "JSON Formatter & Validator – Beautify & Validate JSON",
   description:
-    "Format, validate, and beautify JSON instantly. Paste messy JSON and get clean, readable output in one click. Free online tool, no signup required.",
+    "Paste any JSON and instantly format, validate, and beautify it. Highlights errors and fixes indentation. Free online tool for developers — no signup needed.",
   alternates: {
     canonical: "https://www.aikittools.com/json-formatter",
     languages: {

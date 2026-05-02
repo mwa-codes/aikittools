@@ -6,9 +6,9 @@ import QrCodeGeneratorTool from "@/components/tool-ui/QrCodeGeneratorTool";
 const SLUG = "qr-code-generator";
 
 export const metadata: Metadata = {
-  title: "QR Code Generator – Create QR Codes Free Online",
+  title: "QR Code Generator – Create & Download QR Codes Free",
   description:
-    "Generate QR codes from any URL, text, email, or phone number instantly. Download as PNG. Free online QR code generator, no signup required.",
+    "Generate a QR code from any URL, text, or link in seconds. Download as PNG for print or digital use. Free, no signup, no watermark, no limits.",
   alternates: {
     canonical: "https://www.aikittools.com/qr-code-generator",
     languages: {

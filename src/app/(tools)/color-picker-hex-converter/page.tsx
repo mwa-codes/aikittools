@@ -6,9 +6,9 @@ import ColorPickerHexConverterTool from "@/components/tool-ui/ColorPickerHexConv
 const SLUG = "color-picker-hex-converter";
 
 export const metadata: Metadata = {
-  title: "Color Picker & HEX Converter – RGB, HSL Tool Free",
+  title: "Color Picker & HEX Converter – RGB, HSL, HEX Free Tool",
   description:
-    "Pick any color and instantly convert between HEX, RGB, and HSL formats. Free online color picker for designers and developers. No signup required.",
+    "Pick any color and instantly convert between HEX, RGB, and HSL formats. Free online color picker for designers and developers — no signup required.",
   alternates: {
     canonical: "https://www.aikittools.com/color-picker-hex-converter",
     languages: {

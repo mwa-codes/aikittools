@@ -6,9 +6,9 @@ import LoanEmiCalculatorTool from "@/components/tool-ui/LoanEmiCalculatorTool";
 const SLUG = "loan-emi-calculator";
 
 export const metadata: Metadata = {
-  title: "Loan EMI Calculator – Calculate Monthly EMI Free",
+  title: "Loan EMI Calculator – Estimate Monthly Payments Free",
   description:
-    "Calculate your monthly EMI, total interest, and total payment for any loan. Enter amount, rate, and tenure. Free online EMI calculator, no signup needed.",
+    "Calculate your monthly EMI, total repayment, and total interest for any loan. Enter principal, rate, and tenure. Free online calculator — no signup needed.",
   alternates: {
     canonical: "https://www.aikittools.com/loan-emi-calculator",
     languages: {

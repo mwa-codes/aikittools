@@ -6,9 +6,9 @@ import AtsResumeCheckerTool from "../../../components/tool-ui/AtsResumeCheckerTo
 const SLUG = "ats-resume-checker";
 
 export const metadata: Metadata = {
-  title: "Free ATS Resume Checker — Check If Your Resume Passes ATS",
+  title: "ATS Resume Checker – See If Your Resume Passes Screening",
   description:
-    "Check if your resume passes ATS screening instantly using AI. Free ATS resume checker — no signup required. Paste your resume and job description and get a match score with missing keywords.",
+    "Upload your resume and check if it passes ATS filters before you apply. AI-powered, free, no signup. Built for US job seekers using real job descriptions.",
   keywords:
     "ATS resume checker, free ATS checker, resume ATS scanner, ATS resume scanner free, applicant tracking system checker, resume keyword checker, ATS friendly resume checker",
   openGraph: {

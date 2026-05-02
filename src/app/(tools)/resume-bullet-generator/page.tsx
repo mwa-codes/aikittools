@@ -6,9 +6,9 @@ import ResumeBulletGeneratorTool from "../../../components/tool-ui/ResumeBulletG
 const SLUG = "resume-bullet-generator";
 
 export const metadata: Metadata = {
-  title: "Free AI Resume Bullet Point Generator — Write Resume Bullets in Seconds",
+  title: "AI Resume Bullet Generator – Achievement-Focused Bullets",
   description:
-    "Generate 5 achievement-focused resume bullet points with AI. Free resume bullet generator, no signup required.",
+    "Turn job duties into strong, quantified resume bullets using AI. Built for the US job market. Free, instant results, no account or signup required.",
   keywords:
     "resume bullet point generator, AI resume bullets, resume bullet generator free, achievement resume bullets, resume bullet points examples, AI resume writer",
   openGraph: {

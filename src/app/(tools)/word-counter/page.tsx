@@ -6,9 +6,9 @@ import WordCounterTool from "@/components/tool-ui/WordCounterTool";
 const SLUG = "word-counter";
 
 export const metadata: Metadata = {
-  title: "Word Counter – Count Words & Characters Online",
+  title: "Word Counter – Count Words, Characters & Reading Time",
   description:
-    "Instantly count words, characters, sentences, paragraphs, and reading time. Paste your text and get results in seconds. Free, no signup required.",
+    "Instantly count words, characters, sentences, paragraphs, and estimated reading time. Free online word counter — no signup, works with any text or document.",
   alternates: {
     canonical: "https://www.aikittools.com/word-counter",
     languages: {

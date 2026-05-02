@@ -6,9 +6,9 @@ import InvoiceGeneratorTool from "@/components/tool-ui/InvoiceGeneratorTool";
 const SLUG = "invoice-generator";
 
 export const metadata: Metadata = {
-  title: "Free Invoice Generator – Create & Download PDF",
+  title: "Free Invoice Generator – Create & Download PDF Invoices",
   description:
-    "Create professional invoices and download as PDF instantly. Add client details, line items, and totals. Free online invoice generator, no signup required.",
+    "Create professional invoices and download them as PDF in seconds. Add your logo, line items, and tax. Free, no account needed, works in any browser.",
   alternates: {
     canonical: "https://www.aikittools.com/invoice-generator",
     languages: {
