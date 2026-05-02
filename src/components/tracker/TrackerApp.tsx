@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import type { User } from "@supabase/supabase-js";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import type { JobApplication, JobApplicationInput } from "@/types/tracker";
 import { GUEST_STORAGE_KEY, GUEST_LIMIT, normalizeJobUrl } from "@/types/tracker";
 import ApplicationCard from "./ApplicationCard";
@@ -11,7 +11,10 @@ import AIToolsModal from "./AIToolsModal";
 import AuthModal from "./AuthModal";
 
 function generateId() {
-  return crypto.randomUUID();
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 }
 
 function loadGuestApps(): JobApplication[] {
@@ -24,7 +27,11 @@ function loadGuestApps(): JobApplication[] {
 }
 
 function saveGuestApps(apps: JobApplication[]) {
-  localStorage.setItem(GUEST_STORAGE_KEY, JSON.stringify(apps));
+  try {
+    localStorage.setItem(GUEST_STORAGE_KEY, JSON.stringify(apps));
+  } catch {
+    /* private mode / quota — ignore */
+  }
 }
 
 /** Serializes guest→Supabase migration so concurrent auth events cannot double-insert the same rows. */
@@ -40,6 +47,10 @@ function runGuestMigration(userId: string, loadSupabaseApps: () => Promise<void>
         return;
       }
       const supabase = createClient();
+      if (!supabase) {
+        await loadSupabaseApps();
+        return;
+      }
       const toInsert = guestApps.map((a) => ({
         id: a.id,
         user_id: userId,
@@ -76,9 +87,11 @@ export default function TrackerApp() {
   const [showAuth, setShowAuth] = useState(false);
   const [authMode, setAuthMode] = useState<"signin" | "signup">("signup");
   const [isAuthGate, setIsAuthGate] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
 
   const loadSupabaseApps = useCallback(async () => {
     const supabase = createClient();
+    if (!supabase) return;
     const { data, error } = await supabase
       .from("job_applications")
       .select("*")
@@ -90,17 +103,43 @@ export default function TrackerApp() {
 
   useEffect(() => {
     const supabase = createClient();
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      const currentUser = session?.user ?? null;
-      setUser(currentUser);
-      if (currentUser) {
-        loadSupabaseApps().finally(() => setLoading(false));
-      } else {
-        setApps(loadGuestApps());
+    if (!supabase) {
+      const guest = loadGuestApps();
+      queueMicrotask(() => {
+        setApps(guest);
         setLoading(false);
-      }
-    });
+      });
+      return;
+    }
+
+    let cancelled = false;
+
+    supabase.auth
+      .getSession()
+      .then(({ data: { session }, error }) => {
+        if (cancelled) return;
+        if (error) {
+          console.error("[TrackerApp] getSession:", error);
+          setApps(loadGuestApps());
+          setLoading(false);
+          return;
+        }
+        const currentUser = session?.user ?? null;
+        setUser(currentUser);
+        if (currentUser) {
+          loadSupabaseApps().finally(() => setLoading(false));
+        } else {
+          setApps(loadGuestApps());
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          console.error("[TrackerApp] getSession failed:", err);
+          setApps(loadGuestApps());
+          setLoading(false);
+        }
+      });
 
     const {
       data: { subscription },
@@ -115,7 +154,10 @@ export default function TrackerApp() {
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      cancelled = true;
+      subscription.unsubscribe();
+    };
   }, [loadSupabaseApps]);
 
   // ---- CRUD ----
@@ -123,6 +165,9 @@ export default function TrackerApp() {
   async function handleSave(data: JobApplicationInput) {
     if (user) {
       const supabase = createClient();
+      if (!supabase) {
+        throw new Error("Account sync is not available.");
+      }
       if (editApp) {
         const { error } = await supabase
           .from("job_applications")
@@ -160,6 +205,7 @@ export default function TrackerApp() {
     if (!confirm("Delete this application?")) return;
     if (user) {
       const supabase = createClient();
+      if (!supabase) return;
       await supabase.from("job_applications").delete().eq("id", id);
       await loadSupabaseApps();
     } else {
@@ -170,7 +216,14 @@ export default function TrackerApp() {
   }
 
   function openAddModal() {
+    setNotice(null);
     if (!user && apps.length >= GUEST_LIMIT) {
+      if (!isSupabaseConfigured()) {
+        setNotice(
+          "You've reached the guest limit (5 applications). Remove one to add another, or enable Supabase env vars on the server for unlimited accounts."
+        );
+        return;
+      }
       setIsAuthGate(true);
       setAuthMode("signup");
       setShowAuth(true);
@@ -192,6 +245,7 @@ export default function TrackerApp() {
 
   async function handleSignOut() {
     const supabase = createClient();
+    if (!supabase) return;
     await supabase.auth.signOut();
   }
 
@@ -205,6 +259,19 @@ export default function TrackerApp() {
 
   return (
     <div>
+      {!isSupabaseConfigured() && (
+        <p className="mb-4 text-xs text-amber-900 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 leading-relaxed">
+          Guest mode only — cloud accounts need{" "}
+          <code className="text-[11px] bg-amber-100 px-1 rounded">NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
+          <code className="text-[11px] bg-amber-100 px-1 rounded">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>{" "}
+          in your deployment environment (then redeploy).
+        </p>
+      )}
+      {notice && (
+        <p className="mb-4 text-sm text-red-800 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+          {notice}
+        </p>
+      )}
       {/* Toolbar */}
       <div className="flex items-center justify-between mb-5 gap-3">
         <div className="flex items-center gap-3 min-w-0">
@@ -226,17 +293,19 @@ export default function TrackerApp() {
               <span className="text-xs text-gray-500">
                 {apps.length}/{GUEST_LIMIT} free apps
               </span>
-              <button
-                type="button"
-                onClick={() => {
-                  setIsAuthGate(false);
-                  setAuthMode("signup");
-                  setShowAuth(true);
-                }}
-                className="text-xs font-medium text-blue-600 hover:text-blue-700 underline"
-              >
-                Save unlimited
-              </button>
+              {isSupabaseConfigured() ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsAuthGate(false);
+                    setAuthMode("signup");
+                    setShowAuth(true);
+                  }}
+                  className="text-xs font-medium text-blue-600 hover:text-blue-700 underline"
+                >
+                  Save unlimited
+                </button>
+              ) : null}
             </div>
           )}
         </div>

@@ -13,7 +13,7 @@ const relatedTools = getToolsBySlugs([
 ]);
 
 export const metadata: Metadata = {
-  title: "Free Job Application Tracker — Track Every Application | AI Kit Tools",
+  title: "Free Job Application Tracker — Track Every Application",
   description:
     "Track all your job applications in one place. Free job application tracker with AI cover letter and follow-up email generator. No spreadsheet needed.",
   keywords:

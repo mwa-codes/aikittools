@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 
 interface AuthModalProps {
   mode: "signin" | "signup";
@@ -24,6 +24,11 @@ export default function AuthModal({ mode, isGate, onClose, onModeChange }: AuthM
     setLoading(true);
 
     const supabase = createClient();
+    if (!supabase) {
+      setError("Sign-in isn’t available — the site isn’t configured for accounts yet.");
+      setLoading(false);
+      return;
+    }
 
     if (mode === "signup") {
       const { error: signUpError } = await supabase.auth.signUp({ email, password });
@@ -83,15 +88,23 @@ export default function AuthModal({ mode, isGate, onClose, onModeChange }: AuthM
           </button>
         </div>
 
+        {!isSupabaseConfigured() ? (
+          <p className="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+            Account sign-in isn&apos;t enabled on this deployment. You can still use guest mode (up to 5
+            applications in this browser).
+          </p>
+        ) : null}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input
               type="email"
               required
+              disabled={!isSupabaseConfigured()}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-500"
               placeholder="you@example.com"
             />
           </div>
@@ -101,9 +114,10 @@ export default function AuthModal({ mode, isGate, onClose, onModeChange }: AuthM
               type="password"
               required
               minLength={6}
+              disabled={!isSupabaseConfigured()}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-500"
               placeholder={mode === "signup" ? "At least 6 characters" : "Your password"}
             />
           </div>
@@ -121,7 +135,7 @@ export default function AuthModal({ mode, isGate, onClose, onModeChange }: AuthM
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || !isSupabaseConfigured()}
             className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-lg text-sm transition-colors"
           >
             {loading ? "Please wait..." : mode === "signup" ? "Create Free Account" : "Log In"}
