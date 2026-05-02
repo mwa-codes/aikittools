@@ -33,8 +33,7 @@ export default function Footer() {
               <span>{SITE_NAME}</span>
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Free AI career tools and online utilities. Cover letters, resume bullets, ATS
-              checkers and more — free, instant, no signup.
+              Free AI career tools for job seekers — job application tracker, cover letter generator, ATS resume checker, resume bullets, interview prep, and more. Free to start, no credit card required.
             </p>
           </div>
 
