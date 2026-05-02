@@ -180,7 +180,7 @@ export const tools: Tool[] = [
   },
   {
     slug: "cover-letter-generator",
-    name: "✉️ Cover Letter Generator",
+    name: "AI Cover Letter Generator",
     shortDescription: "Generate tailored cover letters in seconds with AI.",
     description:
       "Free AI cover letter generator. Enter your job title, company, and experience to create a professional cover letter instantly.",
