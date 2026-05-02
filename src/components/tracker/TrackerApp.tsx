@@ -3,12 +3,17 @@
 import { useState, useEffect, useCallback } from "react";
 import type { User } from "@supabase/supabase-js";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
-import type { JobApplication, JobApplicationInput } from "@/types/tracker";
+import type { JobApplication, JobApplicationInput, AppStatus } from "@/types/tracker";
 import { GUEST_STORAGE_KEY, GUEST_LIMIT, normalizeJobUrl } from "@/types/tracker";
 import ApplicationCard from "./ApplicationCard";
 import AddEditModal from "./AddEditModal";
 import AIToolsModal from "./AIToolsModal";
 import AuthModal from "./AuthModal";
+import KanbanBoard from "./KanbanBoard";
+import StatsBar from "./StatsBar";
+
+type ViewMode = "list" | "board";
+const VIEW_PREF_KEY = "tracker_view_preference";
 
 function generateId() {
   if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
@@ -78,6 +83,15 @@ export default function TrackerApp() {
   const [user, setUser] = useState<User | null>(null);
   const [apps, setApps] = useState<JobApplication[]>([]);
   const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<ViewMode>(() => {
+    if (typeof window === "undefined") return "list";
+    try {
+      const saved = localStorage.getItem(VIEW_PREF_KEY);
+      return saved === "board" || saved === "list" ? saved : "list";
+    } catch {
+      return "list";
+    }
+  });
 
   // Modal state
   const [editApp, setEditApp] = useState<JobApplication | null>(null);
@@ -88,6 +102,15 @@ export default function TrackerApp() {
   const [authMode, setAuthMode] = useState<"signin" | "signup">("signup");
   const [isAuthGate, setIsAuthGate] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
+
+  function changeViewMode(mode: ViewMode) {
+    setViewMode(mode);
+    try {
+      localStorage.setItem(VIEW_PREF_KEY, mode);
+    } catch {
+      /* ignore */
+    }
+  }
 
   const loadSupabaseApps = useCallback(async () => {
     const supabase = createClient();
@@ -215,6 +238,49 @@ export default function TrackerApp() {
     }
   }
 
+  async function handleStatusChange(id: string, newStatus: AppStatus) {
+    if (user) {
+      const supabase = createClient();
+      if (!supabase) return;
+      await supabase
+        .from("job_applications")
+        .update({ status: newStatus })
+        .eq("id", id);
+      await loadSupabaseApps();
+    } else {
+      const updated = apps.map((a) =>
+        a.id === id ? { ...a, status: newStatus } : a
+      );
+      setApps(updated);
+      saveGuestApps(updated);
+    }
+  }
+
+  function handleExportCSV() {
+    function escapeCSV(val: string | null | undefined): string {
+      const s = val ?? "";
+      return `"${s.replace(/"/g, '""')}"`;
+    }
+    const header = ["Company", "Role", "Job URL", "Date Applied", "Status", "Priority", "Notes"];
+    const rows = apps.map((a) => [
+      escapeCSV(a.company),
+      escapeCSV(a.role),
+      escapeCSV(a.job_url),
+      escapeCSV(a.date_applied),
+      escapeCSV(a.status),
+      escapeCSV(a.priority),
+      escapeCSV(a.notes),
+    ]);
+    const csvContent = [header.join(","), ...rows.map((r) => r.join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "job-applications.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   function openAddModal() {
     setNotice(null);
     if (!user && apps.length >= GUEST_LIMIT) {
@@ -309,19 +375,64 @@ export default function TrackerApp() {
             </div>
           )}
         </div>
-        <button
-          type="button"
-          onClick={openAddModal}
-          className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors shrink-0"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
-          Add Job
-        </button>
+        <div className="flex items-center gap-2 shrink-0">
+          {user && apps.length > 0 && (
+            <button
+              type="button"
+              onClick={handleExportCSV}
+              className="inline-flex items-center gap-1.5 border border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 text-sm font-medium px-3 py-2 rounded-xl transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Export CSV
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={openAddModal}
+            className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+            Add Job
+          </button>
+        </div>
       </div>
 
-      {/* Applications Grid */}
+      {/* Stats Bar */}
+      <StatsBar apps={apps} />
+
+      {/* View Toggle */}
+      {apps.length > 0 && (
+        <div className="flex items-center gap-1 mb-5 bg-gray-100 p-1 rounded-xl w-fit">
+          <button
+            type="button"
+            onClick={() => changeViewMode("list")}
+            className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+              viewMode === "list"
+                ? "bg-white text-gray-900 shadow-sm"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            List View
+          </button>
+          <button
+            type="button"
+            onClick={() => changeViewMode("board")}
+            className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+              viewMode === "board"
+                ? "bg-white text-gray-900 shadow-sm"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            Board View
+          </button>
+        </div>
+      )}
+
+      {/* Applications — List or Board */}
       {apps.length === 0 ? (
         <div className="py-16 text-center border-2 border-dashed border-gray-200 rounded-2xl">
           <p className="text-4xl mb-3">📋</p>
@@ -335,6 +446,8 @@ export default function TrackerApp() {
             + Add Your First Job
           </button>
         </div>
+      ) : viewMode === "board" ? (
+        <KanbanBoard apps={apps} onStatusChange={handleStatusChange} />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {apps.map((app) => (

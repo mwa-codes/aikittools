@@ -8,7 +8,7 @@ interface AIToolsModalProps {
   onClose: () => void;
 }
 
-type Tab = "cover-letter" | "followup";
+type Tab = "cover-letter" | "followup" | "interview-prep";
 type Tone = "Professional" | "Friendly" | "Confident";
 type Timeframe = "1 week" | "2 weeks";
 
@@ -29,6 +29,13 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
   const [fuLoading, setFuLoading] = useState(false);
   const [fuError, setFuError] = useState("");
   const [fuCopied, setFuCopied] = useState(false);
+
+  // Interview prep state
+  const [jobDescription, setJobDescription] = useState("");
+  const [questions, setQuestions] = useState("");
+  const [ipLoading, setIpLoading] = useState(false);
+  const [ipError, setIpError] = useState("");
+  const [ipCopied, setIpCopied] = useState(false);
 
   async function generateCoverLetter() {
     setClError("");
@@ -73,6 +80,29 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
       setFuError("Network error. Please try again.");
     } finally {
       setFuLoading(false);
+    }
+  }
+
+  async function generateInterviewPrep() {
+    setIpError("");
+    setIpLoading(true);
+    setQuestions("");
+    try {
+      const res = await fetch("/api/tracker/interview-prep", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: app.role, jobDescription }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setIpError(data.error ?? "Failed to generate. Please try again.");
+      } else {
+        setQuestions(data.questions);
+      }
+    } catch {
+      setIpError("Network error. Please try again.");
+    } finally {
+      setIpLoading(false);
     }
   }
 
@@ -126,6 +156,17 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
             }`}
           >
             Follow-up Email
+          </button>
+          <button
+            type="button"
+            onClick={() => setTab("interview-prep")}
+            className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+              tab === "interview-prep"
+                ? "border-blue-600 text-blue-600"
+                : "border-transparent text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            Interview Prep
           </button>
         </div>
         <div className="h-px bg-gray-100 mx-6" />
@@ -255,6 +296,68 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
                   </div>
                   <pre className="whitespace-pre-wrap text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg p-4 leading-relaxed font-sans">
                     {email}
+                  </pre>
+                </div>
+              )}
+            </>
+          )}
+
+          {tab === "interview-prep" && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Job role
+                </label>
+                <p className="text-sm text-gray-600 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+                  {app.role} at {app.company}
+                </p>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Paste job description{" "}
+                  <span className="text-gray-400 font-normal">(optional)</span>
+                </label>
+                <textarea
+                  value={jobDescription}
+                  onChange={(e) =>
+                    setJobDescription(e.target.value.slice(0, 500))
+                  }
+                  rows={4}
+                  maxLength={500}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  placeholder="Paste the job description to get tailored questions..."
+                />
+                <p className="text-xs text-gray-400 mt-1 text-right">
+                  {jobDescription.length}/500
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={generateInterviewPrep}
+                disabled={ipLoading}
+                className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-lg text-sm transition-colors"
+              >
+                {ipLoading ? "Generating..." : "Generate Interview Questions"}
+              </button>
+              {ipError && (
+                <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                  {ipError}
+                </p>
+              )}
+              {questions && (
+                <div className="mt-2">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-gray-700">Interview Questions</span>
+                    <button
+                      type="button"
+                      onClick={() => copyToClipboard(questions, () => setIpCopied(true))}
+                      className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                    >
+                      {ipCopied ? "Copied!" : "Copy All"}
+                    </button>
+                  </div>
+                  <pre className="whitespace-pre-wrap text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg p-4 leading-relaxed font-sans">
+                    {questions}
                   </pre>
                 </div>
               )}

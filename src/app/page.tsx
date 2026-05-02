@@ -3,24 +3,24 @@ import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/re
 import { SITE_NAME, SITE_URL } from "@/lib/utils/metadata";
 
 export const metadata = {
-  title: "Free AI Career Tools & Online Utilities",
+  title: "Free Job Application Tracker & AI Career Tools",
   description:
-    "Free AI-powered career tools for job seekers — cover letter generator, resume bullets, ATS checker, interview prep and more. Plus free developer and text tools. No signup required.",
+    "Free job application tracker with built-in AI — generate cover letters and follow-up emails for each job, free. No spreadsheet, no paid plan, no signup required.",
   keywords:
-    "free cover letter generator, AI career tools, ATS resume checker, resume bullet generator, free online tools, AI Kit Tools",
+    "free job application tracker, job application tracker with AI, track job applications online, AI cover letter generator, ATS resume checker, resume bullet generator, free AI career tools, job search organizer, free job tracker no signup, AI Kit Tools",
   openGraph: {
-    title: "Free AI Career Tools & Online Utilities | AI Kit Tools",
+    title: "Free Job Application Tracker & AI Career Tools | AI Kit Tools",
     description:
-      "AI-powered cover letters, resume bullets, ATS checkers and more — free, instant, no signup required.",
+      "Track every job application and generate AI cover letters, follow-up emails, and interview prep — free, no signup required.",
     url: "https://www.aikittools.com",
     siteName: "AI Kit Tools",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free AI Career Tools | AI Kit Tools",
+    title: "Free Job Application Tracker | AI Kit Tools",
     description:
-      "Free AI-powered cover letter generator, ATS checker, resume tools and more. No signup required.",
+      "Free job application tracker with built-in AI cover letters and follow-up emails. No paid plan, no signup required.",
   },
   alternates: {
     canonical: "https://www.aikittools.com",
@@ -74,11 +74,11 @@ export default function HomePage() {
           ⚡ Free · No Signup · Powered by OpenAI
         </p>
         <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight tracking-tight">
-          Free AI Career Tools &amp; Online Utilities
+          Free Job Application Tracker &amp; AI Career Tools
         </h1>
         <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          AI-powered cover letters, resume bullets, ATS checkers, and interview prep — plus free
-          developer and text tools. Everything is free, instant, and requires no account.
+          Track every job you apply to, generate AI cover letters, follow-up emails, and interview
+          prep questions — all free, no account required.
         </p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500">
           <span className="rounded-full bg-white border border-gray-200 px-3 py-1">
@@ -93,10 +93,10 @@ export default function HomePage() {
         </div>
         <div className="mt-7">
           <Link
-            href="/cover-letter-generator"
+            href="/tracker"
             className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
           >
-            ✉️ Generate a Cover Letter Free →
+            📋 Start Tracking Jobs Free →
           </Link>
         </div>
       </section>
@@ -375,12 +375,13 @@ export default function HomePage() {
       {/* SEO Content */}
       <section aria-label="About AI Kit Tools" className="mt-6 sm:mt-10">
         <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
-          Free AI Tools for Job Seekers &amp; Developers
+          Free Job Application Tracker &amp; AI Tools for Job Seekers
         </h2>
         <p className="text-sm text-gray-600 leading-relaxed mb-3">
-          AI Kit Tools offers free AI-powered career tools designed for the US job market. Generate
-          cover letters, create resume bullet points, check ATS compatibility, and prep for
-          interviews — all free with no account required. Powered by OpenAI.
+          AI Kit Tools is a free job application tracker with built-in AI — the only free tracker
+          that generates cover letters and follow-up emails per job at no cost. Designed for the US
+          job market, it also includes ATS resume checker, resume bullet generator, interview prep,
+          and LinkedIn summary tools — all free, no account required. Powered by OpenAI.
         </p>
         <p className="text-sm text-gray-600 leading-relaxed mb-0">
           Beyond career tools, AI Kit Tools includes free developer utilities, text tools,
