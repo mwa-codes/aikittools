@@ -86,7 +86,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Info</h3>
             <p className="text-sm text-gray-400 leading-relaxed">
-              All tools are free to use. No account required. Your data stays in your browser.
+              Free to start. Most tools require no account. Your data is never sold or shared.
             </p>
           </div>
         </div>
