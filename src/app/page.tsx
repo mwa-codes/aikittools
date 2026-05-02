@@ -82,13 +82,13 @@ export default function HomePage() {
         </p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500">
           <span className="rounded-full bg-white border border-gray-200 px-3 py-1">
-            ✓ No Signup Required
+            ✓ No Signup
           </span>
           <span className="rounded-full bg-white border border-gray-200 px-3 py-1">
-            ✓ Powered by OpenAI
+            ✓ Works Instantly
           </span>
           <span className="rounded-full bg-white border border-gray-200 px-3 py-1">
-            ✓ Built for US Job Market
+            ✓ Built for Job Seekers
           </span>
         </div>
         <div className="mt-7">
@@ -392,9 +392,10 @@ export default function HomePage() {
 
       {/* Bottom CTA */}
       <section className="mt-6 sm:mt-10 text-center bg-white border border-gray-200 rounded-3xl p-8 sm:p-10">
-        <h2 className="text-2xl font-bold text-gray-900 mb-3">More tools coming soon</h2>
-        <p className="text-gray-600 mb-0 max-w-2xl mx-auto">
-          We&#39;re constantly adding new free tools. Bookmark this page and check back often.
+        <p className="text-gray-600 mb-0 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+          Expanding our free AI tools library - coming soon: Salary negotiation email generator,
+          job offer comparison tool, post-interview thank you writer, LinkedIn cold outreach
+          generator, and more free career tools for job seekers.
         </p>
       </section>
     </div>
