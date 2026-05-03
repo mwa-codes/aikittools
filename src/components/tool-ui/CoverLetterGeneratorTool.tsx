@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { recordCoverLetterGenerated } from "@/lib/akt-analytics-storage";
 
@@ -200,10 +201,14 @@ export default function CoverLetterGeneratorTool() {
           <div className="p-4 rounded-lg border border-purple-100 bg-purple-50/60">
             <p className="text-sm text-gray-700">
               ✓ Cover letter ready. Next steps:
-              <br />→ Build a matching resume with Resume.io (free to start){" "}
-              <a href="#" className="text-purple-700 hover:text-purple-800 underline">
-                [link placeholder]
-              </a>
+              <br />→ Track this application in one place —{" "}
+              <Link href="/tracker" className="text-purple-700 hover:text-purple-800 underline">
+                Job Application Tracker
+              </Link>
+              <br />→ Check your resume passes ATS filters —{" "}
+              <Link href="/ats-resume-checker" className="text-purple-700 hover:text-purple-800 underline">
+                ATS Resume Checker
+              </Link>
             </p>
           </div>
         </>

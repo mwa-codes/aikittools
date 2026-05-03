@@ -259,14 +259,14 @@ export default function InterviewQuestionGeneratorTool() {
 
           <div className="p-4 rounded-lg border border-purple-100 bg-purple-50/60">
             <p className="text-sm text-gray-700">
-              ✓ Interview prep ready. Next steps:
-              <br />→ Write your cover letter with AI (free){" "}
-              <Link href="/cover-letter-generator" className="text-purple-700 hover:text-purple-800 underline">
-                [open tool]
+              ✓ Interview questions ready. Next steps:
+              <br />→ Track this interview in your pipeline —{" "}
+              <Link href="/tracker" className="text-purple-700 hover:text-purple-800 underline">
+                Job Application Tracker
               </Link>
-              <br />→ Optimize your resume bullets with AI (free){" "}
-              <Link href="/resume-bullet-generator" className="text-purple-700 hover:text-purple-800 underline">
-                [open tool]
+              <br />→ Apply with a tailored cover letter —{" "}
+              <Link href="/cover-letter-generator" className="text-purple-700 hover:text-purple-800 underline">
+                Cover Letter Generator
               </Link>
             </p>
           </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const MAX_WORDS = 500;
@@ -111,24 +112,46 @@ export default function AiTextSummarizerTool() {
 
       {/* Output */}
       {summary && (
-        <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm font-semibold text-purple-800">Summary</h3>
-            <button
-              onClick={handleCopy}
-              className="text-xs text-purple-600 hover:text-purple-800 font-medium"
-            >
-              {copied ? "✓ Copied!" : "Copy"}
-            </button>
+        <>
+          <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+            <h3 className="text-sm font-semibold text-purple-800 mb-2">Summary</h3>
+            <p className="text-sm text-gray-700 leading-relaxed">{summary}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="px-3 py-2 text-xs font-medium text-purple-700 bg-white border border-purple-200 hover:border-purple-300 rounded-md transition-colors"
+              >
+                {copied ? "✓ Copied!" : "📋 Copy to Clipboard"}
+              </button>
+            </div>
+            <p className="mt-3 text-xs text-gray-500">
+              Powered by OpenAI · Results may not be perfectly accurate · Review summaries before use
+            </p>
           </div>
-          <p className="text-sm text-gray-700 leading-relaxed">{summary}</p>
-        </div>
+
+          <div className="p-4 rounded-lg border border-purple-100 bg-purple-50/60">
+            <p className="text-sm text-gray-700">
+              ✓ Summary ready. Next steps:
+              <br />→ Create a professional invoice —{" "}
+              <Link href="/invoice-generator" className="text-purple-700 hover:text-purple-800 underline">
+                Invoice Generator
+              </Link>
+              <br />→ Count words in your document —{" "}
+              <Link href="/word-counter" className="text-purple-700 hover:text-purple-800 underline">
+                Word Counter
+              </Link>
+            </p>
+          </div>
+        </>
       )}
 
       {/* Disclaimer */}
-      <p className="text-xs text-gray-400 text-center">
-        Powered by OpenAI · Results may not be perfectly accurate · Review summaries before use
-      </p>
+      {!summary && (
+        <p className="text-xs text-gray-400 text-center">
+          Powered by OpenAI · Results may not be perfectly accurate · Review summaries before use
+        </p>
+      )}
     </div>
   );
 }

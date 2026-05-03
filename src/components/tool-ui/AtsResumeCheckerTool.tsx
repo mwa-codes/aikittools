@@ -302,18 +302,14 @@ export default function AtsResumeCheckerTool() {
           <div className="p-4 rounded-lg border border-purple-100 bg-purple-50/60">
             <p className="text-sm text-gray-700">
               ✓ ATS check complete. Next steps:
-              <br />→ Rewrite weak resume bullets with AI (free){" "}
+              <br />→ Track every job you apply to —{" "}
+              <Link href="/tracker" className="text-purple-700 hover:text-purple-800 underline">
+                Job Application Tracker
+              </Link>
+              <br />→ Strengthen your resume bullets —{" "}
               <Link href="/resume-bullet-generator" className="text-purple-700 hover:text-purple-800 underline">
-                [open tool]
+                Resume Bullet Generator
               </Link>
-              <br />→ Write a tailored cover letter with AI (free){" "}
-              <Link href="/cover-letter-generator" className="text-purple-700 hover:text-purple-800 underline">
-                [open tool]
-              </Link>
-              <br />→ Build an ATS-optimized resume with Resume.io (free to start){" "}
-              <a href="#" className="text-purple-700 hover:text-purple-800 underline">
-                [link placeholder]
-              </a>
             </p>
           </div>
         </>

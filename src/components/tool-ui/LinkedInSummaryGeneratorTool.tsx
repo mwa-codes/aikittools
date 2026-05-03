@@ -267,19 +267,15 @@ export default function LinkedInSummaryGeneratorTool() {
 
           <div className="p-4 rounded-lg border border-purple-100 bg-purple-50/60">
             <p className="text-sm text-gray-700">
-              ✓ Summary ready. Complete your profile:
-              <br />→ Write a tailored cover letter with AI (free){" "}
-              <Link href="/cover-letter-generator" className="text-purple-700 hover:text-purple-800 underline">
-                [open tool]
+              ✓ LinkedIn summary ready. Next steps:
+              <br />→ Track every job you apply to —{" "}
+              <Link href="/tracker" className="text-purple-700 hover:text-purple-800 underline">
+                Job Application Tracker
               </Link>
-              <br />→ Check your resume against job descriptions (free){" "}
-              <Link href="/ats-resume-checker" className="text-purple-700 hover:text-purple-800 underline">
-                [open tool]
+              <br />→ Strengthen your resume bullets —{" "}
+              <Link href="/resume-bullet-generator" className="text-purple-700 hover:text-purple-800 underline">
+                Resume Bullet Generator
               </Link>
-              <br />→ Upgrade to LinkedIn Premium for recruiter visibility{" "}
-              <a href="#" className="text-purple-700 hover:text-purple-800 underline">
-                [link placeholder]
-              </a>
             </p>
           </div>
         </>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { recordResumeBulletsUsed } from "@/lib/akt-analytics-storage";
 
@@ -249,11 +250,15 @@ export default function ResumeBulletGeneratorTool() {
 
           <div className="p-4 rounded-lg border border-purple-100 bg-purple-50/60">
             <p className="text-sm text-gray-700">
-              ✓ Bullets ready. Next steps:
-              <br />→ Build an ATS-optimized resume with Resume.io (free to start){" "}
-              <a href="#" className="text-purple-700 hover:text-purple-800 underline">
-                [link placeholder]
-              </a>
+              ✓ Resume bullets ready. Next steps:
+              <br />→ Check your resume passes ATS filters —{" "}
+              <Link href="/ats-resume-checker" className="text-purple-700 hover:text-purple-800 underline">
+                ATS Resume Checker
+              </Link>
+              <br />→ Track every job you apply to —{" "}
+              <Link href="/tracker" className="text-purple-700 hover:text-purple-800 underline">
+                Job Application Tracker
+              </Link>
             </p>
           </div>
         </>
