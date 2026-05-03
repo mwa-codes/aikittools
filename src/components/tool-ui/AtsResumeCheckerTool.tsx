@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { recordAtsCheckSuccess } from "@/lib/akt-analytics-storage";
 
 const MAX_RESUME_WORDS = 800;
 const MAX_JOB_DESCRIPTION_WORDS = 500;
@@ -110,6 +111,7 @@ export default function AtsResumeCheckerTool() {
       }
 
       setResult(parsed);
+      recordAtsCheckSuccess(parsed.score);
     } catch {
       setError("Network error. Please check your connection and try again.");
     } finally {

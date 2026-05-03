@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { recordResumeBulletsUsed } from "@/lib/akt-analytics-storage";
 
 const MAX_RESPONSIBILITIES_WORDS = 300;
 const MAX_METRICS_WORDS = 100;
@@ -80,6 +81,7 @@ export default function ResumeBulletGeneratorTool() {
           return;
         }
         setBullets(parsed);
+        recordResumeBulletsUsed();
       }
     } catch {
       setError("Network error. Please check your connection and try again.");

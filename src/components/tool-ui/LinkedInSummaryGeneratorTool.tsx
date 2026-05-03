@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { recordLinkedInSummaryUsed } from "@/lib/akt-analytics-storage";
 
 const MAX_ACHIEVEMENT_WORDS = 150;
 const MAX_LINKEDIN_CHARACTERS = 2600;
@@ -61,6 +62,7 @@ export default function LinkedInSummaryGeneratorTool() {
       }
 
       setSummary(text);
+      recordLinkedInSummaryUsed();
     } catch {
       setError("Network error. Please check your connection and try again.");
     } finally {

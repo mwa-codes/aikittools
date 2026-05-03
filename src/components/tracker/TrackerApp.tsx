@@ -11,6 +11,8 @@ import AIToolsModal from "./AIToolsModal";
 import AuthModal from "./AuthModal";
 import KanbanBoard from "./KanbanBoard";
 import StatsBar from "./StatsBar";
+import CareerHealthScore from "@/components/CareerHealthScore";
+import JobSearchFunnel from "@/components/JobSearchFunnel";
 
 type ViewMode = "list" | "board";
 const VIEW_PREF_KEY = "tracker_view_preference";
@@ -400,6 +402,9 @@ export default function TrackerApp() {
           </button>
         </div>
       </div>
+
+      <CareerHealthScore apps={apps} />
+      <JobSearchFunnel apps={apps} onTrackNewJob={openAddModal} />
 
       {/* Stats Bar */}
       <StatsBar apps={apps} />

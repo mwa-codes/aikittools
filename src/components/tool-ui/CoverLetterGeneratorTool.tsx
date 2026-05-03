@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { recordCoverLetterGenerated } from "@/lib/akt-analytics-storage";
 
 const MAX_WORDS = 300;
 
@@ -49,6 +50,7 @@ export default function CoverLetterGeneratorTool() {
         setError(data.error ?? "An error occurred. Please try again.");
       } else if (data.coverLetter) {
         setCoverLetter(data.coverLetter);
+        recordCoverLetterGenerated();
       }
     } catch {
       setError("Network error. Please check your connection and try again.");

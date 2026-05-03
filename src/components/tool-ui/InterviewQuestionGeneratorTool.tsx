@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { recordInterviewPrepUsed } from "@/lib/akt-analytics-storage";
 
 type ExperienceLevel = "entry" | "mid" | "senior";
 type InterviewType = "mixed" | "behavioral" | "technical";
@@ -78,6 +79,7 @@ export default function InterviewQuestionGeneratorTool() {
       }
 
       setQuestions(parsed);
+      recordInterviewPrepUsed();
     } catch {
       setError("Network error. Please check your connection and try again.");
     } finally {
