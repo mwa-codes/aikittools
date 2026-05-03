@@ -16,7 +16,7 @@ const relatedTools = getToolsBySlugs([
 export const metadata: Metadata = {
   title: "Job Application Tracker – Track Every Application Free",
   description:
-    "Track every job application in one place. Log status, deadlines, and notes. Free, no signup, no account needed. Stay organized during your job search.",
+    "Free job application tracker with Career Health Score — see your response rate, interview conversion, and what to fix first. Track every application with AI cover letters.",
   keywords:
     "job application tracker, free job tracker, track job applications, job search tracker, application status tracker",
   openGraph: {
@@ -94,7 +94,7 @@ const webAppSchema = {
   name: "Free Job Application Tracker",
   url: "https://www.aikittools.com/tracker",
   description:
-    "Free job application tracker with AI cover letter and follow-up email generator. Track every job application with status updates, notes, and AI tools.",
+    "Free job application tracker with Career Health Score, job search funnel analytics, and AI cover letters. Track applications, measure your response rate, and know exactly what to improve. No spreadsheet required.",
   applicationCategory: "BusinessApplication",
   operatingSystem: "All",
   offers: {
@@ -102,6 +102,15 @@ const webAppSchema = {
     price: "0",
     priceCurrency: "USD",
   },
+  featureList: [
+    "Career Health Score",
+    "Job Search Funnel Analytics",
+    "AI Cover Letter Generator",
+    "ATS Resume Checker",
+    "Interview Question Generator",
+    "Application Status Tracking",
+    "CSV Export",
+  ],
   provider: {
     "@type": "Organization",
     name: "AI Kit Tools",
