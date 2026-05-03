@@ -42,6 +42,45 @@ function FunnelBlock({
   );
 }
 
+/** Conversion label between two funnel stages (desktop: inline; mobile: centered between stacks). */
+function FunnelBetweenPct({ pct }: { pct: number }) {
+  return (
+    <div
+      className="flex flex-col justify-end shrink-0 min-w-18 max-w-24 px-0.5 pb-3"
+      aria-label={`${pct}% conversion to next stage`}
+    >
+      <div className="flex items-center justify-center gap-0.5 whitespace-nowrap">
+        <span className="text-slate-400" aria-hidden>
+          →
+        </span>
+        <span className="text-sm font-medium tabular-nums text-blue-800">{pct}%</span>
+        <span className="text-slate-400" aria-hidden>
+          →
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function FunnelBetweenPctMobile({ pct }: { pct: number }) {
+  return (
+    <div
+      className="flex justify-center py-1.5"
+      aria-label={`${pct}% conversion to next stage`}
+    >
+      <div className="flex items-center justify-center gap-0.5 whitespace-nowrap">
+        <span className="text-slate-400" aria-hidden>
+          →
+        </span>
+        <span className="text-sm font-medium tabular-nums text-blue-800">{pct}%</span>
+        <span className="text-slate-400" aria-hidden>
+          →
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function useCountUp(target: number, run: boolean) {
   const [n, setN] = useState(0);
   useEffect(() => {
@@ -111,11 +150,7 @@ export default function JobSearchFunnel({ apps, onTrackNewJob }: JobSearchFunnel
     { key: "offered", label: "Offered", count: nOffered, widthPct: wOffered },
   ] as const;
 
-  const between = [
-    { text: `${rates.responseRate}% response` },
-    { text: `${rates.interviewRate}% to interview` },
-    { text: `${rates.offerRate}% offers` },
-  ] as const;
+  const betweenPcts = [rates.responseRate, rates.interviewRate, rates.offerRate] as const;
 
   const primaryIsTracker =
     insight.primaryCta?.href === "/tracker" || insight.primaryCta?.label === "Track a New Job";
@@ -139,21 +174,21 @@ export default function JobSearchFunnel({ apps, onTrackNewJob }: JobSearchFunnel
           widthPct={stageBlocks[0].widthPct}
           mounted={mounted}
         />
-        <p className="text-xs text-slate-400 pl-1">{between[0].text}</p>
+        <FunnelBetweenPctMobile pct={betweenPcts[0]} />
         <FunnelBlock
           label={stageBlocks[1].label}
           count={stageBlocks[1].count}
           widthPct={stageBlocks[1].widthPct}
           mounted={mounted}
         />
-        <p className="text-xs text-slate-400 pl-1">{between[1].text}</p>
+        <FunnelBetweenPctMobile pct={betweenPcts[1]} />
         <FunnelBlock
           label={stageBlocks[2].label}
           count={stageBlocks[2].count}
           widthPct={stageBlocks[2].widthPct}
           mounted={mounted}
         />
-        <p className="text-xs text-slate-400 pl-1">{between[2].text}</p>
+        <FunnelBetweenPctMobile pct={betweenPcts[2]} />
         <FunnelBlock
           label={stageBlocks[3].label}
           count={stageBlocks[3].count}
@@ -162,34 +197,28 @@ export default function JobSearchFunnel({ apps, onTrackNewJob }: JobSearchFunnel
         />
       </div>
 
-      <div className="hidden md:flex items-end gap-1.5 w-full">
+      <div className="hidden md:flex items-end gap-1 w-full min-w-0">
         <FunnelBlock
           label={stageBlocks[0].label}
           count={stageBlocks[0].count}
           widthPct={stageBlocks[0].widthPct}
           mounted={mounted}
         />
-        <div className="flex flex-col justify-end shrink-0 w-12 pb-3 text-center">
-          <span className="text-[10px] leading-tight text-slate-400">{between[0].text}</span>
-        </div>
+        <FunnelBetweenPct pct={betweenPcts[0]} />
         <FunnelBlock
           label={stageBlocks[1].label}
           count={stageBlocks[1].count}
           widthPct={stageBlocks[1].widthPct}
           mounted={mounted}
         />
-        <div className="flex flex-col justify-end shrink-0 w-12 pb-3 text-center">
-          <span className="text-[10px] leading-tight text-slate-400">{between[1].text}</span>
-        </div>
+        <FunnelBetweenPct pct={betweenPcts[1]} />
         <FunnelBlock
           label={stageBlocks[2].label}
           count={stageBlocks[2].count}
           widthPct={stageBlocks[2].widthPct}
           mounted={mounted}
         />
-        <div className="flex flex-col justify-end shrink-0 w-12 pb-3 text-center">
-          <span className="text-[10px] leading-tight text-slate-400">{between[2].text}</span>
-        </div>
+        <FunnelBetweenPct pct={betweenPcts[2]} />
         <FunnelBlock
           label={stageBlocks[3].label}
           count={stageBlocks[3].count}
