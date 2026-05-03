@@ -54,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en-US" data-scroll-behavior="smooth">
       <head>
         <meta name="impact-site-verification" content="879674d4-00c9-49e2-8384-5bb6b9b8899b" />
       </head>

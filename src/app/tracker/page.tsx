@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import TrackerApp from "@/components/tracker/TrackerApp";
 import FAQSection from "@/components/seo/FAQSection";
 import ToolSEOContent from "@/components/seo/ToolSEOContent";
@@ -134,6 +135,15 @@ export default function TrackerPage() {
         <p className="text-gray-600 text-sm sm:text-base ml-0 sm:ml-[60px] leading-relaxed">
           Track every job you apply to. Generate cover letters and follow-up emails with AI. Free,
           no spreadsheet needed.
+        </p>
+        <p className="text-gray-600 text-sm sm:text-base ml-0 sm:ml-[60px] mt-3 leading-relaxed">
+          New to job tracking?{" "}
+          <Link
+            href="/blog/how-to-track-job-applications"
+            className="text-blue-600 underline hover:text-blue-800"
+          >
+            Read our free guide on how to track job applications →
+          </Link>
         </p>
       </header>
 

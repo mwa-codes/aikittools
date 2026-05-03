@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 
+const SHOW_BLOG_IN_NAV = false;
+
 export default function Header() {
   const defaultGroupedTools = TOOL_CATEGORY_ORDER
     .map((category) => ({
@@ -104,6 +106,15 @@ export default function Header() {
             >
               About
             </Link>
+            {SHOW_BLOG_IN_NAV && (
+              <Link
+                href="/blog"
+                data-nav-blog="pending"
+                className="px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+              >
+                Blog
+              </Link>
+            )}
             <Link
               href="/privacy-policy"
               className="px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
