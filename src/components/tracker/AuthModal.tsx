@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { isRetryableAuthError, withAuthRetry } from "@/lib/supabase/auth-retry";
 
 interface AuthModalProps {
   mode: "signin" | "signup";
@@ -38,9 +39,19 @@ export default function AuthModal({ mode, isGate, onClose, onModeChange }: AuthM
         setSuccess("Account created! Check your email to confirm, then sign in.");
       }
     } else {
-      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      const { error: signInError, attempts } = await withAuthRetry(
+        () => supabase.auth.signInWithPassword({ email, password }),
+        2
+      );
       if (signInError) {
-        setError(signInError.message);
+        if (isRetryableAuthError(signInError)) {
+          const attemptText = attempts > 1 ? ` after ${attempts} attempts` : "";
+          setError(
+            `Login temporarily unavailable${attemptText}. Please try again in a moment.`
+          );
+        } else {
+          setError(signInError.message);
+        }
       } else {
         onClose();
       }
