@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CareerHealthBanner from "@/components/CareerHealthBanner";
 import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 import { SITE_NAME, SITE_URL } from "@/lib/utils/metadata";
 
@@ -100,6 +101,8 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      <CareerHealthBanner />
 
       {/* Career Tools */}
       <section className="mb-12" id="career-tools" aria-labelledby="category-career">
