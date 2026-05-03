@@ -381,15 +381,19 @@ export default function HomePage() {
           Free Job Application Tracker &amp; AI Tools for Job Seekers
         </h2>
         <p className="text-sm text-gray-600 leading-relaxed mb-3">
-          AI Kit Tools is a free job application tracker with built-in AI — the only free tracker
-          that generates cover letters and follow-up emails per job at no cost. Designed for the US
-          job market, it also includes ATS resume checker, resume bullet generator, interview prep,
-          and LinkedIn summary tools — all free, no account required. Powered by OpenAI.
+          AI Kit Tools is a free job application tracker with built-in AI —
+          the only free tracker that includes a Career Health Score, job search
+          funnel analytics, and AI-generated cover letters per job.
+          See your response rate, interview conversion, and exactly what to
+          fix next. Free to start with no account — sign up free to track
+          unlimited jobs, with no credit card required. Also includes ATS
+          resume checker, resume bullet generator, interview prep, and
+          LinkedIn summary tools.
         </p>
         <p className="text-sm text-gray-600 leading-relaxed mb-0">
-          Beyond career tools, AI Kit Tools includes free developer utilities, text tools,
-          encoders, and calculators. Everything runs instantly in your browser with no signup, no
-          ads, and no paywalls.
+          Beyond career tools, AI Kit Tools includes free developer utilities,
+          text tools, encoders, and calculators — all free, no account needed.
+          Everything runs instantly in your browser.
         </p>
       </section>
 
