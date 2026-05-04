@@ -112,7 +112,7 @@ export default function HomePage() {
           <h2 id="category-career" className="text-lg sm:text-xl font-semibold text-gray-800 tracking-tight">
             🎯 Career Tools
           </h2>
-          <span className="text-xs text-gray-400">6 tools</span>
+          <span className="text-xs text-gray-500">6 tools</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <Link
@@ -242,7 +242,7 @@ export default function HomePage() {
           <h2 id="category-ai" className="text-xl sm:text-2xl font-bold text-gray-800 tracking-tight">
             🤖 AI Tools
           </h2>
-          <span className="text-xs text-gray-400">{aiTools.length} tool{aiTools.length > 1 ? "s" : ""}</span>
+          <span className="text-xs text-gray-500">{aiTools.length} tool{aiTools.length > 1 ? "s" : ""}</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {aiTools.map((tool) => (
@@ -276,7 +276,7 @@ export default function HomePage() {
           <h2 id="category-text" className="text-lg sm:text-xl font-semibold text-gray-800 tracking-tight">
             📝 Text Tools
           </h2>
-          <span className="text-xs text-gray-400">{textTools.length} tools</span>
+          <span className="text-xs text-gray-500">{textTools.length} tools</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {textTools.map((tool) => (
@@ -311,7 +311,7 @@ export default function HomePage() {
                 <h3 id="category-more-text" className="text-base sm:text-lg font-semibold text-gray-800 tracking-tight">
                   More Text Tools
                 </h3>
-                <span className="text-xs text-gray-400">
+                <span className="text-xs text-gray-500">
                   {extraTextTools.length} tool{extraTextTools.length > 1 ? "s" : ""}
                 </span>
               </div>
@@ -348,7 +348,7 @@ export default function HomePage() {
                   >
                     {TOOL_CATEGORY_LABELS[cat] ?? cat}
                   </h3>
-                  <span className="text-xs text-gray-400">
+                  <span className="text-xs text-gray-500">
                     {catTools.length} tool{catTools.length > 1 ? "s" : ""}
                   </span>
                 </div>

@@ -92,16 +92,16 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-300">
             © {currentYear} {SITE_NAME}. All rights reserved.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-300">
             Built by MWA ·{" "}
             <Link
               href="https://mwadev.me"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-gray-300 hover:text-white transition-colors"
             >
               mwadev.me
             </Link>
