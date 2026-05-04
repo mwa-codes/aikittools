@@ -1,7 +1,12 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
-import { SITE_NAME, SITE_URL } from "@/lib/utils/metadata";
+import {
+  SITE_NAME,
+  SITE_URL,
+  DEFAULT_OG_IMAGE_PATH,
+  defaultOpenGraphImages,
+} from "@/lib/utils/metadata";
 
 const CareerHealthBanner = dynamic(() => import("@/components/CareerHealthBanner"));
 
@@ -18,12 +23,14 @@ export const metadata = {
     url: "https://www.aikittools.com",
     siteName: "AI Kit Tools",
     type: "website",
+    images: defaultOpenGraphImages,
   },
   twitter: {
     card: "summary_large_image",
     title: "Free Job Application Tracker | AI Kit Tools",
     description:
       "Free job application tracker with built-in AI cover letters and follow-up emails. No paid plan, no signup required.",
+    images: [DEFAULT_OG_IMAGE_PATH],
   },
   alternates: {
     canonical: "https://www.aikittools.com",
@@ -55,11 +62,8 @@ export default function HomePage() {
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE_URL}/?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
+    description:
+      "Free job application tracker and AI career tools for job seekers — cover letters, ATS resume check, interview prep, LinkedIn help, and free utilities. Free to start.",
   };
 
   return (

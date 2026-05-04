@@ -3,7 +3,21 @@ import type { Metadata } from "next";
 const SITE_NAME = "AI Kit Tools";
 const SITE_URL = "https://www.aikittools.com";
 const SITE_DESCRIPTION =
-  "Free AI tools and online utilities including calculators, developer tools, and AI-powered tools.";
+  "Free AI career tools for job seekers — job application tracker, AI cover letters, ATS resume checker, resume bullets, interview prep, and LinkedIn help — plus free utilities. Start free, no signup required.";
+
+/** Default share image; path is resolved with `metadataBase` in the root layout. */
+export const DEFAULT_OG_IMAGE_PATH = "/og-image.png";
+export const DEFAULT_OG_IMAGE_ALT =
+  "AI Kit Tools — job application tracker and AI career tools for job seekers";
+
+export const defaultOpenGraphImages: NonNullable<Metadata["openGraph"]>["images"] = [
+  {
+    url: DEFAULT_OG_IMAGE_PATH,
+    width: 1200,
+    height: 630,
+    alt: DEFAULT_OG_IMAGE_ALT,
+  },
+];
 
 export function buildMetadata({
   title,
@@ -19,7 +33,7 @@ export function buildMetadata({
   ogImage?: string;
 }): Metadata {
   const path = slug ? `/${slug}` : "/";
-  const image = ogImage ?? "https://www.aikittools.com/og-image.png";
+  const image = ogImage ?? `${SITE_URL}${DEFAULT_OG_IMAGE_PATH}`;
 
   return {
     title,
@@ -36,7 +50,7 @@ export function buildMetadata({
           url: image,
           width: 1200,
           height: 630,
-          alt: "AI Kit Tools — Free Online Tools",
+          alt: DEFAULT_OG_IMAGE_ALT,
         },
       ],
       type: "website",

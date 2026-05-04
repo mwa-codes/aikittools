@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/utils/metadata";
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy – AI Kit Tools",
   description:
-    "Read the AI Kit Tools privacy policy. We respect your privacy — most tools process data locally in your browser and we do not sell your data.",
+    "Privacy policy for AI Kit Tools — job tracker, AI career tools, and utilities. We respect your privacy; most tools process data in your browser and we do not sell your data.",
   keywords: ["privacy policy", "aikittools privacy"],
   slug: "privacy-policy",
 });

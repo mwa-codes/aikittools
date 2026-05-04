@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/utils/metadata";
 export const metadata: Metadata = buildMetadata({
   title: "Terms of Service – AI Kit Tools",
   description:
-    "Read the AI Kit Tools terms of service. By using our free online tools you agree to these terms.",
+    "Terms of service for AI Kit Tools — free AI career tools, job application tracker, and utilities on aikittools.com.",
   keywords: ["terms of service", "aikittools terms"],
   slug: "terms",
 });

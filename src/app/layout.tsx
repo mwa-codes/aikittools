@@ -3,7 +3,13 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/utils/metadata";
+import {
+  SITE_NAME,
+  SITE_DESCRIPTION,
+  SITE_URL,
+  DEFAULT_OG_IMAGE_PATH,
+  defaultOpenGraphImages,
+} from "@/lib/utils/metadata";
 
 const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-89XMTG98WC";
@@ -15,8 +21,6 @@ export const metadata: Metadata = {
     template: "%s | AI Kit Tools",
   },
   description: SITE_DESCRIPTION,
-  keywords:
-    "free online tools, word counter, json formatter, qr code generator, base64 encoder, url encoder, ai text summarizer",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -24,17 +28,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
+    images: defaultOpenGraphImages,
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-  },
-  alternates: {
-    canonical: "https://www.aikittools.com",
-    languages: {
-      "en-US": "https://www.aikittools.com",
-    },
+    images: [DEFAULT_OG_IMAGE_PATH],
   },
   icons: {
     icon: "/aikittools_favicon.ico",

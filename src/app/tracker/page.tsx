@@ -16,13 +16,13 @@ const relatedTools = getToolsBySlugs([
 export const metadata: Metadata = {
   title: "Job Application Tracker – Track Every Application Free",
   description:
-    "Free job application tracker with Career Health Score — see your response rate, interview conversion, and what to fix first. Track every application with AI cover letters.",
+    "Free job application tracker from AI Kit Tools. Career Health Score — see your response rate, interview conversion, and what to fix first. AI cover letters and follow-ups for every application.",
   keywords:
     "job application tracker, free job tracker, track job applications, job search tracker, application status tracker",
   openGraph: {
     title: "Free Job Application Tracker | AI Kit Tools",
     description:
-      "Track all your job applications in one place. Free job application tracker with AI cover letter and follow-up email generator. No spreadsheet needed.",
+      "Track all your job applications in one place with AI Kit Tools. Free tracker with AI cover letters, follow-up emails, and Career Health Score — no spreadsheet needed.",
     url: "https://www.aikittools.com/tracker",
     siteName: "AI Kit Tools",
     type: "website",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Job Application Tracker | AI Kit Tools",
     description:
-      "Track every job application with AI-powered cover letters and follow-up emails. Free, no spreadsheet needed.",
+      "Track every application with AI Kit Tools — AI cover letters, follow-up emails, and Career Health Score. Free, no spreadsheet required.",
   },
   alternates: {
     canonical: "https://www.aikittools.com/tracker",

@@ -4,10 +4,15 @@ import Link from "next/link";
 import { tools } from "@/lib/tools/registry";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About AI Kit Tools – Free Online Tools for Everyone",
+  title: "About AI Kit Tools – Job Tracker & AI Career Tools",
   description:
-    "Learn about AI Kit Tools – a collection of free, fast, and privacy-respecting online tools for text processing, JSON, QR codes, encoding, and AI.",
-  keywords: ["about ai kit tools", "free online tools", "aikittools"],
+    "Learn about AI Kit Tools: free job application tracker, AI cover letters, ATS resume check, and interview prep for US job seekers — plus fast, privacy-respecting utilities.",
+  keywords: [
+    "about ai kit tools",
+    "free job application tracker",
+    "ai career tools",
+    "aikittools",
+  ],
   slug: "about",
 });
 
@@ -18,17 +23,18 @@ export default function AboutPage() {
 
       <div className="prose prose-gray max-w-none space-y-6 text-gray-600">
         <p className="text-lg leading-relaxed">
-          <strong className="text-gray-900">AI Kit Tools</strong> is a collection of free, fast, and
-          privacy-respecting online tools designed for developers, students, writers, and anyone who
-          needs quick utility tools without friction.
+          <strong className="text-gray-900">AI Kit Tools</strong> focuses on{" "}
+          <strong className="text-gray-900">free AI career tools</strong> for job seekers — including a
+          job application tracker, cover letter and resume help, ATS checks, and interview prep —
+          alongside fast, privacy-respecting utilities for everyday tasks.
         </p>
 
         <h2 className="text-xl font-bold text-gray-900 mt-8">Our Mission</h2>
         <p className="leading-relaxed">
-          The web is full of tools buried behind paywalls, sign-up forms, and intrusive ads. We
-          believe that simple utility tools should be free, instant, and accessible to everyone. Our
-          goal is to build the best collection of free online tools that work without signup, without
-          tracking, and without unnecessary complexity.
+          Job search tools shouldn&apos;t be locked behind paywalls or noisy signup funnels. We build
+          simple, useful career tools (and free utilities) that are fast, honest, and easy to use —
+          most with no account required to get started. Our goal is to help you stay organized, sound
+          professional, and move applications forward without friction.
         </p>
 
         <h2 className="text-xl font-bold text-gray-900 mt-8">What We Offer</h2>
@@ -48,10 +54,10 @@ export default function AboutPage() {
 
         <h2 className="text-xl font-bold text-gray-900 mt-8">Privacy First</h2>
         <p className="leading-relaxed">
-          Most tools on AI Kit Tools process data entirely in your browser. This means your text,
-          JSON, URLs, and encoded data never leave your device. The only exception is the AI Text
-          Summarizer, which sends text to the OpenAI API — we do not store or log this data on our
-          servers.
+          Many tools on AI Kit Tools process data entirely in your browser — so drafts, JSON, URLs,
+          and encoded content often never leave your device. Features that use AI (cover letters,
+          resume checks, summarizer, etc.) send only what you submit to the OpenAI API to generate a
+          result; we do not sell your data.
         </p>
 
         <h2 className="text-xl font-bold text-gray-900 mt-8">Built for Speed</h2>

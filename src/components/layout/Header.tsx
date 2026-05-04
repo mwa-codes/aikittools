@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 
-const SHOW_BLOG_IN_NAV = false;
+const SHOW_BLOG_IN_NAV = true;
 
 export default function Header() {
   const defaultGroupedTools = TOOL_CATEGORY_ORDER
@@ -177,7 +177,7 @@ export default function Header() {
                 </ul>
               </div>
             ))}
-            <div className="flex items-center gap-2 pt-1">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1">
               <Link
                 href="/about"
                 className="text-sm text-gray-600 hover:text-blue-600"
@@ -185,6 +185,14 @@ export default function Header() {
                 About
               </Link>
               <span className="text-gray-300">•</span>
+              {SHOW_BLOG_IN_NAV && (
+                <>
+                  <Link href="/blog" className="text-sm text-gray-600 hover:text-blue-600">
+                    Blog
+                  </Link>
+                  <span className="text-gray-300">•</span>
+                </>
+              )}
               <Link
                 href="/privacy-policy"
                 className="text-sm text-gray-600 hover:text-blue-600"

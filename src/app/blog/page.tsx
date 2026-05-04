@@ -2,39 +2,30 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllBlogPosts, formatBlogDate } from "@/lib/blog";
 import { JsonLd } from "@/components/blog/JsonLd";
-import { SITE_URL } from "@/lib/utils/metadata";
-
-const OG_IMAGE = `${SITE_URL}/og-image.png`;
+import { SITE_URL, DEFAULT_OG_IMAGE_PATH, defaultOpenGraphImages } from "@/lib/utils/metadata";
 
 export const metadata: Metadata = {
   title: "Free Job Search Tips & Career Advice",
   description:
-    "Practical career advice, resume tips, cover letter guides, and job search strategies for US job seekers. Free tools included.",
+    "Career advice from AI Kit Tools — resume tips, cover letters, job search strategy, and tracker guides for US job seekers. Free AI career tools included.",
   robots: { index: true, follow: true },
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Free Job Search Tips & Career Advice | AI Kit Tools",
     description:
-      "Practical career advice, resume tips, cover letter guides, and job search strategies for US job seekers. Free tools included.",
+      "Career advice from AI Kit Tools — resume tips, cover letters, job search strategy, and tracker guides for US job seekers. Free AI career tools included.",
     url: `${SITE_URL}/blog`,
     type: "website",
     siteName: "AI Kit Tools",
     locale: "en_US",
-    images: [
-      {
-        url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "AI Kit Tools — Career tips and free job search tools",
-      },
-    ],
+    images: defaultOpenGraphImages,
   },
   twitter: {
     card: "summary_large_image",
     title: "Free Job Search Tips & Career Advice | AI Kit Tools",
     description:
-      "Practical career advice, resume tips, cover letter guides, and job search strategies for US job seekers. Free tools included.",
-    images: [OG_IMAGE],
+      "Career advice from AI Kit Tools — resume tips, cover letters, job search strategy, and tracker guides for US job seekers. Free AI career tools included.",
+    images: [DEFAULT_OG_IMAGE_PATH],
   },
 };
 
