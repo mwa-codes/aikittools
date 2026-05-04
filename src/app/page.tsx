@@ -1,7 +1,9 @@
 import Link from "next/link";
-import CareerHealthBanner from "@/components/CareerHealthBanner";
+import dynamic from "next/dynamic";
 import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 import { SITE_NAME, SITE_URL } from "@/lib/utils/metadata";
+
+const CareerHealthBanner = dynamic(() => import("@/components/CareerHealthBanner"));
 
 export const metadata = {
   title: "Free Job Application Tracker & AI Career Tools",
