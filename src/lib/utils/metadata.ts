@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 const SITE_NAME = "AI Kit Tools";
 const SITE_URL = "https://www.aikittools.com";
 const SITE_DESCRIPTION =
-  "Free AI career tools for job seekers — job application tracker, AI cover letters, ATS resume checker, resume bullets, interview prep, and LinkedIn help — plus free utilities. Start free, no signup required.";
+  "Free AI career tools for job seekers — job application tracker, AI cover letters, ATS resume checker, resume bullets, interview prep, and LinkedIn help — plus free utilities. Start free, no credit card required.";
 
 /** Default share image; path is resolved with `metadataBase` in the root layout. */
 export const DEFAULT_OG_IMAGE_PATH = "/og-image.png";
