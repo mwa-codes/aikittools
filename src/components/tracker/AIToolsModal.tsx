@@ -10,12 +10,13 @@ interface AIToolsModalProps {
 
 type Tab = "cover-letter" | "followup" | "interview-prep";
 type Tone = "Professional" | "Friendly" | "Confident";
-type Timeframe = "1 week" | "2 weeks";
+type Timeframe = "1 week" | "2 weeks" | "3+ weeks (ghosted)";
 
 export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
   const [tab, setTab] = useState<Tab>("cover-letter");
 
   // Cover Letter state
+  const [jobDescription, setJobDescription] = useState("");
   const [experience, setExperience] = useState("");
   const [tone, setTone] = useState<Tone>("Professional");
   const [coverLetter, setCoverLetter] = useState("");
@@ -31,7 +32,7 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
   const [fuCopied, setFuCopied] = useState(false);
 
   // Interview prep state
-  const [jobDescription, setJobDescription] = useState("");
+  const [interviewJobDescription, setInterviewJobDescription] = useState("");
   const [questions, setQuestions] = useState("");
   const [ipLoading, setIpLoading] = useState(false);
   const [ipError, setIpError] = useState("");
@@ -45,7 +46,13 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
       const res = await fetch("/api/tracker/cover-letter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company: app.company, role: app.role, experience, tone }),
+        body: JSON.stringify({
+          company: app.company,
+          role: app.role,
+          experience,
+          tone,
+          jobDescription,
+        }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -91,7 +98,7 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
       const res = await fetch("/api/tracker/interview-prep", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role: app.role, jobDescription }),
+        body: JSON.stringify({ role: app.role, jobDescription: interviewJobDescription }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -176,6 +183,22 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
             <>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Job Description (optional but recommended)
+                </label>
+                <textarea
+                  value={jobDescription}
+                  onChange={(e) => setJobDescription(e.target.value.slice(0, 800))}
+                  rows={4}
+                  maxLength={800}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  placeholder="Paste the job description to get a more tailored letter..."
+                />
+                <p className="text-xs text-gray-400 mt-1 text-right">
+                  {jobDescription.length} / 800
+                </p>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Your relevant experience
                 </label>
                 <textarea
@@ -249,8 +272,8 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   How long since you applied?
                 </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {(["1 week", "2 weeks"] as Timeframe[]).map((tf) => (
+                <div className="grid grid-cols-3 gap-3">
+                  {(["1 week", "2 weeks", "3+ weeks (ghosted)"] as Timeframe[]).map((tf) => (
                     <button
                       key={tf}
                       type="button"
@@ -261,7 +284,11 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
                           : "border-gray-200 text-gray-600 hover:border-gray-300"
                       }`}
                     >
-                      {tf === "1 week" ? "1 Week No Response" : "2 Weeks No Response"}
+                      {tf === "1 week"
+                        ? "1 Week No Response"
+                        : tf === "2 weeks"
+                          ? "2 Weeks No Response"
+                          : "3+ Weeks (Ghosted)"}
                     </button>
                   ))}
                 </div>
@@ -318,9 +345,9 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
                   <span className="text-gray-400 font-normal">(optional)</span>
                 </label>
                 <textarea
-                  value={jobDescription}
+                  value={interviewJobDescription}
                   onChange={(e) =>
-                    setJobDescription(e.target.value.slice(0, 500))
+                    setInterviewJobDescription(e.target.value.slice(0, 500))
                   }
                   rows={4}
                   maxLength={500}
@@ -328,7 +355,7 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
                   placeholder="Paste the job description to get tailored questions..."
                 />
                 <p className="text-xs text-gray-400 mt-1 text-right">
-                  {jobDescription.length}/500
+                  {interviewJobDescription.length}/500
                 </p>
               </div>
               <button

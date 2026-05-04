@@ -22,6 +22,26 @@ function formatDate(dateStr: string) {
 export default function ApplicationCard({ app, onEdit, onAITools, onDelete }: ApplicationCardProps) {
   const notesPreview = app.notes ? app.notes.slice(0, 60) + (app.notes.length > 60 ? "…" : "") : null;
   const jobHref = normalizeJobUrl(app.job_url);
+  const today = new Date();
+  const [appliedYear, appliedMonth, appliedDay] = app.date_applied.split("-").map(Number);
+  const applied = new Date(appliedYear, appliedMonth - 1, appliedDay);
+  const daysSince = Math.floor((today.getTime() - applied.getTime()) / (1000 * 60 * 60 * 24));
+  const showStaleBadge = (app.status === "Applied" || app.status === "Ghosted") && daysSince >= 7;
+
+  let staleBadgeClass = "";
+  let staleBadgeText = "";
+  if (showStaleBadge) {
+    if (daysSince >= 21) {
+      staleBadgeClass = "bg-red-100 text-red-700";
+      staleBadgeText = `${daysSince}d — ghosted?`;
+    } else if (daysSince >= 14) {
+      staleBadgeClass = "bg-yellow-100 text-yellow-700";
+      staleBadgeText = `${daysSince}d — follow up?`;
+    } else {
+      staleBadgeClass = "bg-gray-100 text-gray-600";
+      staleBadgeText = `${daysSince}d no update`;
+    }
+  }
 
   return (
     <div className="bg-white border border-gray-200 rounded-2xl p-5 hover:border-blue-100 hover:shadow-sm transition-all">
@@ -55,6 +75,13 @@ export default function ApplicationCard({ app, onEdit, onAITools, onDelete }: Ap
           </a>
         )}
       </div>
+      {showStaleBadge && (
+        <div className="mb-3">
+          <span className={`inline-block text-xs font-medium rounded-full px-2 py-0.5 ${staleBadgeClass}`}>
+            {staleBadgeText}
+          </span>
+        </div>
+      )}
 
       {notesPreview && (
         <p className="text-xs text-gray-500 italic mb-3 leading-relaxed">{notesPreview}</p>
