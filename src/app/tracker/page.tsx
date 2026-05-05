@@ -88,34 +88,19 @@ const faqs = [
   },
 ];
 
-const webAppSchema = {
+const softwareApplicationSchema = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "Free Job Application Tracker",
-  url: "https://www.aikittools.com/tracker",
-  description:
-    "Free job application tracker with Career Health Score, job search funnel analytics, and AI cover letters. Track applications, measure your response rate, and know exactly what to improve. No spreadsheet required.",
+  "@type": "SoftwareApplication",
+  name: "Job Application Tracker",
   applicationCategory: "BusinessApplication",
-  operatingSystem: "All",
+  operatingSystem: "Web",
   offers: {
     "@type": "Offer",
     price: "0",
     priceCurrency: "USD",
   },
-  featureList: [
-    "Career Health Score",
-    "Job Search Funnel Analytics",
-    "AI Cover Letter Generator",
-    "ATS Resume Checker",
-    "Interview Question Generator",
-    "Application Status Tracking",
-    "CSV Export",
-  ],
-  provider: {
-    "@type": "Organization",
-    name: "AI Kit Tools",
-    url: "https://www.aikittools.com",
-  },
+  description:
+    "Free job application tracker with AI cover letter and follow-up email generation. No signup required for first 5 jobs.",
 };
 
 export default function TrackerPage() {
@@ -123,7 +108,7 @@ export default function TrackerPage() {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
       />
 
       {/* Page Header */}

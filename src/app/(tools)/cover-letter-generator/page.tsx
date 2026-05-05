@@ -47,7 +47,7 @@ const seoSections = [
   },
   {
     heading: "Related Tools",
-    body: "Try AI Text Summarizer, Word Counter, Free Invoice Generator, and Resume Bullet Point Generator for your workflow.",
+    body: "Try Job Application Tracker, Resume Bullet Generator, ATS Resume Checker, Interview Question Generator, and LinkedIn Summary Generator for your workflow.",
   },
 ];
 
@@ -109,10 +109,10 @@ export default function CoverLetterGeneratorPage() {
   const tool = getToolBySlug(SLUG)!;
   const relatedTools = getToolsBySlugs([
     "tracker",
-    "ai-text-summarizer",
-    "word-counter",
-    "invoice-generator",
     "resume-bullet-generator",
+    "ats-resume-checker",
+    "interview-question-generator",
+    "linkedin-summary-generator",
   ]);
 
   return (

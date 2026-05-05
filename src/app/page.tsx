@@ -1,25 +1,26 @@
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import { TOOL_CATEGORY_LABELS, TOOL_CATEGORY_ORDER, tools } from "@/lib/tools/registry";
 import {
-  SITE_NAME,
-  SITE_URL,
-  DEFAULT_OG_IMAGE_PATH,
-  defaultOpenGraphImages,
-} from "@/lib/utils/metadata";
-
-const CareerHealthBanner = dynamic(() => import("@/components/CareerHealthBanner"));
+  BriefcaseBusiness,
+  FileText,
+  SearchCheck,
+  ListChecks,
+  MessageSquareQuote,
+  UserRound,
+  ShieldCheck,
+} from "lucide-react";
+import { getAllBlogPosts, formatBlogDate } from "@/lib/blog";
+import { DEFAULT_OG_IMAGE_PATH, defaultOpenGraphImages } from "@/lib/utils/metadata";
 
 export const metadata = {
   title: "Free Job Application Tracker & AI Career Tools",
   description:
-    "Free job application tracker with built-in AI — generate cover letters and follow-up emails for each job, free. No spreadsheet, no paid plan, no signup required.",
+    "Free job application tracker with built-in AI — generate cover letters, check your resume against ATS, and prep for interviews. No credit card. No signup to start.",
   keywords:
-    "free job application tracker, job application tracker with AI, track job applications online, AI cover letter generator, ATS resume checker, resume bullet generator, free AI career tools, job search organizer, free job tracker no signup, AI Kit Tools",
+    "free job application tracker, AI cover letter generator, ATS resume checker, free career tools, job search tracker, track job applications online",
   openGraph: {
-    title: "Free Job Application Tracker & AI Career Tools | AI Kit Tools",
+    title: "Free Job Application Tracker & AI Career Tools",
     description:
-      "Track every job application and generate AI cover letters, follow-up emails, and interview prep — free, no signup required.",
+      "Track every job, generate AI cover letters, and ace interviews. Free career tools — no credit card required.",
     url: "https://www.aikittools.com",
     siteName: "AI Kit Tools",
     type: "website",
@@ -27,9 +28,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Job Application Tracker | AI Kit Tools",
+    title: "Free Job Application Tracker & AI Career Tools",
     description:
-      "Free job application tracker with built-in AI cover letters and follow-up emails. No paid plan, no signup required.",
+      "Track every job, generate AI cover letters, and ace interviews. Free career tools — no credit card required.",
     images: [DEFAULT_OG_IMAGE_PATH],
   },
   alternates: {
@@ -37,380 +38,253 @@ export const metadata = {
   },
 };
 
-function groupToolsByCategory(toolList: typeof tools) {
-  const grouped: Record<string, typeof tools> = {};
-  for (const tool of toolList) {
-    if (!grouped[tool.category]) grouped[tool.category] = [];
-    grouped[tool.category].push(tool);
-  }
-  return grouped;
-}
+const careerTools = [
+  {
+    name: "Job Application Tracker",
+    description: "Track every application with AI tools built in",
+    href: "/tracker",
+    icon: BriefcaseBusiness,
+  },
+  {
+    name: "AI Cover Letter Generator",
+    description: "Tailored cover letters in 10 seconds",
+    href: "/cover-letter-generator",
+    icon: FileText,
+  },
+  {
+    name: "ATS Resume Checker",
+    description: "See if your resume passes ATS before you apply",
+    href: "/ats-resume-checker",
+    icon: SearchCheck,
+  },
+  {
+    name: "Resume Bullet Generator",
+    description: "Turn duties into achievement-focused bullets",
+    href: "/resume-bullet-generator",
+    icon: ListChecks,
+  },
+  {
+    name: "Interview Question Generator",
+    description: "Know what they'll ask before you walk in",
+    href: "/interview-question-generator",
+    icon: MessageSquareQuote,
+  },
+  {
+    name: "LinkedIn Summary Generator",
+    description: "Write a professional About section instantly",
+    href: "/linkedin-summary-generator",
+    icon: UserRound,
+  },
+];
 
 export default function HomePage() {
-  const grouped = groupToolsByCategory(tools);
-  const aiTools = grouped.ai ?? [];
-  const textPriority = ["invoice-generator", "word-counter", "case-converter"];
-  const textTools = (grouped.text ?? [])
-    .filter((tool) => textPriority.includes(tool.slug))
-    .sort((a, b) => textPriority.indexOf(a.slug) - textPriority.indexOf(b.slug));
-  const extraTextTools = (grouped.text ?? []).filter(
-    (tool) => !["word-counter", "case-converter", "invoice-generator"].includes(tool.slug),
-  );
-  const moreCategoryOrder = TOOL_CATEGORY_ORDER.filter((cat) => !["career", "ai", "text"].includes(cat));
+  const latestPosts = getAllBlogPosts().slice(0, 3);
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: SITE_NAME,
-    url: SITE_URL,
+    name: "AI Kit Tools",
+    url: "https://www.aikittools.com",
     description:
-      "Free job application tracker and AI career tools for job seekers — cover letters, ATS resume check, interview prep, LinkedIn help, and free utilities. Free to start.",
+      "Free AI career tools for job seekers — job application tracker, AI cover letter generator, ATS resume checker, and more.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://www.aikittools.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      {/* Hero */}
-      <section
-        className="mb-12 sm:mb-14 rounded-3xl border border-slate-200 px-6 py-10 sm:px-10 sm:py-14 text-center shadow-sm"
-        style={{ background: "linear-gradient(to bottom, #ffffff, #f8fafc)" }}
-      >
-        <p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 mb-4">
-          ⚡ Free to Start · No Credit Card · Powered by OpenAI
-        </p>
-        <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight tracking-tight">
-          Free Job Application Tracker &amp; AI Career Tools
-        </h1>
-        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          Track every job you apply to, generate AI cover letters, follow-up emails, and interview
-          prep questions. Free to start — no credit card required.
-        </p>
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500">
-          <span className="rounded-full bg-white border border-gray-200 px-3 py-1">
-            ✓ No Credit Card
-          </span>
-          <span className="rounded-full bg-white border border-gray-200 px-3 py-1">
-            ✓ Works Instantly
-          </span>
-          <span className="rounded-full bg-white border border-gray-200 px-3 py-1">
-            ✓ Built for Job Seekers
-          </span>
-        </div>
-        <div className="mt-7">
-          <Link
-            href="/tracker"
-            className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
-          >
-            📋 Start Tracking Jobs Free →
-          </Link>
-        </div>
-      </section>
+    <div className="bg-slate-50 text-slate-900">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <section className="rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-slate-200 sm:p-12">
+          <div className="mx-auto max-w-3xl">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem] lg:whitespace-nowrap">
+              Your Free Job Search Command Center
+            </h1>
+            <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+              Track every application, generate AI cover letters, check your resume against ATS, and
+              prep for interviews - all free, no credit card required.
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                href="/tracker"
+                className="inline-flex items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-600"
+              >
+                Start Tracking Jobs Free
+              </Link>
+              <Link
+                href="#career-tools"
+                className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+              >
+                See All Career Tools
+              </Link>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-slate-600">
+              <span className="inline-flex items-center gap-1">✓ No Credit Card</span>
+              <span className="inline-flex items-center gap-1">✓ No Signup to Start</span>
+              <span className="inline-flex items-center gap-1">✓ AI-Powered</span>
+            </div>
+          </div>
+        </section>
 
-      <CareerHealthBanner />
-
-      {/* Career Tools */}
-      <section className="mb-12" id="career-tools" aria-labelledby="category-career">
-        <div className="flex items-end justify-between mb-4">
-          <h2 id="category-career" className="text-lg sm:text-xl font-semibold text-gray-800 tracking-tight">
-            🎯 Career Tools
+        <section className="mt-14">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+            Job searching is overwhelming. We built the tools to fix that.
           </h2>
-          <span className="text-xs text-gray-500">6 tools</span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Link
-            href="/tracker"
-            className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-          >
-            <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-              📋
-            </span>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                  Job Application Tracker
-                </h3>
-                <span className="text-xs bg-green-100 text-green-700 font-medium px-2 py-0.5 rounded-full">
-                  New
-                </span>
-              </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Track every job you apply to with AI cover letters and follow-up emails. Free, no spreadsheet needed.
-              </p>
-            </div>
-          </Link>
-          <Link
-            href="/cover-letter-generator"
-            className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-          >
-            <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-              ✉️
-            </span>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                  AI Cover Letter Generator
-                </h3>
-                <span className="text-xs bg-purple-100 text-purple-700 font-medium px-2 py-0.5 rounded-full">
-                  AI
-                </span>
-              </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Generate a tailored cover letter in seconds using AI.
-              </p>
-            </div>
-          </Link>
-          <Link
-            href="/resume-bullet-generator"
-            className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-          >
-            <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-              📝
-            </span>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                  Resume Bullet Generator
-                </h3>
-                <span className="text-xs bg-purple-100 text-purple-700 font-medium px-2 py-0.5 rounded-full">
-                  AI
-                </span>
-              </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Turn your job duties into achievement-focused resume bullets.
-              </p>
-            </div>
-          </Link>
-          <Link
-            href="/ats-resume-checker"
-            className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-          >
-            <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-              🔍
-            </span>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">ATS Resume Checker</h3>
-                <span className="text-xs bg-purple-100 text-purple-700 font-medium px-2 py-0.5 rounded-full">AI</span>
-              </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Check if your resume passes ATS screening before you apply.
-              </p>
-            </div>
-          </Link>
-          <Link
-            href="/interview-question-generator"
-            className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-          >
-            <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-              🎤
-            </span>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                  Interview Question Generator
-                </h3>
-                <span className="text-xs bg-purple-100 text-purple-700 font-medium px-2 py-0.5 rounded-full">AI</span>
-              </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Get likely interview questions for any job title, with tips.
-              </p>
-            </div>
-          </Link>
-          <Link
-            href="/linkedin-summary-generator"
-            className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-          >
-            <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-              💼
-            </span>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-1 flex-wrap">
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                  LinkedIn Summary Generator
-                </h3>
-                <span className="text-xs bg-purple-100 text-purple-700 font-medium px-2 py-0.5 rounded-full">AI</span>
-              </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Write a professional LinkedIn About section in seconds.
-              </p>
-            </div>
-          </Link>
-        </div>
-      </section>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                problem: "Lose track of where you applied",
+                solution: "Application Tracker with status, notes & dates",
+              },
+              {
+                problem: "Spend hours writing cover letters",
+                solution: "AI writes a tailored letter in 10 seconds",
+              },
+              {
+                problem: "Getting ghosted by ATS systems",
+                solution: "ATS checker tells you exactly what to fix",
+              },
+            ].map((item) => (
+              <article key={item.problem} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                <p className="text-sm font-medium text-slate-500">Problem</p>
+                <p className="mt-1 text-lg font-semibold text-slate-900">{item.problem}</p>
+                <p className="mt-4 text-sm font-medium text-slate-500">Solution</p>
+                <p className="mt-1 text-slate-700">{item.solution}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
-      {/* AI Tools */}
-      <section className="mb-12" id="ai-tools" aria-labelledby="category-ai">
-        <div className="flex items-end justify-between mb-4">
-          <h2 id="category-ai" className="text-xl sm:text-2xl font-bold text-gray-800 tracking-tight">
-            🤖 AI Tools
-          </h2>
-          <span className="text-xs text-gray-500">{aiTools.length} tool{aiTools.length > 1 ? "s" : ""}</span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {aiTools.map((tool) => (
-            <Link
-              key={tool.slug}
-              href={`/${tool.slug}`}
-              className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-            >
-              <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-                {tool.icon}
+        <section className="mt-14 rounded-3xl bg-slate-100 p-8 sm:p-10">
+          <div className="grid items-center gap-8 lg:grid-cols-2">
+            <div>
+              <span className="inline-flex rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                Most Popular
               </span>
-              <div className="min-w-0">
-                <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                    {tool.name}
-                  </h3>
-                  <span className="text-xs bg-purple-100 text-purple-700 font-medium px-2 py-0.5 rounded-full">
-                    AI
-                  </span>
-                </div>
-                <p className="text-sm text-gray-500 leading-relaxed">{tool.shortDescription}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Text Tools */}
-      <section className="mb-12" id="text-tools" aria-labelledby="category-text">
-        <div className="flex items-end justify-between mb-4">
-          <h2 id="category-text" className="text-lg sm:text-xl font-semibold text-gray-800 tracking-tight">
-            📝 Text Tools
-          </h2>
-          <span className="text-xs text-gray-500">{textTools.length} tools</span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {textTools.map((tool) => (
-            <Link
-              key={tool.slug}
-              href={`/${tool.slug}`}
-              className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-            >
-              <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-                {tool.icon}
-              </span>
-              <div className="min-w-0">
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-1">
-                  {tool.name}
-                </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{tool.shortDescription}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* More Tools */}
-      <details id="more-tools" className="mb-10 rounded-2xl border border-gray-200 bg-white p-5">
-        <summary className="cursor-pointer select-none text-lg font-semibold text-gray-800">
-          More Tools ↓
-        </summary>
-        <div className="mt-5 space-y-8">
-          {extraTextTools.length > 0 && (
-            <section aria-labelledby="category-more-text">
-              <div className="flex items-end justify-between mb-3">
-                <h3 id="category-more-text" className="text-base sm:text-lg font-semibold text-gray-800 tracking-tight">
-                  More Text Tools
-                </h3>
-                <span className="text-xs text-gray-500">
-                  {extraTextTools.length} tool{extraTextTools.length > 1 ? "s" : ""}
-                </span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {extraTextTools.map((tool) => (
-                  <Link
-                    key={tool.slug}
-                    href={`/${tool.slug}`}
-                    className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-                  >
-                    <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-                      {tool.icon}
-                    </span>
-                    <div className="min-w-0">
-                      <h4 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-1">
-                        {tool.name}
-                      </h4>
-                      <p className="text-sm text-gray-500 leading-relaxed">{tool.shortDescription}</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
+                The Only Free Job Tracker with Built-In AI
+              </h2>
+              <p className="mt-4 text-slate-700">
+                Track every job you apply to. Generate a tailored cover letter and follow-up email
+                for each specific role. See your Career Health Score - your response rate, interview
+                conversion, and what to fix next.
+              </p>
+              <ul className="mt-5 space-y-2 text-slate-700">
+                <li>✓ Track unlimited applications (free account)</li>
+                <li>✓ AI cover letter per job - not a template</li>
+                <li>✓ AI follow-up email when you haven&apos;t heard back</li>
+                <li>✓ Career Health Score: see your funnel at a glance</li>
+                <li>✓ No spreadsheet</li>
+              </ul>
+              <Link href="/tracker" className="mt-6 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
+                Start Tracking Free →
+              </Link>
+            </div>
+            <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+              <div className="rounded-xl border border-slate-200 p-5">
+                <p className="text-xs uppercase tracking-wide text-slate-500">Tracker Preview</p>
+                <div className="mt-4 grid gap-3">
+                  {["Product Designer - Applied", "Frontend Engineer - Interview", "Growth PM - Follow Up"].map((row) => (
+                    <div key={row} className="flex items-center justify-between rounded-lg bg-slate-50 p-3">
+                      <span className="text-sm text-slate-700">{row}</span>
+                      <ShieldCheck className="h-4 w-4 text-emerald-600" />
                     </div>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
-          {moreCategoryOrder.map((cat) => {
-            const catTools = grouped[cat];
-            if (!catTools || catTools.length === 0) return null;
-            return (
-              <section key={cat} aria-labelledby={`category-${cat}`}>
-                <div className="flex items-end justify-between mb-3">
-                  <h3
-                    id={`category-${cat}`}
-                    className="text-base sm:text-lg font-semibold text-gray-800 tracking-tight"
-                  >
-                    {TOOL_CATEGORY_LABELS[cat] ?? cat}
-                  </h3>
-                  <span className="text-xs text-gray-500">
-                    {catTools.length} tool{catTools.length > 1 ? "s" : ""}
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {catTools.map((tool) => (
-                    <Link
-                      key={tool.slug}
-                      href={`/${tool.slug}`}
-                      className="group flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:-translate-y-0.5 transition-all"
-                    >
-                      <span className="text-3xl shrink-0 mt-0.5 rounded-xl bg-slate-50 border border-slate-200 w-11 h-11 grid place-items-center">
-                        {tool.icon}
-                      </span>
-                      <div className="min-w-0">
-                        <h4 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-1">
-                          {tool.name}
-                        </h4>
-                        <p className="text-sm text-gray-500 leading-relaxed">{tool.shortDescription}</p>
-                      </div>
-                    </Link>
                   ))}
                 </div>
-              </section>
-            );
-          })}
-        </div>
-      </details>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* SEO Content */}
-      <section aria-label="About AI Kit Tools" className="mt-6 sm:mt-10">
-        <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
-          Free Job Application Tracker &amp; AI Tools for Job Seekers
-        </h2>
-        <p className="text-sm text-gray-600 leading-relaxed mb-3">
-          AI Kit Tools is a free job application tracker with built-in AI —
-          the only free tracker that includes a Career Health Score, job search
-          funnel analytics, and AI-generated cover letters per job.
-          See your response rate, interview conversion, and exactly what to
-          fix next. Free to start with no account — sign up free to track
-          unlimited jobs, with no credit card required. Also includes ATS
-          resume checker, resume bullet generator, interview prep, and
-          LinkedIn summary tools.
-        </p>
-        <p className="text-sm text-gray-600 leading-relaxed mb-0">
-          Beyond career tools, AI Kit Tools includes free developer utilities,
-          text tools, encoders, and calculators — all free, no account needed.
-          Everything runs instantly in your browser.
-        </p>
-      </section>
+        <section id="career-tools" className="mt-14">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+            All Career Tools - All Free
+          </h2>
+          <p className="mt-2 text-slate-600">6 tools built for one goal: land your next job faster.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {careerTools.map((tool) => {
+              const Icon = tool.icon;
+              return (
+                <article key={tool.href} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                  <Icon className="h-6 w-6 text-blue-600" />
+                  <h3 className="mt-4 text-lg font-semibold text-slate-900">{tool.name}</h3>
+                  <p className="mt-2 text-sm text-slate-600">{tool.description}</p>
+                  <Link href={tool.href} className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
+                    Use Free →
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        </section>
 
-      {/* Bottom CTA */}
-      <section className="mt-6 sm:mt-10 text-center bg-white border border-gray-200 rounded-3xl p-8 sm:p-10">
-        <p className="text-gray-600 mb-0 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-          Expanding our free AI tools library - coming soon: Salary negotiation email generator,
-          job offer comparison tool, post-interview thank you writer, LinkedIn cold outreach
-          generator, and more free career tools for job seekers.
-        </p>
-      </section>
+        <section className="mt-14 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200 sm:p-10">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Built for Serious Job Seekers</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {["6 AI Career Tools", "100% Free to Start", "No Credit Card Ever"].map((stat) => (
+              <div key={stat} className="rounded-xl bg-slate-50 p-4 text-center font-semibold text-slate-900">
+                {stat}
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-slate-700">
+            AI Kit Tools is a free career toolkit built by job seekers, for job seekers. Every tool
+            is purpose-built to help you apply smarter, follow up consistently, and land more
+            interviews. No upsells. No paywalls on the features that matter.
+          </p>
+        </section>
+
+        <section className="mt-14">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">How It Works</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {[
+              { step: "Step 1: Add a job", body: "Paste the role, company, and status" },
+              { step: "Step 2: Generate AI assets", body: "Cover letter + follow-up email per job" },
+              { step: "Step 3: Track & improve", body: "Watch your Career Health Score rise" },
+            ].map((item) => (
+              <article key={item.step} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                <h3 className="font-semibold text-slate-900">{item.step}</h3>
+                <p className="mt-2 text-slate-600">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-14">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+            Job Search Resources
+          </h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {latestPosts.map((post) => (
+              <article key={post.slug} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                <p className="text-xs text-slate-500">
+                  {formatBlogDate(post.date)} · {post.readingTimeLabel}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-slate-900">{post.title}</h3>
+                <Link href={`/blog/${post.slug}`} className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
+                  Read article →
+                </Link>
+              </article>
+            ))}
+          </div>
+          <Link href="/blog" className="mt-6 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
+            View All Articles →
+          </Link>
+        </section>
+
+        <section className="mt-14 rounded-3xl bg-slate-900 p-8 text-white shadow-sm sm:p-12">
+          <h2 className="text-3xl font-semibold tracking-tight">Start Your Job Search the Smart Way</h2>
+          <p className="mt-3 text-slate-200">Free forever. No credit card. Takes 30 seconds to start.</p>
+          <Link
+            href="/tracker"
+            className="mt-6 inline-flex items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-600"
+          >
+            Open Job Tracker Free →
+          </Link>
+        </section>
+      </div>
     </div>
   );
 }

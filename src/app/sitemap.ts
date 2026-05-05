@@ -1,22 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getAllBlogPosts } from "@/lib/blog";
-import { tools } from "@/lib/tools/registry";
 import { SITE_URL } from "@/lib/utils/metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const priorityBySlug: Record<string, number> = {
-    "tracker": 0.9,
-    "cover-letter-generator": 0.9,
-    "resume-bullet-generator": 0.9,
-    "interview-question-generator": 0.9,
-    "ats-resume-checker": 0.9,
-    "linkedin-summary-generator": 0.9,
-    "ai-text-summarizer": 0.7,
-    "invoice-generator": 0.7,
-    "word-counter": 0.7,
-  };
-
   const blogPosts = getAllBlogPosts();
   const blogListingLastModified =
     blogPosts.length > 0
@@ -30,14 +17,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : now;
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: SITE_URL, lastModified: now, changeFrequency: "daily", priority: 1.0 },
+    { url: SITE_URL, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${SITE_URL}/tracker`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/cover-letter-generator`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/ats-resume-checker`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/resume-bullet-generator`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    {
+      url: `${SITE_URL}/interview-question-generator`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    { url: `${SITE_URL}/linkedin-summary-generator`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${SITE_URL}/privacy-policy`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${SITE_URL}/terms`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
     {
       url: `${SITE_URL}/blog`,
       lastModified: blogListingLastModified,
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 0.7,
     },
   ];
@@ -45,20 +41,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogArticlePages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(`${post.lastModified}T12:00:00.000Z`),
-    changeFrequency: "monthly" as const,
+    changeFrequency: "daily" as const,
     priority: 0.6,
   }));
-
-  const toolPages: MetadataRoute.Sitemap = tools.map((tool) => {
-    const priority = priorityBySlug[tool.slug] ?? 0.6;
-
-    return {
-      url: `${SITE_URL}/${tool.slug}`,
-      lastModified: now,
-      changeFrequency: priority >= 0.7 ? "weekly" : "monthly",
-      priority,
-    };
-  });
-
-  return [...staticPages, ...blogArticlePages, ...toolPages];
+  return [...staticPages, ...blogArticlePages];
 }

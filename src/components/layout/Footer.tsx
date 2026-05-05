@@ -1,26 +1,17 @@
 import Link from "next/link";
 import { SITE_NAME } from "@/lib/utils/metadata";
-import { tools } from "@/lib/tools/registry";
+
+const footerTools = [
+  { slug: "tracker", name: "Job Application Tracker" },
+  { slug: "cover-letter-generator", name: "AI Cover Letter Generator" },
+  { slug: "resume-bullet-generator", name: "Resume Bullet Generator" },
+  { slug: "ats-resume-checker", name: "ATS Resume Checker" },
+  { slug: "interview-question-generator", name: "Interview Question Generator" },
+  { slug: "linkedin-summary-generator", name: "LinkedIn Summary Generator" },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const prioritizedSlugs = [
-    "tracker",
-    "cover-letter-generator",
-    "resume-bullet-generator",
-    "ats-resume-checker",
-    "interview-question-generator",
-    "ai-text-summarizer",
-    "word-counter",
-    "case-converter",
-    "invoice-generator",
-    "json-formatter",
-    "qr-code-generator",
-  ];
-  const footerTools = tools
-    .filter((tool) => prioritizedSlugs.includes(tool.slug))
-    .sort((a, b) => prioritizedSlugs.indexOf(a.slug) - prioritizedSlugs.indexOf(b.slug));
-  const hiddenToolsCount = Math.max(0, tools.length - footerTools.length);
 
   return (
     <footer className="bg-gray-900 text-gray-300 mt-16">
@@ -53,8 +44,7 @@ export default function Footer() {
               ))}
               <li>
                 <Link href="/" className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
-                  View all tools
-                  {hiddenToolsCount > 0 ? ` (+${hiddenToolsCount})` : ""}
+                  View all career tools
                 </Link>
               </li>
             </ul>
