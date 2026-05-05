@@ -237,6 +237,34 @@ export default function HomePage() {
         </section>
 
         <section className="mt-14">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+            Who These Tools Are For
+          </h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {[
+              "Students and new grads applying to their first roles",
+              "Career switchers tailoring resumes for a new field",
+              "Experienced professionals managing high application volume",
+            ].map((item) => (
+              <article key={item} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                <p className="text-slate-700">{item}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-14 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200 sm:p-10">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+            Why AI Kit Tools Is Different
+          </h2>
+          <ul className="mt-5 space-y-2 text-slate-700">
+            <li>Each tool focuses on a specific job-search outcome, not generic AI writing.</li>
+            <li>Workflows connect together: tracker, resume optimization, interview prep, and LinkedIn.</li>
+            <li>Designed for speed and clarity so you can take action in minutes, not hours.</li>
+          </ul>
+        </section>
+
+        <section className="mt-14">
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">How It Works</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {[

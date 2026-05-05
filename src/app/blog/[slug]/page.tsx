@@ -155,6 +155,9 @@ export default async function BlogArticlePage({ params }: Props) {
               {post.category}
             </span>
           </div>
+          <p className="mt-3 text-sm text-gray-500">
+            Last updated: {formatBlogDate(post.lastModified)} · Reviewed by: {post.author}
+          </p>
         </header>
 
         <div className="max-w-[720px] [&>p:first-child]:mt-0 [&>h2:first-child]:mt-0">

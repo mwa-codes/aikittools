@@ -49,6 +49,24 @@ const seoSections = [
     heading: "Related Tools",
     body: "Try Job Application Tracker, Resume Bullet Generator, ATS Resume Checker, Interview Question Generator, and LinkedIn Summary Generator for your workflow.",
   },
+  {
+    heading: "Bad vs Better Cover Letter Openings",
+    body: [
+      "Bad: I am applying for this role and think I would be a great fit.",
+      "Better: I have led lifecycle campaigns that lifted trial-to-paid conversions by 22%, and I would bring that same data-driven growth approach to your team.",
+      "Bad: I am passionate and hardworking.",
+      "Better: Over 4 years in customer success, I improved renewal rates from 81% to 91% by redesigning onboarding and QBR workflows.",
+    ],
+  },
+  {
+    heading: "Common Mistakes This Tool Helps You Avoid",
+    body: [
+      "Generic first paragraph with no role or company context",
+      "Repeating resume bullets without connecting them to job needs",
+      "Weak closing with no call to action",
+      "Overly long letters that bury your strongest value",
+    ],
+  },
 ];
 
 const faqs = [
@@ -82,6 +100,14 @@ const faqs = [
     answer:
       "Yes. The generated letters use clean, plain language without tables or special formatting that ATS systems struggle with.",
   },
+];
+
+const howToSteps = [
+  "Enter the job title you are applying for",
+  "Add the target company name",
+  "Describe your relevant experience and achievements",
+  "Choose your preferred tone",
+  "Click Generate and customize the final draft before sending",
 ];
 
 export default function CoverLetterGeneratorPage() {
@@ -121,7 +147,15 @@ export default function CoverLetterGeneratorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd) }}
       />
-      <ToolPageLayout tool={tool} relatedTools={relatedTools} faqs={faqs} seoSections={seoSections}>
+      <ToolPageLayout
+        tool={tool}
+        relatedTools={relatedTools}
+        faqs={faqs}
+        seoSections={seoSections}
+        howToSteps={howToSteps}
+        lastUpdated="May 6, 2026"
+        reviewedBy="AI Kit Tools Editorial Team"
+      >
         <CoverLetterGeneratorTool />
       </ToolPageLayout>
     </>

@@ -51,6 +51,24 @@ const seoSections = [
     heading: "Related Tools",
     body: "Try AI Cover Letter Generator, Resume Bullet Point Generator, ATS Resume Checker, and Interview Question Generator to complete your job search toolkit.",
   },
+  {
+    heading: "First-Line Hook Templates That Get More Clicks",
+    body: [
+      "I help [audience] achieve [outcome] by [approach].",
+      "After [X years] in [field], I specialize in [high-value skill].",
+      "I build [type of work] that improves [business metric].",
+      "I am currently focused on [target role] opportunities in [domain].",
+    ],
+  },
+  {
+    heading: "LinkedIn Keyword Optimization Tips",
+    body: [
+      "Use your target role title in the first 2-3 lines",
+      "Include relevant tools and platforms recruiters search for",
+      "Add domain terms naturally in achievement examples",
+      "Align About section language with your Experience and Skills sections",
+    ],
+  },
 ];
 
 const faqs = [
@@ -96,6 +114,14 @@ const faqs = [
   },
 ];
 
+const howToSteps = [
+  "Enter your current or target role",
+  "Add experience, core skills, and key achievements",
+  "Describe your career goals",
+  "Choose tone and click Generate",
+  "Edit for personal voice and publish in your LinkedIn About section",
+];
+
 export default function LinkedInSummaryGeneratorPage() {
   const webApplicationJsonLd = {
     "@context": "https://schema.org",
@@ -133,7 +159,15 @@ export default function LinkedInSummaryGeneratorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd) }}
       />
-      <ToolPageLayout tool={tool} relatedTools={relatedTools} faqs={faqs} seoSections={seoSections}>
+      <ToolPageLayout
+        tool={tool}
+        relatedTools={relatedTools}
+        faqs={faqs}
+        seoSections={seoSections}
+        howToSteps={howToSteps}
+        lastUpdated="May 6, 2026"
+        reviewedBy="AI Kit Tools Editorial Team"
+      >
         <LinkedInSummaryGeneratorTool />
       </ToolPageLayout>
     </>

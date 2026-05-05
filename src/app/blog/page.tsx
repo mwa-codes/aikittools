@@ -31,6 +31,21 @@ export const metadata: Metadata = {
 
 export default function BlogListingPage() {
   const posts = getAllBlogPosts();
+  const featuredSlug = "how-to-track-job-applications";
+  const featuredPost = posts.find((post) => post.slug === featuredSlug) ?? posts[0];
+  const otherPosts = posts.filter((post) => post.slug !== featuredPost?.slug);
+  const lastUpdated =
+    posts.length > 0
+      ? new Date(`${posts[0].lastModified}T12:00:00.000Z`).toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })
+      : new Date().toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        });
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -62,44 +77,116 @@ export default function BlogListingPage() {
             Practical career advice, resume tips, cover letter guides, and job search strategies for
             US job seekers—with free tools you can use today.
           </p>
+          <p className="mt-3 text-sm text-gray-500">
+            Last updated: {lastUpdated} · Reviewed by: AI Kit Tools Editorial Team
+          </p>
         </header>
 
-        <ul className="space-y-6">
-          {posts.map((post) => (
-            <li key={post.slug}>
-              <article className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-blue-200 hover:shadow-md">
-                <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-2">
-                  <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-                    {post.category}
-                  </span>
-                  <span aria-hidden className="text-gray-300">
-                    ·
-                  </span>
-                  <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
-                  <span aria-hidden className="text-gray-300">
-                    ·
-                  </span>
-                  <span>{post.readingTimeLabel}</span>
-                </div>
-                <h2 className="text-xl font-semibold text-gray-900">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="hover:text-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 rounded-sm"
-                  >
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className="mt-2 text-[18px] leading-[1.7] text-gray-700">{post.description}</p>
+        {posts.length > 0 ? (
+          <>
+            <article className="group mb-5 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-blue-200 hover:shadow-md">
+              <div className="mb-3 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-600">
+                <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-800">
+                  {featuredPost.category}
+                </span>
+                <span className="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800">
+                  Featured
+                </span>
+                <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
+                  New
+                </span>
+              </div>
+
+              <h2 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
                 <Link
-                  href={`/blog/${post.slug}`}
-                  className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-800"
+                  href={`/blog/${featuredPost.slug}`}
+                  className="rounded-sm hover:text-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 >
-                  Read article →
+                  {featuredPost.title}
                 </Link>
-              </article>
-            </li>
-          ))}
-        </ul>
+              </h2>
+
+              <p className="mt-3 text-base leading-relaxed text-gray-700">{featuredPost.description}</p>
+
+              <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500">
+                <time dateTime={featuredPost.date}>{formatBlogDate(featuredPost.date)}</time>
+                <span aria-hidden className="text-gray-300">
+                  ·
+                </span>
+                <span>{featuredPost.readingTimeLabel}</span>
+              </div>
+
+              <div className="mt-5">
+                <Link
+                  href={`/blog/${featuredPost.slug}`}
+                  className="inline-flex items-center text-sm font-semibold text-blue-600 transition group-hover:text-blue-700"
+                >
+                  Read featured article
+                  <span className="ml-1 transition-transform group-hover:translate-x-0.5">→</span>
+                </Link>
+              </div>
+            </article>
+
+            {otherPosts.length > 0 ? (
+              <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {otherPosts.map((post, index) => (
+                  <li key={post.slug}>
+                    <article className="group h-full rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:border-blue-200 hover:shadow-md">
+                      <div className="mb-3 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-600">
+                        <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-800">
+                          {post.category}
+                        </span>
+                        {post.featured ? (
+                          <span className="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800">
+                            Featured
+                          </span>
+                        ) : null}
+                        {index < 2 ? (
+                          <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
+                            New
+                          </span>
+                        ) : null}
+                      </div>
+
+                      <h2 className="text-lg font-semibold tracking-tight text-gray-900 sm:text-xl">
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          className="rounded-sm hover:text-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                        >
+                          {post.title}
+                        </Link>
+                      </h2>
+
+                      <p className="mt-3 text-sm leading-relaxed text-gray-700 line-clamp-3">{post.description}</p>
+
+                      <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-500 sm:text-sm">
+                        <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
+                        <span aria-hidden className="text-gray-300">
+                          ·
+                        </span>
+                        <span>{post.readingTimeLabel}</span>
+                      </div>
+
+                      <div className="mt-4">
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          className="inline-flex items-center text-sm font-semibold text-blue-600 transition group-hover:text-blue-700"
+                        >
+                          Read article
+                          <span className="ml-1 transition-transform group-hover:translate-x-0.5">→</span>
+                        </Link>
+                      </div>
+                    </article>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </>
+        ) : (
+          <div className="rounded-xl border border-gray-200 bg-white p-6 text-gray-600">
+            No articles published yet. Check back soon for fresh job-search guides.
+          </div>
+        )}
       </div>
     </>
   );

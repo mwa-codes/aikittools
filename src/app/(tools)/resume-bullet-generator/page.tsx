@@ -58,6 +58,24 @@ const seoSections = [
     heading: "Related Tools",
     body: "Try Job Application Tracker, AI Cover Letter Generator, ATS Resume Checker, Interview Question Generator, and LinkedIn Summary Generator for your job search workflow.",
   },
+  {
+    heading: "High-Impact Resume Bullet Formulas",
+    body: [
+      "Action + Scope + Result: Led X across Y teams, resulting in Z",
+      "Improvement format: Increased or reduced a metric by X% through Y",
+      "Ownership format: Owned process A and delivered measurable outcome B",
+      "Efficiency format: Cut turnaround time by X days via workflow redesign",
+    ],
+  },
+  {
+    heading: "How Many Bullets Per Role?",
+    body: [
+      "Current role: 4 to 6 bullets with measurable outcomes",
+      "Recent prior roles: 3 to 5 bullets focused on strongest impact",
+      "Older roles: 2 to 3 bullets unless highly relevant",
+      "Internships or projects: 2 to 4 concise achievement bullets",
+    ],
+  },
 ];
 
 const faqs = [
@@ -98,6 +116,14 @@ const faqs = [
   },
 ];
 
+const howToSteps = [
+  "Enter your job title",
+  "Add responsibilities and key achievements",
+  "Include numbers or metrics when possible",
+  "Click Generate to create achievement-focused bullets",
+  "Select the strongest bullets and tailor them to the target role",
+];
+
 export default function ResumeBulletGeneratorPage() {
   const webApplicationJsonLd = {
     "@context": "https://schema.org",
@@ -135,7 +161,15 @@ export default function ResumeBulletGeneratorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd) }}
       />
-      <ToolPageLayout tool={tool} relatedTools={relatedTools} faqs={faqs} seoSections={seoSections}>
+      <ToolPageLayout
+        tool={tool}
+        relatedTools={relatedTools}
+        faqs={faqs}
+        seoSections={seoSections}
+        howToSteps={howToSteps}
+        lastUpdated="May 6, 2026"
+        reviewedBy="AI Kit Tools Editorial Team"
+      >
         <ResumeBulletGeneratorTool />
       </ToolPageLayout>
     </>

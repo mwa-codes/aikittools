@@ -58,6 +58,24 @@ const seoSections = [
     heading: "Why Use a Job Application Tracker?",
     body: "Most job seekers lose track after applying to 10 or more jobs — missing follow-ups, forgetting which resume version they sent, and losing momentum. A dedicated tracker keeps everything visible at a glance so you always know where each application stands. With built-in AI tools, you can generate tailored cover letters and polished follow-up emails in seconds instead of spending an hour writing from scratch. Stay organized, follow up consistently, and land more interviews.",
   },
+  {
+    heading: "Tracker vs Spreadsheet: When Each Works Best",
+    body: [
+      "Spreadsheet is okay for short bursts and very low application volume",
+      "Tracker is better when you need status changes, notes, and follow-up rhythm",
+      "Tracker keeps role-specific AI assets with each application",
+      "Tracker gives you a career funnel view instead of disconnected rows",
+    ],
+  },
+  {
+    heading: "What to Do If You Are Not Getting Interviews",
+    body: [
+      "Check ATS score for your top target role and fix missing keywords",
+      "Refresh 2-3 weakest resume bullets with quantified impact",
+      "Send follow-ups for applications older than 7-10 days",
+      "Practice likely interview questions before your next screening call",
+    ],
+  },
 ];
 
 const faqs = [
@@ -103,6 +121,20 @@ const softwareApplicationSchema = {
     "Free job application tracker with AI cover letter and follow-up email generation. No signup required for first 5 jobs.",
 };
 
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to use the Job Application Tracker",
+  description: "Step-by-step guide to track applications and follow up consistently.",
+  totalTime: "PT10M",
+  step: [
+    { "@type": "HowToStep", position: 1, name: "Add a new job", text: "Add company, role, and application date." },
+    { "@type": "HowToStep", position: 2, name: "Set status", text: "Set status to Applied, Interview, Offer, Rejected, or Ghosted." },
+    { "@type": "HowToStep", position: 3, name: "Generate AI assets", text: "Create a tailored cover letter or follow-up email for the role." },
+    { "@type": "HowToStep", position: 4, name: "Review weekly", text: "Review stalled applications weekly and send follow-ups." },
+  ],
+};
+
 export default function TrackerPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
@@ -110,6 +142,7 @@ export default function TrackerPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
 
       {/* Page Header */}
       <header className="mb-8 rounded-2xl border border-slate-200 bg-linear-to-b from-white to-slate-50 px-5 sm:px-7 py-6 shadow-sm">
@@ -138,6 +171,9 @@ export default function TrackerPage() {
           >
             Read our free guide on how to track job applications →
           </Link>
+        </p>
+        <p className="mt-3 text-xs text-gray-500 ml-0 sm:ml-[60px]">
+          Last updated: May 6, 2026 · Reviewed by: AI Kit Tools Editorial Team
         </p>
       </header>
 

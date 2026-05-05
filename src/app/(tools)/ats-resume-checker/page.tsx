@@ -52,6 +52,24 @@ const seoSections = [
     heading: "Related Tools",
     body: "Try Job Application Tracker, AI Cover Letter Generator, Resume Bullet Generator, Interview Question Generator, and LinkedIn Summary Generator for your complete job search workflow.",
   },
+  {
+    heading: "What This ATS Checker Does and Does Not Do",
+    body: [
+      "Does: Compare resume language against a specific job description",
+      "Does: Surface missing and matched keywords for faster targeting",
+      "Does not: Guarantee interviews or hiring outcomes",
+      "Does not: Fully validate visual formatting in exported PDF templates",
+    ],
+  },
+  {
+    heading: "Where to Place Missing Keywords Naturally",
+    body: [
+      "Summary: include your 2-3 most important role keywords",
+      "Experience bullets: tie each keyword to a real accomplishment",
+      "Skills section: list exact tool and platform terms from the posting",
+      "Project section: reinforce domain terms recruiters expect",
+    ],
+  },
 ];
 
 const faqs = [
@@ -97,6 +115,14 @@ const faqs = [
   },
 ];
 
+const howToSteps = [
+  "Paste your full resume text",
+  "Paste the exact job description",
+  "Click Check ATS Score",
+  "Review missing keywords and keyword matches",
+  "Update resume language and re-check until your score improves",
+];
+
 export default function AtsResumeCheckerPage() {
   const webApplicationJsonLd = {
     "@context": "https://schema.org",
@@ -134,7 +160,15 @@ export default function AtsResumeCheckerPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd) }}
       />
-      <ToolPageLayout tool={tool} relatedTools={relatedTools} faqs={faqs} seoSections={seoSections}>
+      <ToolPageLayout
+        tool={tool}
+        relatedTools={relatedTools}
+        faqs={faqs}
+        seoSections={seoSections}
+        howToSteps={howToSteps}
+        lastUpdated="May 6, 2026"
+        reviewedBy="AI Kit Tools Editorial Team"
+      >
         <AtsResumeCheckerTool />
       </ToolPageLayout>
     </>

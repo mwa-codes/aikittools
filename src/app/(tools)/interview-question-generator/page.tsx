@@ -59,6 +59,24 @@ const seoSections = [
     heading: "Related Tools",
     body: "Try Job Application Tracker, AI Cover Letter Generator, Resume Bullet Generator, ATS Resume Checker, and LinkedIn Summary Generator for your job search workflow.",
   },
+  {
+    heading: "15-Minute Daily Interview Prep Plan",
+    body: [
+      "5 minutes: review 2 generated questions and outline answers",
+      "5 minutes: practice aloud using the STAR framework",
+      "3 minutes: refine one weak answer with a concrete example",
+      "2 minutes: write one question to ask the interviewer",
+    ],
+  },
+  {
+    heading: "Questions You Should Ask Interviewers",
+    body: [
+      "What outcomes define success in this role in the first 90 days?",
+      "What are the biggest challenges the team is solving this quarter?",
+      "How does performance feedback and growth planning work here?",
+      "What differentiates top performers on this team?",
+    ],
+  },
 ];
 
 const faqs = [
@@ -104,6 +122,14 @@ const faqs = [
   },
 ];
 
+const howToSteps = [
+  "Enter the job title you are interviewing for",
+  "Optionally add company name and experience level",
+  "Choose interview type: behavioral, technical, or mixed",
+  "Click Generate to get likely interview questions",
+  "Use answer tips to practice concise, role-specific responses",
+];
+
 export default function InterviewQuestionGeneratorPage() {
   const webApplicationJsonLd = {
     "@context": "https://schema.org",
@@ -141,7 +167,15 @@ export default function InterviewQuestionGeneratorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationJsonLd) }}
       />
-      <ToolPageLayout tool={tool} relatedTools={relatedTools} faqs={faqs} seoSections={seoSections}>
+      <ToolPageLayout
+        tool={tool}
+        relatedTools={relatedTools}
+        faqs={faqs}
+        seoSections={seoSections}
+        howToSteps={howToSteps}
+        lastUpdated="May 6, 2026"
+        reviewedBy="AI Kit Tools Editorial Team"
+      >
         <InterviewQuestionGeneratorTool />
       </ToolPageLayout>
     </>
