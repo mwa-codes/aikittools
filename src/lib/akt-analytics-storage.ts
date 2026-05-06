@@ -111,3 +111,16 @@ export function recordResumeBulletsUsed() {
     /* ignore */
   }
 }
+
+/** Clears all Career Health tracking keys from localStorage and fires an update event. */
+export function resetAktStorage(): void {
+  if (typeof window === "undefined") return;
+  try {
+    Object.values(AKT_KEYS).forEach((key) => {
+      window.localStorage.removeItem(key);
+    });
+    dispatchAktUpdate();
+  } catch {
+    /* ignore */
+  }
+}

@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { JobApplication } from "@/types/tracker";
 import {
   readAktStorageSnapshot,
+  resetAktStorage,
   type AktStorageSnapshot,
 } from "@/lib/akt-analytics-storage";
 import {
@@ -23,6 +24,7 @@ export default function CareerHealthScore({ apps }: CareerHealthScoreProps) {
   const [snapshot, setSnapshot] = useState<AktStorageSnapshot>(() => readAktStorageSnapshot());
   const [mounted, setMounted] = useState(false);
   const [expandDetails, setExpandDetails] = useState(false);
+  const [confirmReset, setConfirmReset] = useState(false);
 
   const refreshSnapshot = useCallback(() => {
     setSnapshot(readAktStorageSnapshot());
@@ -61,6 +63,16 @@ export default function CareerHealthScore({ apps }: CareerHealthScoreProps) {
   const score = health.total;
   const dashOffset = C - (C * score) / 100;
   const ctaLabel = `Improve Your Score: ${careerHealthCtaLabel(health.prioritySignal)}`;
+
+  function handleReset() {
+    if (!confirmReset) {
+      setConfirmReset(true);
+      return;
+    }
+    resetAktStorage();
+    setConfirmReset(false);
+    refreshSnapshot();
+  }
 
   return (
     <section className="mb-5 rounded-2xl border border-slate-200 bg-linear-to-b from-white to-slate-50 p-4 sm:p-6 shadow-sm">
@@ -122,7 +134,13 @@ export default function CareerHealthScore({ apps }: CareerHealthScoreProps) {
                   <span className="w-[108px] shrink-0 text-gray-700">{row.label}</span>
                   <div className="flex-1 h-2 rounded-full bg-slate-100 overflow-hidden min-w-0">
                     <div
-                      className="h-full rounded-full bg-blue-600 transition-[width] duration-700 ease-out"
+                      className={`h-full rounded-full transition-[width] duration-700 ease-out ${
+                        row.complete
+                          ? "bg-green-500"
+                          : row.earned > 0
+                          ? "bg-blue-600"
+                          : "bg-slate-300"
+                      }`}
                       style={{
                         width: mounted ? `${pct}%` : "0%",
                         transitionDelay: mounted ? `${i * 100}ms` : "0ms",
@@ -165,6 +183,36 @@ export default function CareerHealthScore({ apps }: CareerHealthScoreProps) {
           >
             → {ctaLabel}
           </Link>
+        </div>
+      </div>
+      {/* Reset row */}
+      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+        <p className="text-xs text-slate-400">
+          {confirmReset
+            ? "This will clear all tool usage tracking. Are you sure?"
+            : "Used all tools? Reset to track a fresh job search."}
+        </p>
+        <div className="flex items-center gap-2 shrink-0">
+          {confirmReset && (
+            <button
+              type="button"
+              onClick={() => setConfirmReset(false)}
+              className="text-xs text-slate-500 hover:text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 transition-colors"
+            >
+              Cancel
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={handleReset}
+            className={`text-xs font-medium px-3 py-1.5 rounded-lg border transition-colors ${
+              confirmReset
+                ? "border-red-300 text-red-600 hover:bg-red-50"
+                : "border-slate-200 text-slate-500 hover:text-slate-700 hover:border-slate-300"
+            }`}
+          >
+            {confirmReset ? "Yes, reset score" : "Reset score"}
+          </button>
         </div>
       </div>
     </section>

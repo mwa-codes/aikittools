@@ -30,7 +30,7 @@ export default function StatsBar({ apps }: StatsBarProps) {
   const interviews = apps.filter((a) => a.status === "Interview").length;
   const offers = apps.filter((a) => a.status === "Offer").length;
   const responded = apps.filter(
-    (a) => a.status === "Interview" || a.status === "Offer" || a.status === "Rejected"
+    (a) => a.status === "Interview" || a.status === "Offer"
   ).length;
   const responseRate = total > 0 ? Math.round((responded / total) * 100) : 0;
 
@@ -42,7 +42,7 @@ export default function StatsBar({ apps }: StatsBarProps) {
       <StatCard
         value={`${responseRate}%`}
         label="Response Rate"
-        subtitle="(excl. ghosted)"
+        subtitle="(interviews & offers)"
         colorClass="text-blue-600"
       />
     </div>

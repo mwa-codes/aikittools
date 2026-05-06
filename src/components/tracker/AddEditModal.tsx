@@ -74,6 +74,7 @@ export default function AddEditModal({ app, onSave, onClose }: AddEditModalProps
               <input
                 type="text"
                 required
+                maxLength={100}
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -87,6 +88,7 @@ export default function AddEditModal({ app, onSave, onClose }: AddEditModalProps
               <input
                 type="text"
                 required
+                maxLength={100}
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -117,6 +119,7 @@ export default function AddEditModal({ app, onSave, onClose }: AddEditModalProps
                 type="date"
                 required
                 value={dateApplied}
+                max={todayString()}
                 onChange={(e) => setDateApplied(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -153,9 +156,11 @@ export default function AddEditModal({ app, onSave, onClose }: AddEditModalProps
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={3}
+              maxLength={1000}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               placeholder="Recruiter name, interview notes, next steps..."
             />
+            <p className="text-xs text-gray-400 mt-1 text-right">{notes.length} / 1000</p>
           </div>
 
           {error && (

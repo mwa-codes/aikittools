@@ -113,10 +113,14 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
     }
   }
 
-  async function copyToClipboard(text: string, onCopied: () => void) {
-    await navigator.clipboard.writeText(text);
-    onCopied();
-    setTimeout(onCopied, 2000);
+  async function copyText(text: string, setCopied: (v: boolean) => void) {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // clipboard not available — silently ignore
+    }
   }
 
   return (
@@ -250,9 +254,7 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
                     <span className="text-sm font-medium text-gray-700">Your Cover Letter</span>
                     <button
                       type="button"
-                      onClick={() =>
-                        copyToClipboard(coverLetter, () => setClCopied(true))
-                      }
+                      onClick={() => copyText(coverLetter, setClCopied)}
                       className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1"
                     >
                       {clCopied ? "Copied!" : "Copy"}
@@ -315,7 +317,7 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
                     <span className="text-sm font-medium text-gray-700">Your Follow-up Email</span>
                     <button
                       type="button"
-                      onClick={() => copyToClipboard(email, () => setFuCopied(true))}
+                      onClick={() => copyText(email, setFuCopied)}
                       className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1"
                     >
                       {fuCopied ? "Copied!" : "Copy"}
@@ -377,7 +379,7 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
                     <span className="text-sm font-medium text-gray-700">Interview Questions</span>
                     <button
                       type="button"
-                      onClick={() => copyToClipboard(questions, () => setIpCopied(true))}
+                      onClick={() => copyText(questions, setIpCopied)}
                       className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1"
                     >
                       {ipCopied ? "Copied!" : "Copy All"}

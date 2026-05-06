@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AKT_KEYS, readAktStorageSnapshot } from "@/lib/akt-analytics-storage";
 import { careerHealthCtaLabel, computeCareerHealth } from "@/lib/career-health-score";
 import { GUEST_STORAGE_KEY, type JobApplication } from "@/types/tracker";
@@ -128,7 +128,10 @@ export default function CareerHealthBanner() {
     };
   }, [refresh]);
 
-  const health = computeCareerHealth(snapshot, guestApps);
+  const health = useMemo(
+    () => computeCareerHealth(snapshot, guestApps),
+    [snapshot, guestApps],
+  );
 
   const insight = careerHealthCtaLabel(health.prioritySignal);
 

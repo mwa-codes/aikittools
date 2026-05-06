@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import type { User } from "@supabase/supabase-js";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import type { JobApplication, JobApplicationInput, AppStatus } from "@/types/tracker";
@@ -41,46 +41,6 @@ function saveGuestApps(apps: JobApplication[]) {
   }
 }
 
-/** Serializes guest→Supabase migration so concurrent auth events cannot double-insert the same rows. */
-let guestMigrationPromise: Promise<void> | null = null;
-
-function runGuestMigration(userId: string, loadSupabaseApps: () => Promise<void>): Promise<void> {
-  if (guestMigrationPromise) return guestMigrationPromise;
-  guestMigrationPromise = (async () => {
-    try {
-      const guestApps = loadGuestApps();
-      if (guestApps.length === 0) {
-        await loadSupabaseApps();
-        return;
-      }
-      const supabase = createClient();
-      if (!supabase) {
-        await loadSupabaseApps();
-        return;
-      }
-      const toInsert = guestApps.map((a) => ({
-        id: a.id,
-        user_id: userId,
-        company: a.company,
-        role: a.role,
-        job_url: normalizeJobUrl(a.job_url) ?? null,
-        date_applied: a.date_applied,
-        status: a.status,
-        notes: a.notes ?? null,
-        priority: a.priority,
-      }));
-      const { error } = await supabase.from("job_applications").insert(toInsert);
-      if (!error || error.code === "23505") {
-        localStorage.removeItem(GUEST_STORAGE_KEY);
-      }
-      await loadSupabaseApps();
-    } finally {
-      guestMigrationPromise = null;
-    }
-  })();
-  return guestMigrationPromise;
-}
-
 export default function TrackerApp() {
   const [user, setUser] = useState<User | null>(null);
   const [apps, setApps] = useState<JobApplication[]>([]);
@@ -104,6 +64,7 @@ export default function TrackerApp() {
   const [authMode, setAuthMode] = useState<"signin" | "signup">("signup");
   const [isAuthGate, setIsAuthGate] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
+  const guestMigrationRef = useRef<Promise<void> | null>(null);
 
   function changeViewMode(mode: ViewMode) {
     setViewMode(mode);
@@ -173,7 +134,43 @@ export default function TrackerApp() {
       setUser(currentUser);
       if (event === "SIGNED_IN" && currentUser) {
         setLoading(true);
-        runGuestMigration(currentUser.id, loadSupabaseApps).finally(() => setLoading(false));
+        if (!guestMigrationRef.current) {
+          guestMigrationRef.current = (async () => {
+            try {
+              const guestApps = loadGuestApps();
+              if (guestApps.length === 0) {
+                await loadSupabaseApps();
+                return;
+              }
+              const supabase = createClient();
+              if (!supabase) {
+                await loadSupabaseApps();
+                return;
+              }
+              const toInsert = guestApps.map((a) => ({
+                id: a.id,
+                user_id: currentUser.id,
+                company: a.company,
+                role: a.role,
+                job_url: normalizeJobUrl(a.job_url) ?? null,
+                date_applied: a.date_applied,
+                status: a.status,
+                notes: a.notes ?? null,
+                priority: a.priority,
+              }));
+              const { error } = await supabase.from("job_applications").insert(toInsert);
+              if (!error || error.code === "23505") {
+                localStorage.removeItem(GUEST_STORAGE_KEY);
+              } else {
+                setNotice("Some guest applications could not be synced to your account.");
+              }
+              await loadSupabaseApps();
+            } finally {
+              guestMigrationRef.current = null;
+            }
+          })();
+        }
+        guestMigrationRef.current.finally(() => setLoading(false));
       } else if (event === "SIGNED_OUT") {
         setApps(loadGuestApps());
       }
@@ -231,7 +228,11 @@ export default function TrackerApp() {
     if (user) {
       const supabase = createClient();
       if (!supabase) return;
-      await supabase.from("job_applications").delete().eq("id", id);
+      const { error } = await supabase.from("job_applications").delete().eq("id", id);
+      if (error) {
+        setNotice("Failed to delete application. Please try again.");
+        return;
+      }
       await loadSupabaseApps();
     } else {
       const updated = apps.filter((a) => a.id !== id);
@@ -244,10 +245,14 @@ export default function TrackerApp() {
     if (user) {
       const supabase = createClient();
       if (!supabase) return;
-      await supabase
+      const { error } = await supabase
         .from("job_applications")
         .update({ status: newStatus })
         .eq("id", id);
+      if (error) {
+        setNotice("Failed to update status. Please try again.");
+        return;
+      }
       await loadSupabaseApps();
     } else {
       const updated = apps.map((a) =>
@@ -336,9 +341,19 @@ export default function TrackerApp() {
         </p>
       )}
       {notice && (
-        <p className="mb-4 text-sm text-red-800 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-          {notice}
-        </p>
+        <div className="mb-4 flex items-start justify-between gap-3 text-sm text-red-800 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+          <p>{notice}</p>
+          <button
+            type="button"
+            onClick={() => setNotice(null)}
+            className="shrink-0 text-red-400 hover:text-red-600 transition-colors leading-none mt-0.5"
+            aria-label="Dismiss"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       )}
       {/* Toolbar */}
       <div className="flex items-center justify-between mb-5 gap-3">
@@ -378,7 +393,7 @@ export default function TrackerApp() {
           )}
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          {user && apps.length > 0 && (
+          {apps.length > 0 && (
             <button
               type="button"
               onClick={handleExportCSV}
@@ -452,7 +467,13 @@ export default function TrackerApp() {
           </button>
         </div>
       ) : viewMode === "board" ? (
-        <KanbanBoard apps={apps} onStatusChange={handleStatusChange} />
+        <KanbanBoard
+          apps={apps}
+          onStatusChange={handleStatusChange}
+          onEdit={openEditModal}
+          onAITools={openAIModal}
+          onDelete={handleDelete}
+        />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {apps.map((app) => (
@@ -462,6 +483,7 @@ export default function TrackerApp() {
               onEdit={openEditModal}
               onAITools={openAIModal}
               onDelete={handleDelete}
+              onStatusChange={handleStatusChange}
             />
           ))}
         </div>
@@ -496,6 +518,7 @@ export default function TrackerApp() {
           onClose={() => {
             setShowAuth(false);
             setIsAuthGate(false);
+            setNotice(null);
           }}
           onModeChange={setAuthMode}
         />

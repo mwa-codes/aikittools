@@ -1,13 +1,14 @@
 "use client";
 
-import type { JobApplication } from "@/types/tracker";
-import { STATUS_COLORS, normalizeJobUrl } from "@/types/tracker";
+import type { JobApplication, AppStatus } from "@/types/tracker";
+import { STATUS_COLORS, STATUS_OPTIONS, normalizeJobUrl } from "@/types/tracker";
 
 interface ApplicationCardProps {
   app: JobApplication;
   onEdit: (app: JobApplication) => void;
   onAITools: (app: JobApplication) => void;
   onDelete: (id: string) => void;
+  onStatusChange: (id: string, newStatus: AppStatus) => void;
 }
 
 function formatDate(dateStr: string) {
@@ -19,7 +20,13 @@ function formatDate(dateStr: string) {
   });
 }
 
-export default function ApplicationCard({ app, onEdit, onAITools, onDelete }: ApplicationCardProps) {
+export default function ApplicationCard({
+  app,
+  onEdit,
+  onAITools,
+  onDelete,
+  onStatusChange,
+}: ApplicationCardProps) {
   const notesPreview = app.notes ? app.notes.slice(0, 60) + (app.notes.length > 60 ? "…" : "") : null;
   const jobHref = normalizeJobUrl(app.job_url);
   const today = new Date();
@@ -55,11 +62,16 @@ export default function ApplicationCard({ app, onEdit, onAITools, onDelete }: Ap
           </div>
           <p className="text-sm text-gray-600 mt-0.5">{app.role}</p>
         </div>
-        <span
-          className={`shrink-0 inline-block text-xs font-semibold px-2.5 py-1 rounded-full ${STATUS_COLORS[app.status]}`}
+        <select
+          value={app.status}
+          onChange={(e) => onStatusChange(app.id, e.target.value as AppStatus)}
+          className={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full border-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 ${STATUS_COLORS[app.status]}`}
+          aria-label="Change status"
         >
-          {app.status}
-        </span>
+          {STATUS_OPTIONS.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </select>
       </div>
 
       <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
