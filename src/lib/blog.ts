@@ -157,3 +157,11 @@ export function formatBlogDate(isoDate: string): string {
     year: "numeric",
   });
 }
+
+export function formatBlogMonthYear(isoDate: string): string {
+  const d = new Date(isoDate + "T12:00:00.000Z");
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  });
+}

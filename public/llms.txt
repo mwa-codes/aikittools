@@ -11,22 +11,6 @@ All AI tools are powered by OpenAI GPT-4o Mini. All tools run instantly in the b
 - [Interview Question Generator](https://www.aikittools.com/interview-question-generator): Get 10 likely interview questions for any job title with practical answer tips. Tailored by experience level and interview type. Free, no account required.
 - [ATS Resume Checker](https://www.aikittools.com/ats-resume-checker): Compare your resume against a job description to get an ATS match score and missing keywords. Free, no account required. Used by US job seekers to pass applicant tracking system filters.
 - [LinkedIn Summary Generator](https://www.aikittools.com/linkedin-summary-generator): Write a professional LinkedIn About section from your job title, experience, skills, and goals. Three tone options — professional, conversational, or bold. Free, no account required.
-- [AI Text Summarizer](https://www.aikittools.com/ai-text-summarizer): Summarize any article, document, or passage into a concise 3-5 sentence summary using AI.
-
-## Free Online Utilities
-- [Free Invoice Generator](https://www.aikittools.com/invoice-generator): Create and download professional PDF invoices. Defaults to USD currency.
-- [Word Counter](https://www.aikittools.com/word-counter): Count words, characters, sentences, paragraphs, and reading time in real time.
-- [Case Converter](https://www.aikittools.com/case-converter): Convert text between uppercase, lowercase, title case, and sentence case instantly.
-- [Random Password Generator](https://www.aikittools.com/random-password-generator): Generate secure passwords with custom length and character options.
-- [QR Code Generator](https://www.aikittools.com/qr-code-generator): Generate QR codes from any URL or text instantly.
-- [JSON Formatter](https://www.aikittools.com/json-formatter): Format, validate, and beautify JSON data instantly.
-- [Base64 Encoder / Decoder](https://www.aikittools.com/base64-encoder): Encode and decode Base64 strings instantly.
-- [URL Encoder / Decoder](https://www.aikittools.com/url-encoder-decoder): Encode and decode URLs for use in web applications.
-- [Color Picker & HEX Converter](https://www.aikittools.com/color-picker-hex-converter): Convert between HEX, RGB, and HSL color values.
-- [CSS Minifier](https://www.aikittools.com/css-minifier): Minify and compress CSS code in one click.
-- [BMI Calculator](https://www.aikittools.com/bmi-calculator): Calculate BMI using US Imperial units (pounds, feet, inches).
-- [Age Calculator](https://www.aikittools.com/age-calculator): Calculate exact age in years, months, and days from any birth date.
-- [Loan EMI Calculator](https://www.aikittools.com/loan-emi-calculator): Estimate monthly payments, total interest, and total payment for any loan.
 
 ## About
 - Target market: United States job seekers and professionals

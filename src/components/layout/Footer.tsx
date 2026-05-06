@@ -42,11 +42,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href="/" className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
-                  View all career tools
-                </Link>
-              </li>
             </ul>
           </div>
 

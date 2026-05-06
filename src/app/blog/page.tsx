@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllBlogPosts, formatBlogDate } from "@/lib/blog";
+import { getAllBlogPosts, formatBlogMonthYear } from "@/lib/blog";
 import { JsonLd } from "@/components/blog/JsonLd";
 import { SITE_URL, DEFAULT_OG_IMAGE_PATH, defaultOpenGraphImages } from "@/lib/utils/metadata";
 
@@ -36,14 +36,9 @@ export default function BlogListingPage() {
   const otherPosts = posts.filter((post) => post.slug !== featuredPost?.slug);
   const lastUpdated =
     posts.length > 0
-      ? new Date(`${posts[0].lastModified}T12:00:00.000Z`).toLocaleDateString("en-US", {
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })
+      ? formatBlogMonthYear(posts[0].lastModified)
       : new Date().toLocaleDateString("en-US", {
-          month: "long",
-          day: "numeric",
+          month: "short",
           year: "numeric",
         });
   const breadcrumbLd = {
@@ -109,7 +104,9 @@ export default function BlogListingPage() {
               <p className="mt-3 text-base leading-relaxed text-gray-700">{featuredPost.description}</p>
 
               <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500">
-                <time dateTime={featuredPost.date}>{formatBlogDate(featuredPost.date)}</time>
+                <time dateTime={featuredPost.lastModified}>
+                  Updated {formatBlogMonthYear(featuredPost.lastModified)}
+                </time>
                 <span aria-hidden className="text-gray-300">
                   ·
                 </span>
@@ -160,7 +157,9 @@ export default function BlogListingPage() {
                       <p className="mt-3 text-sm leading-relaxed text-gray-700 line-clamp-3">{post.description}</p>
 
                       <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-500 sm:text-sm">
-                        <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
+                        <time dateTime={post.lastModified}>
+                          Updated {formatBlogMonthYear(post.lastModified)}
+                        </time>
                         <span aria-hidden className="text-gray-300">
                           ·
                         </span>

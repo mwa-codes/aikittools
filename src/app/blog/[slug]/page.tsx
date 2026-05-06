@@ -6,7 +6,7 @@ import {
   getAllBlogSlugs,
   getBlogPostBySlug,
   getRelatedPosts,
-  formatBlogDate,
+  formatBlogMonthYear,
 } from "@/lib/blog";
 import { blogMdxComponents } from "@/components/blog/mdx-components";
 import { BlogBreadcrumb } from "@/components/blog/BlogBreadcrumb";
@@ -143,7 +143,7 @@ export default async function BlogArticlePage({ params }: Props) {
             {post.title}
           </h1>
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600">
-            <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
+            <time dateTime={post.lastModified}>Updated {formatBlogMonthYear(post.lastModified)}</time>
             <span className="text-gray-300" aria-hidden>
               ·
             </span>
@@ -156,7 +156,7 @@ export default async function BlogArticlePage({ params }: Props) {
             </span>
           </div>
           <p className="mt-3 text-sm text-gray-500">
-            Last updated: {formatBlogDate(post.lastModified)} · Reviewed by: {post.author}
+            Last updated: {formatBlogMonthYear(post.lastModified)} · Reviewed by: {post.author}
           </p>
         </header>
 
