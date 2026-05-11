@@ -17,10 +17,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : now;
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: SITE_URL, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
-    { url: `${SITE_URL}/tracker`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${SITE_URL}/cover-letter-generator`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${SITE_URL}/ats-resume-checker`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: SITE_URL, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/tracker`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE_URL}/cover-letter-generator`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE_URL}/ats-resume-checker`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/resume-bullet-generator`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     {
       url: `${SITE_URL}/interview-question-generator`,
@@ -33,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${SITE_URL}/blog`,
       lastModified: blogListingLastModified,
-      changeFrequency: "daily",
+      changeFrequency: "weekly",
       priority: 0.7,
     },
   ];
@@ -41,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogArticlePages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(`${post.lastModified}T12:00:00.000Z`),
-    changeFrequency: "daily" as const,
+    changeFrequency: "weekly" as const,
     priority: 0.6,
   }));
   return [...staticPages, ...blogArticlePages];
