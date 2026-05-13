@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     url: "https://www.aikittools.com/ats-resume-checker",
   },
   alternates: {
-    canonical: "https://www.aikittools.com/ats-resume-checker",
+    canonical: "/ats-resume-checker",
     languages: {
-      "en-US": "https://www.aikittools.com/ats-resume-checker",
+      "en-US": "/ats-resume-checker",
     },
   },
   robots: { index: true, follow: true },

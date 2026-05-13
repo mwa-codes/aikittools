@@ -34,7 +34,7 @@ export const metadata = {
     images: [DEFAULT_OG_IMAGE_PATH],
   },
   alternates: {
-    canonical: "https://www.aikittools.com",
+    canonical: "/",
   },
 };
 

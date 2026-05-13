@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://www.aikittools.com/interview-question-generator",
+    canonical: "/interview-question-generator",
     languages: {
-      "en-US": "https://www.aikittools.com/interview-question-generator",
+      "en-US": "/interview-question-generator",
     },
   },
   robots: { index: true, follow: true },

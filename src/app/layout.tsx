@@ -6,7 +6,6 @@ import Footer from "@/components/layout/Footer";
 import {
   SITE_NAME,
   SITE_DESCRIPTION,
-  SITE_URL,
   DEFAULT_OG_IMAGE_PATH,
   defaultOpenGraphImages,
 } from "@/lib/utils/metadata";
@@ -15,7 +14,10 @@ const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-89XMTG98WC";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL("https://www.aikittools.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: SITE_NAME,
     template: "%s | AI Kit Tools",

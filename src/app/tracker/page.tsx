@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       "Track every application with AI Kit Tools — AI cover letters, follow-up emails, and Career Health Score. Free, no spreadsheet required.",
   },
   alternates: {
-    canonical: "https://www.aikittools.com/tracker",
+    canonical: "/tracker",
   },
   robots: { index: true, follow: true },
 };

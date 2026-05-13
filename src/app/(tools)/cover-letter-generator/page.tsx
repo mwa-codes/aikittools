@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     url: "https://www.aikittools.com/cover-letter-generator",
   },
   alternates: {
-    canonical: "https://www.aikittools.com/cover-letter-generator",
+    canonical: "/cover-letter-generator",
     languages: {
-      "en-US": "https://www.aikittools.com/cover-letter-generator",
+      "en-US": "/cover-letter-generator",
     },
   },
   robots: { index: true, follow: true },

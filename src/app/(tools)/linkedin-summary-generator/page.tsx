@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     url: "https://www.aikittools.com/linkedin-summary-generator",
   },
   alternates: {
-    canonical: "https://www.aikittools.com/linkedin-summary-generator",
+    canonical: "/linkedin-summary-generator",
     languages: {
-      "en-US": "https://www.aikittools.com/linkedin-summary-generator",
+      "en-US": "/linkedin-summary-generator",
     },
   },
   robots: { index: true, follow: true },
