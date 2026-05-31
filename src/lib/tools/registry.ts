@@ -1,4 +1,4 @@
-export type ToolCategory = "text" | "developer" | "encoder" | "calculator" | "ai" | "career";
+export type ToolCategory = "ai" | "career";
 
 export interface Tool {
   slug: string;
@@ -92,13 +92,9 @@ export function getToolsBySlugs(slugs: string[]): Tool[] {
     .filter((tool): tool is Tool => Boolean(tool));
 }
 
-export const TOOL_CATEGORY_ORDER: ToolCategory[] = ["career", "ai", "text", "developer", "encoder", "calculator"];
+export const TOOL_CATEGORY_ORDER: ToolCategory[] = ["career", "ai"];
 
 export const TOOL_CATEGORY_LABELS: Record<ToolCategory, string> = {
-  text: "Text Tools",
-  developer: "Developer Tools",
-  encoder: "Encoder/Decoder",
-  calculator: "Calculators",
   ai: "AI Tools",
   career: "Career Tools",
 };

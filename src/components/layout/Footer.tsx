@@ -1,14 +1,6 @@
 import Link from "next/link";
 import { SITE_NAME } from "@/lib/utils/metadata";
-
-const footerTools = [
-  { slug: "tracker", name: "Job Application Tracker" },
-  { slug: "cover-letter-generator", name: "AI Cover Letter Generator" },
-  { slug: "resume-bullet-generator", name: "Resume Bullet Generator" },
-  { slug: "ats-resume-checker", name: "ATS Resume Checker" },
-  { slug: "interview-question-generator", name: "Interview Question Generator" },
-  { slug: "linkedin-summary-generator", name: "LinkedIn Summary Generator" },
-];
+import { careerNavItems } from "@/lib/navigation";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -32,10 +24,10 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Tools</h3>
             <ul className="space-y-2">
-              {footerTools.map((tool) => (
+              {careerNavItems.map((tool) => (
                 <li key={tool.slug}>
                   <Link
-                    href={`/${tool.slug}`}
+                    href={tool.href}
                     className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
                     {tool.name}

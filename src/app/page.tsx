@@ -1,14 +1,7 @@
 import Link from "next/link";
-import {
-  BriefcaseBusiness,
-  FileText,
-  SearchCheck,
-  ListChecks,
-  MessageSquareQuote,
-  UserRound,
-  ShieldCheck,
-} from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { getAllBlogPosts, formatBlogDate } from "@/lib/blog";
+import { careerNavItems } from "@/lib/navigation";
 import { DEFAULT_OG_IMAGE_PATH, defaultOpenGraphImages } from "@/lib/utils/metadata";
 
 export const metadata = {
@@ -37,45 +30,6 @@ export const metadata = {
     canonical: "/",
   },
 };
-
-const careerTools = [
-  {
-    name: "Job Application Tracker",
-    description: "Track every application with AI tools built in",
-    href: "/tracker",
-    icon: BriefcaseBusiness,
-  },
-  {
-    name: "AI Cover Letter Generator",
-    description: "Tailored cover letters in 10 seconds",
-    href: "/cover-letter-generator",
-    icon: FileText,
-  },
-  {
-    name: "ATS Resume Checker",
-    description: "See if your resume passes ATS before you apply",
-    href: "/ats-resume-checker",
-    icon: SearchCheck,
-  },
-  {
-    name: "Resume Bullet Generator",
-    description: "Turn duties into achievement-focused bullets",
-    href: "/resume-bullet-generator",
-    icon: ListChecks,
-  },
-  {
-    name: "Interview Question Generator",
-    description: "Know what they'll ask before you walk in",
-    href: "/interview-question-generator",
-    icon: MessageSquareQuote,
-  },
-  {
-    name: "LinkedIn Summary Generator",
-    description: "Write a professional About section instantly",
-    href: "/linkedin-summary-generator",
-    icon: UserRound,
-  },
-];
 
 export default function HomePage() {
   const latestPosts = getAllBlogPosts().slice(0, 3);
@@ -204,7 +158,7 @@ export default function HomePage() {
           </h2>
           <p className="mt-2 text-slate-600">6 tools built for one goal: land your next job faster.</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {careerTools.map((tool) => {
+            {careerNavItems.map((tool) => {
               const Icon = tool.icon;
               return (
                 <article key={tool.href} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">

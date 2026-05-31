@@ -1,22 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  BriefcaseBusiness,
-  FileText,
-  SearchCheck,
-  ListChecks,
-  MessageSquareQuote,
-  UserRound,
-} from "lucide-react";
-
-const careerTools = [
-  { slug: "tracker", name: "Job Application Tracker", icon: BriefcaseBusiness },
-  { slug: "cover-letter-generator", name: "AI Cover Letter Generator", icon: FileText },
-  { slug: "resume-bullet-generator", name: "Resume Bullet Generator", icon: ListChecks },
-  { slug: "ats-resume-checker", name: "ATS Resume Checker", icon: SearchCheck },
-  { slug: "interview-question-generator", name: "Interview Question Generator", icon: MessageSquareQuote },
-  { slug: "linkedin-summary-generator", name: "LinkedIn Summary Generator", icon: UserRound },
-];
+import { careerNavItems } from "@/lib/navigation";
 
 export default function Header() {
   return (
@@ -62,13 +46,13 @@ export default function Header() {
                 </svg>
               </button>
 
-              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 absolute right-0 top-full mt-2 w-[560px] rounded-xl border border-gray-200 bg-white shadow-lg p-4 transition-all">
+              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 absolute right-0 top-full mt-2 w-140 rounded-xl border border-gray-200 bg-white shadow-lg p-4 transition-all">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
                     Career Tools
                   </p>
                   <ul className="grid grid-cols-2 gap-1">
-                    {careerTools.map((tool) => {
+                    {careerNavItems.map((tool) => {
                       const Icon = tool.icon;
                       return (
                         <li key={tool.slug}>
@@ -124,7 +108,7 @@ export default function Header() {
                 Career Tools
               </p>
               <ul className="grid grid-cols-1 gap-1">
-                {careerTools.map((tool) => {
+                {careerNavItems.map((tool) => {
                   const Icon = tool.icon;
                   return (
                     <li key={tool.slug}>
