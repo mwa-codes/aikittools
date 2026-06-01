@@ -30,17 +30,22 @@ export const metadata: Metadata = {
 };
 
 export default function BlogListingPage() {
-  const posts = getAllBlogPosts();
+  const posts = getAllBlogPosts().sort(
+    (a, b) =>
+      new Date(`${b.date}T12:00:00.000Z`).getTime() -
+      new Date(`${a.date}T12:00:00.000Z`).getTime(),
+  );
   const featuredSlug = "how-to-track-job-applications";
   const featuredPost = posts.find((post) => post.slug === featuredSlug) ?? posts[0];
   const otherPosts = posts.filter((post) => post.slug !== featuredPost?.slug);
+  const newestSlug = posts[0]?.slug;
   const lastUpdated =
     posts.length > 0
       ? formatBlogMonthYear(posts[0].lastModified)
       : new Date().toLocaleDateString("en-US", {
-          month: "short",
-          year: "numeric",
-        });
+        month: "short",
+        year: "numeric",
+      });
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -87,9 +92,11 @@ export default function BlogListingPage() {
                 <span className="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800">
                   Featured
                 </span>
-                <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
-                  New
-                </span>
+                {featuredPost.slug === newestSlug ? (
+                  <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
+                    New
+                  </span>
+                ) : null}
               </div>
 
               <h2 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
@@ -126,7 +133,7 @@ export default function BlogListingPage() {
 
             {otherPosts.length > 0 ? (
               <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {otherPosts.map((post, index) => (
+                {otherPosts.map((post) => (
                   <li key={post.slug}>
                     <article className="group h-full rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:border-blue-200 hover:shadow-md">
                       <div className="mb-3 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-600">
@@ -138,7 +145,7 @@ export default function BlogListingPage() {
                             Featured
                           </span>
                         ) : null}
-                        {index < 2 ? (
+                        {post.slug === newestSlug ? (
                           <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
                             New
                           </span>

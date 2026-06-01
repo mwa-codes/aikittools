@@ -129,7 +129,7 @@ export default async function BlogArticlePage({ params }: Props) {
   return (
     <>
       <JsonLd data={structuredData} />
-      <article className="max-w-[720px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <article className="max-w-180 mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
         <BlogBreadcrumb
           items={[
             { label: "Home", href: "/" },
@@ -160,7 +160,7 @@ export default async function BlogArticlePage({ params }: Props) {
           </p>
         </header>
 
-        <div className="max-w-[720px] [&>p:first-child]:mt-0 [&>h2:first-child]:mt-0">
+        <div className="max-w-180 [&>p:first-child]:mt-0 [&>h2:first-child]:mt-0">
           <MDXRemote
             source={post.content}
             components={blogMdxComponents}
