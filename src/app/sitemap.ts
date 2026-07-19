@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllBlogPosts } from "@/lib/blog";
 import { SITE_URL } from "@/lib/utils/metadata";
+import { getCoverLetterRoleSlugs } from "@/lib/programmatic/cover-letter-roles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -46,5 +47,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "weekly" as const,
     priority: 0.6,
   }));
-  return [...staticPages, ...blogArticlePages];
+
+  // Programmatic SEO: one "Cover Letter for [Role]" page per role.
+  const coverLetterRolePages: MetadataRoute.Sitemap = getCoverLetterRoleSlugs().map(
+    (slug) => ({
+      url: `${SITE_URL}/cover-letter-for/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }),
+  );
+
+  return [...staticPages, ...blogArticlePages, ...coverLetterRolePages];
 }

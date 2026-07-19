@@ -13,8 +13,18 @@ function countWords(text: string): number {
   return text.trim() === "" ? 0 : text.trim().split(/\s+/).filter(Boolean).length;
 }
 
-export default function CoverLetterGeneratorTool() {
-  const [jobTitle, setJobTitle] = useState("");
+export default function CoverLetterGeneratorTool({
+  initialJobTitle = "",
+}: {
+  /**
+   * Prefills the job title on programmatic "/cover-letter-for/[role]" pages.
+   * A prop (not sessionStorage) is used deliberately: the value is identical at
+   * server-render and client-hydration, so it stays hydration-safe and the page
+   * remains statically prerendered.
+   */
+  initialJobTitle?: string;
+} = {}) {
+  const [jobTitle, setJobTitle] = useState(initialJobTitle);
   const [companyName, setCompanyName] = useState("");
   const [experience, setExperience] = useState("");
   const [tone, setTone] = useState<Tone>("Professional");

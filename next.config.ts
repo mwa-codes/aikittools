@@ -80,22 +80,12 @@ const nextConfig: NextConfig = {
         destination: "/:slug*",
         permanent: true,
       },
-      { source: "/ai-text-summarizer", destination: "/ats-resume-checker", permanent: true },
-      { source: "/invoice-generator", destination: "/cover-letter-generator", permanent: true },
-      { source: "/word-counter", destination: "/", permanent: true },
-      { source: "/case-converter", destination: "/", permanent: true },
-      { source: "/lorem-ipsum-generator", destination: "/", permanent: true },
-      { source: "/random-password-generator", destination: "/", permanent: true },
-      { source: "/color-picker-hex-converter", destination: "/", permanent: true },
-      { source: "/json-formatter", destination: "/", permanent: true },
-      { source: "/css-minifier", destination: "/", permanent: true },
-      { source: "/qr-code-generator", destination: "/", permanent: true },
-      { source: "/base64-encoder", destination: "/", permanent: true },
-      { source: "/url-encoder-decoder", destination: "/", permanent: true },
-      { source: "/html-entity-encoder-decoder", destination: "/", permanent: true },
-      { source: "/age-calculator", destination: "/", permanent: true },
-      { source: "/bmi-calculator", destination: "/", permanent: true },
-      { source: "/loan-emi-calculator", destination: "/", permanent: true },
+      // NOTE: The 16 deleted utility tools are intentionally NOT redirected here.
+      // They return HTTP 410 Gone via src/middleware.ts. Redirecting them to
+      // unrelated career pages created soft-404s that Google flagged as "Page
+      // with redirect" and refused to pass equity through. 410 removes them
+      // cleanly. Config redirects run before middleware, so adding a 301 for any
+      // of those slugs here would pre-empt the 410 — don't.
     ];
   },
 };
