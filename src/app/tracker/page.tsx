@@ -4,6 +4,7 @@ import TrackerApp from "@/components/tracker/TrackerApp";
 import FAQSection from "@/components/seo/FAQSection";
 import ToolSEOContent from "@/components/seo/ToolSEOContent";
 import RelatedTools from "@/components/RelatedTools";
+import WorkspaceShell from "@/components/workspace/WorkspaceShell";
 import { getToolsBySlugs } from "@/lib/tools/registry";
 
 const relatedTools = getToolsBySlugs([
@@ -137,7 +138,7 @@ const howToSchema = {
 
 export default function TrackerPage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <WorkspaceShell>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
@@ -190,6 +191,6 @@ export default function TrackerPage() {
 
       {/* Related Tools — internal links for crawlers and users */}
       <RelatedTools tools={relatedTools} />
-    </div>
+    </WorkspaceShell>
   );
 }

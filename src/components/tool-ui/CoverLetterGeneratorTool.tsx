@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { recordCoverLetterGenerated } from "@/lib/akt-analytics-storage";
+import { consumeHandoff } from "@/lib/tool-handoff";
 
 const MAX_WORDS = 300;
 
@@ -21,6 +22,28 @@ export default function CoverLetterGeneratorTool() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [fromTracker, setFromTracker] = useState(false);
+
+  // Pillar 2: if the tracker pushed a job here, prefill the form after mount.
+  // This MUST run in an effect (not a render-time / lazy initializer): the page
+  // is statically prerendered with empty inputs, so reading sessionStorage
+  // during render would desync client hydration from the server HTML on
+  // controlled inputs. Effects run post-hydration, so there's no mismatch. We
+  // apply everything in one setState batch to avoid cascading renders.
+  useEffect(() => {
+    const handoff = consumeHandoff();
+    if (!handoff) return;
+    /* eslint-disable react-hooks/set-state-in-effect --
+       Reading a browser-only API (sessionStorage) on mount. This must run
+       post-hydration: the page is statically prerendered with empty inputs, so
+       seeding these from a render-time initializer would desync hydration on
+       controlled inputs. React batches these into one commit. */
+    if (handoff.jobTitle) setJobTitle(handoff.jobTitle);
+    if (handoff.company) setCompanyName(handoff.company);
+    if (handoff.experience) setExperience(handoff.experience);
+    if (handoff.source === "tracker") setFromTracker(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
+  }, []);
 
   const wordCount = countWords(experience);
   const isOverLimit = wordCount > MAX_WORDS;
@@ -69,6 +92,14 @@ export default function CoverLetterGeneratorTool() {
 
   return (
     <div className="space-y-4">
+      {fromTracker && (
+        <div className="flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-sm text-blue-800 animate-slide-up">
+          <span aria-hidden="true">↩</span>
+          <span>
+            Prefilled from your tracker. Add your experience and generate — the letter is tailored to this exact role.
+          </span>
+        </div>
+      )}
       <div>
         <label htmlFor="cover-letter-job-title" className="block text-sm font-medium text-gray-700 mb-1">
           Job Title

@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 import type { JobApplication } from "@/types/tracker";
+import { GenerationSkeleton } from "@/components/ui/Skeleton";
+import UpgradeModal from "@/components/UpgradeModal";
+import { setHandoff } from "@/lib/tool-handoff";
+import { canUse, recordUse, getRemaining, type MeteredAction } from "@/lib/usage-limits";
 
 interface AIToolsModalProps {
   app: JobApplication;
@@ -12,8 +18,31 @@ type Tab = "cover-letter" | "followup" | "interview-prep";
 type Tone = "Professional" | "Friendly" | "Confident";
 type Timeframe = "1 week" | "2 weeks" | "3+ weeks (ghosted)";
 
+/**
+ * Free-usage counter (Pillar 3). Reads at render — safe because this modal only
+ * ever mounts after a user click, never during SSR, so there's no hydration
+ * concern. `usageTick` forces a re-read after each successful generation.
+ */
+function UsageHint({ action, tick }: { action: MeteredAction; tick: number }) {
+  void tick; // dependency marker: re-reads getRemaining whenever it changes
+  const remaining = getRemaining(action);
+  if (remaining === Number.POSITIVE_INFINITY) return null;
+  return (
+    <p className="text-center text-xs text-gray-400">
+      {remaining > 0
+        ? `${remaining} free ${remaining === 1 ? "generation" : "generations"} left`
+        : "Free limit reached — upgrade to keep generating"}
+    </p>
+  );
+}
+
 export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
   const [tab, setTab] = useState<Tab>("cover-letter");
+
+  // Freemium gate (Pillar 3): which action tripped the wall, if any.
+  const [gatedAction, setGatedAction] = useState<MeteredAction | null>(null);
+  // Bumped after each successful generation so the free-usage counter re-reads.
+  const [usageTick, setUsageTick] = useState(0);
 
   // Cover Letter state
   const [jobDescription, setJobDescription] = useState("");
@@ -39,6 +68,10 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
   const [ipCopied, setIpCopied] = useState(false);
 
   async function generateCoverLetter() {
+    if (!canUse("cover-letter")) {
+      setGatedAction("cover-letter");
+      return;
+    }
     setClError("");
     setClLoading(true);
     setCoverLetter("");
@@ -59,6 +92,8 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
         setClError(data.error ?? "Failed to generate. Please try again.");
       } else {
         setCoverLetter(data.coverLetter);
+        recordUse("cover-letter");
+        setUsageTick((t) => t + 1);
       }
     } catch {
       setClError("Network error. Please try again.");
@@ -68,6 +103,10 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
   }
 
   async function generateFollowUp() {
+    if (!canUse("followup-email")) {
+      setGatedAction("followup-email");
+      return;
+    }
     setFuError("");
     setFuLoading(true);
     setEmail("");
@@ -82,6 +121,8 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
         setFuError(data.error ?? "Failed to generate. Please try again.");
       } else {
         setEmail(data.email);
+        recordUse("followup-email");
+        setUsageTick((t) => t + 1);
       }
     } catch {
       setFuError("Network error. Please try again.");
@@ -91,6 +132,10 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
   }
 
   async function generateInterviewPrep() {
+    if (!canUse("interview-prep")) {
+      setGatedAction("interview-prep");
+      return;
+    }
     setIpError("");
     setIpLoading(true);
     setQuestions("");
@@ -105,6 +150,8 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
         setIpError(data.error ?? "Failed to generate. Please try again.");
       } else {
         setQuestions(data.questions);
+        recordUse("interview-prep");
+        setUsageTick((t) => t + 1);
       }
     } catch {
       setIpError("Network error. Please try again.");
@@ -243,6 +290,8 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
               >
                 {clLoading ? "Generating..." : "Generate Cover Letter"}
               </button>
+              {clLoading && <GenerationSkeleton lines={7} />}
+              {!clLoading && <UsageHint action="cover-letter" tick={usageTick} />}
               {clError && (
                 <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
                   {clError}
@@ -263,6 +312,21 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
                   <pre className="whitespace-pre-wrap text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg p-4 leading-relaxed font-sans">
                     {coverLetter}
                   </pre>
+                  <Link
+                    href="/cover-letter-generator"
+                    onClick={() =>
+                      setHandoff({
+                        jobTitle: app.role,
+                        company: app.company,
+                        experience,
+                        jobDescription,
+                      })
+                    }
+                    className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:text-blue-700"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Open in full generator
+                  </Link>
                 </div>
               )}
             </>
@@ -306,6 +370,8 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
               >
                 {fuLoading ? "Generating..." : "Generate Follow-up Email"}
               </button>
+              {fuLoading && <GenerationSkeleton lines={6} />}
+              {!fuLoading && <UsageHint action="followup-email" tick={usageTick} />}
               {fuError && (
                 <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
                   {fuError}
@@ -368,6 +434,8 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
               >
                 {ipLoading ? "Generating..." : "Generate Interview Questions"}
               </button>
+              {ipLoading && <GenerationSkeleton lines={7} />}
+              {!ipLoading && <UsageHint action="interview-prep" tick={usageTick} />}
               {ipError && (
                 <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
                   {ipError}
@@ -394,6 +462,16 @@ export default function AIToolsModal({ app, onClose }: AIToolsModalProps) {
           )}
         </div>
       </div>
+
+      {gatedAction && (
+        <UpgradeModal
+          action={gatedAction}
+          open={gatedAction !== null}
+          onClose={() => setGatedAction(null)}
+          // Wire onUpgrade to your checkout provider once picked. Until then the
+          // CTA shows "Checkout coming soon" so the modal still communicates value.
+        />
+      )}
     </div>
   );
 }

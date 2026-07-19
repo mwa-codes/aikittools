@@ -22,3 +22,68 @@ html {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
 }
+
+/* ---------------------------------------------------------------------------
+   Micro-interactions (Pillar 4)
+   Tailwind v4: keyframes live in plain CSS; expose them as utilities via @theme
+   so you can write `animate-slide-up`, `animate-fade-in`, etc. in JSX.
+--------------------------------------------------------------------------- */
+@theme {
+  --animate-slide-up: slide-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.25s ease-out both;
+  --animate-scale-in: scale-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-shimmer: shimmer 1.4s linear infinite;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Shimmer for loading skeletons — moves a light band across a slate base. */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Respect users who prefer reduced motion — disable transforms & shimmer. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DEFAULT_OG_IMAGE_PATH, defaultOpenGraphImages } from "@/lib/utils/metadata";
+import WorkspaceShell from "@/components/workspace/WorkspaceShell";
 
 /**
  * Ensures tool pages keep a default share image when their `openGraph` omits `images`
@@ -11,5 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function ToolsGroupLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return <WorkspaceShell>{children}</WorkspaceShell>;
 }

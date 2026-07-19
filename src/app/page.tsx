@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import { getAllBlogPosts, formatBlogDate } from "@/lib/blog";
 import { careerNavItems } from "@/lib/navigation";
+import WorkflowLoop from "@/components/WorkflowLoop";
 import { DEFAULT_OG_IMAGE_PATH, defaultOpenGraphImages } from "@/lib/utils/metadata";
 
 export const metadata = {
@@ -51,27 +52,30 @@ export default function HomePage() {
     <div className="bg-slate-50 text-slate-900">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <section className="rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-slate-200 sm:p-12">
+        <section className="rounded-3xl bg-linear-to-b from-white to-slate-50 p-8 text-center shadow-sm ring-1 ring-slate-200 sm:p-12">
           <div className="mx-auto max-w-3xl">
-            <h1 className="text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem] lg:whitespace-nowrap">
-              Your Free Job Search Command Center
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 ring-1 ring-blue-100">
+              ✓ No signup to start · Free forever
+            </span>
+            <h1 className="mt-4 text-balance text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem]">
+              Stop losing track of your job search
             </h1>
             <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-              Track every application, generate AI cover letters, check your resume against ATS, and
-              prep for interviews - all free, no credit card required.
+              One place to track every application and let AI write your cover letters, fix your
+              resume, and prep you for interviews. Go from overwhelmed to organized in 30 seconds.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 href="/tracker"
-                className="inline-flex items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-600"
+                className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 hover:shadow-md active:scale-[0.99]"
               >
-                Start Tracking Jobs Free
+                Start Free — No Signup →
               </Link>
               <Link
-                href="#career-tools"
-                className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                href="#workflow"
+                className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
               >
-                See All Career Tools
+                See How It Works
               </Link>
             </div>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-slate-600">
@@ -79,6 +83,11 @@ export default function HomePage() {
               <span className="inline-flex items-center gap-1">✓ No Signup to Start</span>
               <span className="inline-flex items-center gap-1">✓ AI-Powered</span>
             </div>
+          </div>
+
+          {/* The workflow loop — shows the 3-step Track → Optimize → Generate cycle */}
+          <div id="workflow" className="mx-auto mt-10 max-w-4xl scroll-mt-24">
+            <WorkflowLoop />
           </div>
         </section>
 
