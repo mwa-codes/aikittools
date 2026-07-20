@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Career advice from AI Kit Tools — resume tips, cover letters, job search strategy, and tracker guides for US job seekers. Free AI career tools included.",
   robots: { index: true, follow: true },
-  alternates: { canonical: "/blog" },
+  alternates: { canonical: "/blog", languages: { "en-US": "/blog" } },
   openGraph: {
     title: "Free Job Search Tips & Career Advice | AI Kit Tools",
     description:

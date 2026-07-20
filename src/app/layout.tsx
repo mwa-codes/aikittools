@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import {
   SITE_NAME,
+  SITE_URL,
   SITE_DESCRIPTION,
   DEFAULT_OG_IMAGE_PATH,
   defaultOpenGraphImages,
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.aikittools.com"),
   alternates: {
     canonical: "/",
+    languages: { "en-US": "/" },
   },
   title: {
     default: SITE_NAME,
@@ -55,10 +57,28 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Sitewide brand entity. Establishes "AI Kit Tools" as a single identifiable
+  // organization for Google's knowledge graph and AI search engines (GEO).
+  // NOTE: add official profile URLs to `sameAs` once social accounts exist —
+  // that link set is what search engines use to verify the entity.
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo-AK.png`,
+    description: SITE_DESCRIPTION,
+    sameAs: [],
+  };
+
   return (
     <html lang="en-US" data-scroll-behavior="smooth">
       <head>
         <meta name="impact-site-verification" content="879674d4-00c9-49e2-8384-5bb6b9b8899b" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-gray-50">
         <Header />

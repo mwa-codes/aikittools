@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/tracker",
+    languages: { "en-US": "/tracker" },
   },
   robots: { index: true, follow: true },
 };

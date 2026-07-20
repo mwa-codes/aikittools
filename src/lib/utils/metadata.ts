@@ -39,7 +39,7 @@ export function buildMetadata({
     title,
     description,
     keywords: keywords.join(", "),
-    alternates: { canonical: path },
+    alternates: { canonical: path, languages: { "en-US": path } },
     openGraph: {
       title: `${title} | ${SITE_NAME}`,
       description,
