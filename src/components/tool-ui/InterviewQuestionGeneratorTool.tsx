@@ -31,8 +31,12 @@ function normalizeQuestions(input: unknown): InterviewQuestionItem[] {
     .slice(0, 10);
 }
 
-export default function InterviewQuestionGeneratorTool() {
-  const [jobTitle, setJobTitle] = useState("");
+export default function InterviewQuestionGeneratorTool({
+  initialJobTitle = "",
+}: {
+  initialJobTitle?: string;
+} = {}) {
+  const [jobTitle, setJobTitle] = useState(initialJobTitle);
   const [company, setCompany] = useState("");
   const [experienceLevel, setExperienceLevel] = useState<ExperienceLevel>("entry");
   const [interviewType, setInterviewType] = useState<InterviewType>("mixed");
