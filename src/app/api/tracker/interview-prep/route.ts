@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
+import { consumeDailyLimit, DAILY_TOOL_LIMIT } from "@/lib/rate-limit";
 
 const MAX_JD_CHARS = 500;
 
@@ -30,6 +31,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: "Interview prep is not configured." },
         { status: 503 }
+      );
+    }
+
+    const rl = await consumeDailyLimit("tracker_interview_prep", DAILY_TOOL_LIMIT);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: "You've reached today's free limit for this tool. Please come back tomorrow." },
+        { status: 429 }
       );
     }
 

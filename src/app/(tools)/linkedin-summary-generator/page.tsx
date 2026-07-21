@@ -75,7 +75,7 @@ const faqs = [
   {
     question: "Is this LinkedIn summary generator really free?",
     answer:
-      "Yes. Completely free, no account required, no usage limits. Generate as many versions as you need until you find one you love.",
+      "Yes. Completely free and no account required, with a generous daily limit that's high enough for normal use. Generate as many versions as you need until you find one you love.",
   },
   {
     question: "How long should a LinkedIn About section be?",

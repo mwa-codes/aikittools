@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { isRetryableAuthError, withAuthRetry } from "@/lib/supabase/auth-retry";
+import { sendGaEvent } from "@/lib/akt-analytics-storage";
 
 interface AuthModalProps {
   mode: "signin" | "signup";
@@ -36,6 +37,7 @@ export default function AuthModal({ mode, isGate, onClose, onModeChange }: AuthM
       if (signUpError) {
         setError(signUpError.message);
       } else {
+        sendGaEvent("tracker_signed_up");
         setSuccess("Account created! Check your email to confirm, then sign in.");
       }
     } else {

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
+import { consumeDailyLimit, DAILY_TOOL_LIMIT } from "@/lib/rate-limit";
 
 const ALLOWED_EXPERIENCE_LEVELS = ["entry", "mid", "senior"] as const;
 const ALLOWED_INTERVIEW_TYPES = ["mixed", "behavioral", "technical"] as const;
@@ -62,6 +63,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: "Interview question generator is not configured. Please add your OpenAI API key." },
         { status: 503 },
+      );
+    }
+
+    const rl = await consumeDailyLimit("interview_questions", DAILY_TOOL_LIMIT);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: "You've reached today's free limit for this tool. Please come back tomorrow." },
+        { status: 429 },
       );
     }
 

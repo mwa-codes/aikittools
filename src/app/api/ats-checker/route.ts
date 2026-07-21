@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
+import { consumeDailyLimit, DAILY_TOOL_LIMIT } from "@/lib/rate-limit";
 
 const MAX_RESUME_WORDS = 800;
 const MAX_JOB_DESCRIPTION_WORDS = 500;
@@ -82,6 +83,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: "ATS resume checker is not configured. Please add your OpenAI API key." },
         { status: 503 },
+      );
+    }
+
+    const rl = await consumeDailyLimit("ats_checker", DAILY_TOOL_LIMIT);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: "You've reached today's free limit for this tool. Please come back tomorrow." },
+        { status: 429 },
       );
     }
 

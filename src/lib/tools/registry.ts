@@ -76,6 +76,17 @@ export const tools: Tool[] = [
     isAI: true,
     isNew: true,
   },
+  {
+    slug: "ai-visibility-checker",
+    name: "AI Visibility Checker",
+    shortDescription: "See if AI models like ChatGPT recommend your brand — and who they name instead.",
+    description:
+      "Free AI visibility checker (GEO). Enter your brand and category to see whether AI models mention it when people ask for recommendations, which competitors show up, and how to improve.",
+    category: "ai",
+    icon: "📡",
+    isAI: true,
+    isNew: true,
+  },
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {

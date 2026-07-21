@@ -46,7 +46,7 @@ const seoSections = [
   },
   {
     heading: "Why Use a Free ATS Resume Checker?",
-    body: "Most job seekers never see their application get rejected by ATS — they just never hear back. This tool shows you exactly why that happens and what to fix. By matching your resume keywords to the job description before applying, you dramatically increase the chance of a human recruiter actually seeing your resume. Unlike paid tools like Jobscan, this checker is completely free with no account and no usage limits.",
+    body: "Most job seekers never see their application get rejected by ATS — they just never hear back. This tool shows you exactly why that happens and what to fix. By matching your resume keywords to the job description before applying, you dramatically increase the chance of a human recruiter actually seeing your resume. Unlike paid tools like Jobscan, this checker is completely free with no account and a generous daily limit.",
   },
   {
     heading: "Related Tools",
@@ -81,7 +81,7 @@ const faqs = [
   {
     question: "Is this ATS resume checker really free?",
     answer:
-      "Yes. Completely free, no account required, no usage limits. Paste your resume and job description and check as many times as you need.",
+      "Yes. Completely free and no account required, with a generous daily limit that's high enough for normal use. Paste your resume and job description and check as many times as you need.",
   },
   {
     question: "What ATS score should I aim for?",
@@ -106,7 +106,7 @@ const faqs = [
   {
     question: "How is this different from Jobscan?",
     answer:
-      "Jobscan charges a monthly subscription and limits free scans. This tool is completely free with no limits and no account. The core functionality — comparing resume keywords against a job description — is the same.",
+      "Jobscan charges a monthly subscription and tightly limits free scans. This tool is completely free with no account and a generous daily limit. The core functionality — comparing resume keywords against a job description — is the same.",
   },
   {
     question: "Can I use this for any job or industry?",

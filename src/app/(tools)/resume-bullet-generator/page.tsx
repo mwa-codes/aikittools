@@ -82,7 +82,7 @@ const faqs = [
   {
     question: "Is this resume bullet generator really free?",
     answer:
-      "Yes. Completely free, no account required, no hidden limits. Enter your details and generate as many times as you need.",
+      "Yes. Completely free and no account required, with a generous daily limit that's high enough for normal use. Enter your details and generate as many times as you need.",
   },
   {
     question: "What makes a good resume bullet point?",

@@ -13,6 +13,7 @@ import KanbanBoard from "./KanbanBoard";
 import StatsBar from "./StatsBar";
 import CareerHealthScore from "@/components/CareerHealthScore";
 import JobSearchFunnel from "@/components/JobSearchFunnel";
+import { sendGaEvent } from "@/lib/akt-analytics-storage";
 
 type ViewMode = "list" | "board";
 const VIEW_PREF_KEY = "tracker_view_preference";
@@ -133,6 +134,7 @@ export default function TrackerApp() {
       const currentUser = session?.user ?? null;
       setUser(currentUser);
       if (event === "SIGNED_IN" && currentUser) {
+        sendGaEvent("tracker_signed_in");
         setLoading(true);
         if (!guestMigrationRef.current) {
           guestMigrationRef.current = (async () => {
@@ -201,6 +203,7 @@ export default function TrackerApp() {
           .from("job_applications")
           .insert({ ...data, user_id: user.id });
         if (error) throw error;
+        sendGaEvent("tracker_application_added", { auth: "user" });
       }
       await loadSupabaseApps();
     } else {
@@ -219,6 +222,7 @@ export default function TrackerApp() {
         const updated = [newApp, ...apps];
         setApps(updated);
         saveGuestApps(updated);
+        sendGaEvent("tracker_application_added", { auth: "guest" });
       }
     }
   }

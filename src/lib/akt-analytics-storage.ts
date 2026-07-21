@@ -7,6 +7,7 @@ export const AKT_KEYS = {
   INTERVIEW_PREP: "akt_interview_prep_used",
   LINKEDIN: "akt_linkedin_used",
   BULLETS: "akt_bullets_used",
+  AI_VISIBILITY: "akt_ai_visibility_used",
 } as const;
 
 export type AktStorageSnapshot = {
@@ -16,6 +17,7 @@ export type AktStorageSnapshot = {
   interviewPrep: boolean;
   linkedin: boolean;
   bullets: boolean;
+  aiVisibility: boolean;
 };
 
 export function readAktStorageSnapshot(): AktStorageSnapshot {
@@ -26,6 +28,7 @@ export function readAktStorageSnapshot(): AktStorageSnapshot {
     interviewPrep: false,
     linkedin: false,
     bullets: false,
+    aiVisibility: false,
   };
   if (typeof window === "undefined") return empty;
 
@@ -47,6 +50,7 @@ export function readAktStorageSnapshot(): AktStorageSnapshot {
       interviewPrep: window.localStorage.getItem(AKT_KEYS.INTERVIEW_PREP) === "true",
       linkedin: window.localStorage.getItem(AKT_KEYS.LINKEDIN) === "true",
       bullets: window.localStorage.getItem(AKT_KEYS.BULLETS) === "true",
+      aiVisibility: window.localStorage.getItem(AKT_KEYS.AI_VISIBILITY) === "true",
     };
   } catch {
     return empty;
@@ -58,11 +62,36 @@ function dispatchAktUpdate() {
   window.dispatchEvent(new CustomEvent("akt-tools-updated"));
 }
 
+/**
+ * Fire a Google Analytics 4 custom event (no-op if gtag isn't loaded yet).
+ *
+ * GA4 is configured sitewide in app/layout.tsx and gives us pageviews; these
+ * events add the "which tool did they actually use" signal we need to decide
+ * what to monetize. Safe on the server and before gtag loads — it just skips.
+ */
+export function sendGaEvent(
+  name: string,
+  params: Record<string, string | number | boolean> = {},
+): void {
+  if (typeof window === "undefined") return;
+  try {
+    const w = window as unknown as {
+      gtag?: (command: string, eventName: string, params?: object) => void;
+    };
+    if (typeof w.gtag === "function") {
+      w.gtag("event", name, params);
+    }
+  } catch {
+    /* analytics must never break the app */
+  }
+}
+
 export function recordAtsCheckSuccess(score: number) {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(AKT_KEYS.ATS_USED, "true");
     window.localStorage.setItem(AKT_KEYS.ATS_SCORE, String(Math.round(score)));
+    sendGaEvent("tool_used", { tool: "ats_resume_checker", score: Math.round(score) });
     dispatchAktUpdate();
   } catch {
     /* ignore */
@@ -76,6 +105,7 @@ export function recordCoverLetterGenerated() {
     const prev = raw != null ? Number.parseInt(raw, 10) : 0;
     const n = (Number.isFinite(prev) ? prev : 0) + 1;
     window.localStorage.setItem(AKT_KEYS.COVER_COUNT, String(n));
+    sendGaEvent("tool_used", { tool: "cover_letter_generator", count: n });
     dispatchAktUpdate();
   } catch {
     /* ignore */
@@ -86,6 +116,7 @@ export function recordInterviewPrepUsed() {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(AKT_KEYS.INTERVIEW_PREP, "true");
+    sendGaEvent("tool_used", { tool: "interview_prep" });
     dispatchAktUpdate();
   } catch {
     /* ignore */
@@ -96,6 +127,7 @@ export function recordLinkedInSummaryUsed() {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(AKT_KEYS.LINKEDIN, "true");
+    sendGaEvent("tool_used", { tool: "linkedin_summary_generator" });
     dispatchAktUpdate();
   } catch {
     /* ignore */
@@ -106,6 +138,18 @@ export function recordResumeBulletsUsed() {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(AKT_KEYS.BULLETS, "true");
+    sendGaEvent("tool_used", { tool: "resume_bullet_generator" });
+    dispatchAktUpdate();
+  } catch {
+    /* ignore */
+  }
+}
+
+export function recordAiVisibilityCheck() {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(AKT_KEYS.AI_VISIBILITY, "true");
+    sendGaEvent("tool_used", { tool: "ai_visibility_checker" });
     dispatchAktUpdate();
   } catch {
     /* ignore */

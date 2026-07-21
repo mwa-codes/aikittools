@@ -83,7 +83,7 @@ const faqs = [
   {
     question: "Is this interview question generator really free?",
     answer:
-      "Yes. Completely free, no account required, no usage limits. Enter your job title and generate as many times as you need.",
+      "Yes. Completely free and no account required, with a generous daily limit that's high enough for normal use. Enter your job title and generate as many times as you need.",
   },
   {
     question: "How accurate are the generated interview questions?",
