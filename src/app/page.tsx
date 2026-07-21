@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import { getAllBlogPosts, formatBlogDate } from "@/lib/blog";
-import { careerNavItems } from "@/lib/navigation";
+import { navItems, navGroups } from "@/lib/navigation";
 import WorkflowLoop from "@/components/WorkflowLoop";
 import { DEFAULT_OG_IMAGE_PATH, defaultOpenGraphImages } from "@/lib/utils/metadata";
 
@@ -164,30 +164,37 @@ export default function HomePage() {
 
         <section id="career-tools" className="mt-14">
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            All Career Tools - All Free
+            All Tools - All Free
           </h2>
-          <p className="mt-2 text-slate-600">6 tools built for one goal: land your next job faster.</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {careerNavItems.map((tool) => {
-              const Icon = tool.icon;
-              return (
-                <article key={tool.href} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-                  <Icon className="h-6 w-6 text-blue-600" />
-                  <h3 className="mt-4 text-lg font-semibold text-slate-900">{tool.name}</h3>
-                  <p className="mt-2 text-sm text-slate-600">{tool.description}</p>
-                  <Link href={tool.href} className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
-                    Use Free →
-                  </Link>
-                </article>
-              );
-            })}
-          </div>
+          <p className="mt-2 text-slate-600">{navItems.length} tools built to help you land your next job faster.</p>
+          {navGroups.map((group) => (
+            <div key={group.category} className="mt-8 first:mt-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                {group.label}
+              </h3>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {group.items.map((tool) => {
+                  const Icon = tool.icon;
+                  return (
+                    <article key={tool.href} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+                      <Icon className="h-6 w-6 text-blue-600" />
+                      <h4 className="mt-4 text-lg font-semibold text-slate-900">{tool.name}</h4>
+                      <p className="mt-2 text-sm text-slate-600">{tool.description}</p>
+                      <Link href={tool.href} className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">
+                        Use Free →
+                      </Link>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </section>
 
         <section className="mt-14 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200 sm:p-10">
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Built for Serious Job Seekers</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            {["6 AI Career Tools", "100% Free to Start", "No Credit Card Ever"].map((stat) => (
+            {[`${navItems.length} Free AI Tools`, "100% Free to Start", "No Credit Card Ever"].map((stat) => (
               <div key={stat} className="rounded-xl bg-slate-50 p-4 text-center font-semibold text-slate-900">
                 {stat}
               </div>

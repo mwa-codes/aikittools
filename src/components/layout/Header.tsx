@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { careerNavItems } from "@/lib/navigation";
+import { navGroups } from "@/lib/navigation";
 
 export default function Header() {
   return (
@@ -47,26 +47,30 @@ export default function Header() {
               </button>
 
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 absolute right-0 top-full mt-2 w-140 rounded-xl border border-gray-200 bg-white shadow-lg p-4 transition-all">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
-                    Career Tools
-                  </p>
-                  <ul className="grid grid-cols-2 gap-1">
-                    {careerNavItems.map((tool) => {
-                      const Icon = tool.icon;
-                      return (
-                        <li key={tool.slug}>
-                          <Link
-                            href={`/${tool.slug}`}
-                            className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                          >
-                            <Icon className="h-4 w-4" />
-                            <span className="truncate">{tool.name}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                <div className="space-y-4">
+                  {navGroups.map((group) => (
+                    <div key={group.category}>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+                        {group.label}
+                      </p>
+                      <ul className="grid grid-cols-2 gap-1">
+                        {group.items.map((tool) => {
+                          const Icon = tool.icon;
+                          return (
+                            <li key={tool.slug}>
+                              <Link
+                                href={tool.href}
+                                className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                              >
+                                <Icon className="h-4 w-4" />
+                                <span className="truncate">{tool.name}</span>
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -103,27 +107,29 @@ export default function Header() {
             </svg>
           </summary>
           <div className="mt-3 space-y-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
-                Career Tools
-              </p>
-              <ul className="grid grid-cols-1 gap-1">
-                {careerNavItems.map((tool) => {
-                  const Icon = tool.icon;
-                  return (
-                    <li key={tool.slug}>
-                      <Link
-                        href={`/${tool.slug}`}
-                        className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                      >
-                        <Icon className="h-4 w-4" />
-                        <span>{tool.name}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            {navGroups.map((group) => (
+              <div key={group.category}>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+                  {group.label}
+                </p>
+                <ul className="grid grid-cols-1 gap-1">
+                  {group.items.map((tool) => {
+                    const Icon = tool.icon;
+                    return (
+                      <li key={tool.slug}>
+                        <Link
+                          href={tool.href}
+                          className="flex items-center gap-2 px-2 py-1.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                        >
+                          <Icon className="h-4 w-4" />
+                          <span>{tool.name}</span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1">
               <Link
                 href="/about"
