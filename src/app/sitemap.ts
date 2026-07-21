@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllBlogPosts } from "@/lib/blog";
 import { SITE_URL } from "@/lib/utils/metadata";
 import { getCoverLetterRoleSlugs } from "@/lib/programmatic/cover-letter-roles";
+import { getInterviewRoleSlugs } from "@/lib/programmatic/interview-roles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -58,5 +59,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...staticPages, ...blogArticlePages, ...coverLetterRolePages];
+  // Programmatic SEO: one "Interview Questions for [Role]" page per role.
+  const interviewRolePages: MetadataRoute.Sitemap = getInterviewRoleSlugs().map(
+    (slug) => ({
+      url: `${SITE_URL}/interview-questions-for/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }),
+  );
+
+  return [
+    ...staticPages,
+    ...blogArticlePages,
+    ...coverLetterRolePages,
+    ...interviewRolePages,
+  ];
 }
